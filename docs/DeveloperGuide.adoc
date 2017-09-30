@@ -740,6 +740,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |add a birthday |keep track of birthdays
 
+|`* *` |user |create a backup file |recover data in the event of data loss
+
+|`* *` |user |enter commands without worrying about case sensitivity |enter commands more easily
+
+|`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
+
+|`*` |user |see when I added a person |I know when I added the person to my address book.
+
 |`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
 
 {More to be added}
