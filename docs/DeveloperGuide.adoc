@@ -783,6 +783,34 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+[discrete]
+=== Use case: Delete person by name
+
+*MSS*
+
+1.  User enters command to delete person by name
+2.  AddressBook deletes the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The list is empty.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 2a. The given name is not found in AddressBook.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+
 {More to be added}
 
 [appendix]
