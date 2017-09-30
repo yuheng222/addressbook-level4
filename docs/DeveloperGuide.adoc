@@ -734,6 +734,14 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
 
+|`* *` |user |delete a person by name |remove entries I no longer need more easily
+
+|`* *` |user |view the person's address on a map |navigate to the address
+
+|`* *` |user |add a birthday |keep track of birthdays
+
+|`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
+
 {More to be added}
 
 [appendix]
