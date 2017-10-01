@@ -729,9 +729,25 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit a person's details |change a person's details easily without deleting
+
+|`* *` |user |have a birthday calendar |be notified whenever a person's birthday is nearing
+
+|`* *` |user |undo the delete function |recover the details of a person that I have accidentally deleted
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
+|`* *` |user |list the number of persons in the address book |manage my address book better
+
+|`* *` |user |export the address book in different formats |view/edit the address book contents in whichever format that I want
+
+|`* *` |user with many contacts |add a profile picture for each person |identify a person easily
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*  |user |change the theme of my address book GUI |personalise the address book to what I like
+
+|`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
 |=======================================================================
 
 {More to be added}
