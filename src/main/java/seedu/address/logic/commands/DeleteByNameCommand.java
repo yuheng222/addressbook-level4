@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class DeleteByNameCommand extends UndoableCommand{
-    public static final String COMMAND_WORD = "deleteByName";
+    public static final String COMMAND_WORD = "deletebyname";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the CASE-SENSITIVE input.\n"
