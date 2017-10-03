@@ -745,7 +745,7 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
-|`*  |user |change the theme of my address book GUI |personalise the address book to what I like
+|`*`  |user |change the theme of my address book GUI |personalise the address book to what I like
 
 |`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
 |=======================================================================
@@ -777,6 +777,67 @@ Use case ends.
 Use case ends.
 
 * 3a. The given index is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: Edit person's details
+
+*MSS*
+
+1.  User requests to edit a person's details
+2.  AddressBook prompts user to input new details
+3.  User inputs new details
+4.  AddressBook updates the the old details to the new one
++
+Use case ends.
+
+*Extensions*
+
+* 1a. The specified detail does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The input is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. AddressBook lists the new details.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add a profile picture
+
+*MSS*
+
+1. User requests to add a profile picture for a person
+2. AddressBook prompts user to browse for a picture
+3. User chooses profile picture
+4. AddressBook updates person with picture
++
+Use case ends.
+
+*Extensions*
+
+* 1a. The specified person does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The chosen picture is in an unsupported format.
 +
 [none]
 ** 3a1. AddressBook shows an error message.
