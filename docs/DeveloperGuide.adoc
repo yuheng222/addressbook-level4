@@ -783,6 +783,58 @@ Use case ends.
 +
 Use case resumes at step 2.
 
+[discrete]
+=== Use case: Find phone number of a person
+
+*MSS*
+
+1.  User requests to find phone number of a person
+2.  AddressBook shows the phone number of the person
+
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The person does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message
++
+Use case ends.
+
+* 3a. There are multiple persons with the name entered.
++
+[none]
+** 3a1. AddressBook shows a list of phone numbers which belong to the matched persons.
++
+Use case ends.
+
+[discrete]
+=== Use case: List persons by tag
+
+*MSS*
+
+1.  User requests to list persons with a certain tag
+2.  AddressBook shows a list of persons with the tag
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The tag does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message
++
+Use case ends.
+
+* 3a. The list is empty.
++
+Use case ends.
+
 {More to be added}
 
 [appendix]
