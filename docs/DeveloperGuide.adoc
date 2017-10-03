@@ -729,7 +729,23 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
+
+|`* *` |user |remove a person from a certain group |so that I can better manage my contacts when my relationship with that person changes
+
+|`* *` |user |add multiple phone numbers/ emails/ addresses to a person |I can have more ways to reach the person
+
+|`* *` |user |find only a particular piece of information(phone number/ email) of a person |I can obtain the information I need immediately
+
+|`* *` |user |see a list of contacts of a certain group |it's easier to locate a person
+
+|`* *` |organised user |categorise my contacts |I can better manage my contacts
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
