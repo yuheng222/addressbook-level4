@@ -731,6 +731,22 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
+|`* *` |user |delete a person by name |remove entries I no longer need more easily
+
+|`* *` |user |view the person's address on a map |navigate to the address
+
+|`* *` |user |add a birthday |keep track of birthdays
+
+|`* *` |user |create a backup file |recover data in the event of data loss
+
+|`* *` |user |enter commands without worrying about case sensitivity |enter commands more easily
+
+|`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
+
+|`*` |user |see when I added a person |I know when I added the person to my address book.
+
+|`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
 
@@ -766,6 +782,62 @@ Use case ends.
 ** 3a1. AddressBook shows an error message.
 +
 Use case resumes at step 2.
+
+[discrete]
+=== Use case: Delete person by name
+
+*MSS*
+
+1.  User enters command to delete person by name
+2.  AddressBook deletes the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The list is empty.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The given name is not found in AddressBook.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Add person
+
+*MSS*
+
+1.  User enters command to add person
+2.  AddressBook adds the person
+3.  AddressBook displays updated list of persons
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Another person with the same name is present in AddressBook.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The entered command is invalid.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
 
 {More to be added}
 
