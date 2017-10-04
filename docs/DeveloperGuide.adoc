@@ -761,6 +761,16 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
+|`* *` |user |delete a person by name |remove entries I no longer need more easily
+
+|`* *` |user |view the person's address on a map |navigate to the address
+
+|`* *` |user |add a birthday |keep track of birthdays
+
+|`* *` |user |create a backup file |recover data in the event of data loss
+
+|`* *` |user |enter commands without worrying about case sensitivity |enter commands more easily
+
 |`* *` |user |clear the command I am typing with a key |enter a new command without having to backspace the entire command line
 
 |`* *` |advanced user |scroll through my past few commands |check what I have done and redo actions easily
@@ -794,6 +804,13 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*`  |user |change the theme of my address book GUI |personalise the address book to what I like
 
 |`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
+
+|`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
+
+|`*` |user |see when I added a person |I know when I added the person to my address book.
+
+|`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
+
 |=======================================================================
 
 {More to be added}
@@ -830,6 +847,58 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
+=== Use case: Delete person by name
+
+*MSS*
+
+1.  User enters command to delete person by name
+2.  AddressBook deletes the person
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The list is empty.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The given name is not found in AddressBook.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Add person
+
+*MSS*
+
+1.  User enters command to add person
+2.  AddressBook adds the person
+3.  AddressBook displays updated list of persons
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Another person with the same name is present in AddressBook.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The entered command is invalid.
++
+Use case resumes at step 1.
+
+[discrete]
 === Use case: Find phone number of a person
 
 *MSS*
@@ -842,17 +911,17 @@ Use case ends.
 *Extensions*
 
 [none]
-* 2a. The person does not exist.
+* 1a. The person does not exist.
 +
 [none]
-** 2a1. AddressBook shows an error message
+** 1a1. AddressBook shows an error message
 +
 Use case ends.
 
-* 3a. There are multiple persons with the name entered.
+* 2a. There are multiple persons with the name entered.
 +
 [none]
-** 3a1. AddressBook shows a list of phone numbers which belong to the matched persons.
+** 2a1. AddressBook shows a list of phone numbers which belong to the matched persons.
 +
 Use case ends.
 
@@ -932,14 +1001,14 @@ Use case ends
 *Extensions*
 
 [none]
-* 2a. The tag does not exist.
+* 1a. The tag does not exist.
 +
 [none]
-** 2a1. AddressBook shows an error message
+** 1a1. AddressBook shows an error message
 +
 Use case ends.
 
-* 3a. The list is empty.
+* 2a. The list is empty.
 +
 Use case ends.
 
@@ -958,25 +1027,25 @@ Use case ends
 
 *Extensions*
 
-* 2a. The chosen file is in an unsupported format.
-+
-[none]
-** 2a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
-
-* 3a. The file is corrupted.
+* 3a. The chosen file is in an unsupported format.
 +
 [none]
 ** 3a1. AddressBook shows an error message.
 +
-Use case ends.
+Use case resumes at step 2.
 
-* 4a. A contact's details imported contains unrecognized characters.
+* 4a. The file is corrupted.
 +
 [none]
-** 4a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
-** 4a2. User selects one of 2 options and AddressBook performs the corresponding action.
+** 4a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 5a. A contact's details imported contains unrecognized characters.
++
+[none]
+** 5a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
+** 5a2. User selects one of 2 options and AddressBook performs the corresponding action.
 +
 Use case resumes at step 5.
 
@@ -1018,8 +1087,6 @@ Use case ends.
 +
 [none]
 ** 2a1. AddressBook shows an error message.
-
-{More to be added}
 
 [appendix]
 == Non Functional Requirements
