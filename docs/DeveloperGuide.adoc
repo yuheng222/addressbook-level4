@@ -729,11 +729,33 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
 |`* * *` |user |specify my data storage location |easily relocate the raw file for editing and/or sync the file to a Cloud Storage service
 
 |`* * *` |user |load from a file |load contact list from a certain location or a Cloud Storage service
 
-`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+|`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
+|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
+
+|`* *` |user |remove a person from a certain group |so that I can better manage my contacts when my relationship with that person changes
+
+|`* *` |user |add multiple phone numbers/ emails/ addresses to a person |I can have more ways to reach the person
+
+|`* *` |user |find only a particular piece of information(phone number/ email) of a person |I can obtain the information I need immediately
+
+|`* *` |user |see a list of contacts of a certain group |it's easier to locate a person
+
+|`* *` |organised user |categorise my contacts |I can better manage my contacts
 
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
@@ -789,6 +811,57 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
+=== Use case: Find phone number of a person
+
+*MSS*
+
+1.  User requests to find phone number of a person
+2.  AddressBook shows the phone number of the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The person does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message
++
+Use case ends.
+
+* 3a. There are multiple persons with the name entered.
++
+[none]
+** 3a1. AddressBook shows a list of phone numbers which belong to the matched persons.
++
+Use case ends.
+
+[discrete]
+=== Use case: List persons by tag
+
+*MSS*
+
+1.  User requests to list persons with a certain tag
+2.  AddressBook shows a list of persons with the tag
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The tag does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message
++
+Use case ends.
+
+* 3a. The list is empty.
++
+Use case ends.
+
+[discrete]
 === Use case: load from file
 
 *MSS*
@@ -799,29 +872,29 @@ Use case resumes at step 2.
 4.  AddressBook scans through every contact in the file
 5.  For each contact in the contacts file that has the same name as an existing contact in AddressBook, user chooses either Yes or No to overwrite the existing contact with the imported contact. For all other contacts not already in the address book, it is added to the address book.
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
-* 3a. The chosen file is in an unsupported format.
+* 2a. The chosen file is in an unsupported format.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+* 3a. The file is corrupted.
 +
 [none]
 ** 3a1. AddressBook shows an error message.
 +
-Use case resumes at step 2.
-
-* 4a. The file is corrupted.
-+
-[none]
-** 4a1. AddressBook shows an error message.
-+
 Use case ends.
 
-* 5a. A contact's details imported contains unrecognized characters.
+* 4a. A contact's details imported contains unrecognized characters.
 +
 [none]
-** 5a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
-** 5a2. User selects one of 2 options and AddressBook performs the corresponding action.
+** 4a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
+** 4a2. User selects one of 2 options and AddressBook performs the corresponding action.
 +
 Use case resumes at step 5.
 
@@ -838,6 +911,7 @@ Use case ends.
 
 *Extensions*
 
+[none]
 * 2a. The command name contains illegal characters, is already a system default command name, or is another previously added user command name
 +
 [none]
@@ -883,7 +957,8 @@ Use case resumes at step 2.
 .  Should not have unhandled exceptions from user input.
 .  Can be set up without assistance other than the user guide.
 .  Should be in ASD STE-100 Simplified Technical English.
-
+.  The response to any use action should become visible within 5 seconds.
+.  The user interface should be intuitive enough for users who are not IT-savvy
 
 {More to be added}
 
