@@ -3,9 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -122,6 +120,21 @@ public class Person implements ReadOnlyPerson {
         tags.set(new UniqueTagList(replacement));
     }
 
+    /**
+     * Removes a tag from this person's tag list.
+     */
+    public boolean removeTags(Tag tag) {
+        Set<Tag> tagList = tags.get().toSet();
+        if(tagList != null) {
+            if(tagList.remove(tag)){
+                setTags(tagList);
+                return true;
+            };
+        }
+        return false;
+    }
+        
+    
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
