@@ -122,6 +122,21 @@ public class Person implements ReadOnlyPerson {
         tags.set(new UniqueTagList(replacement));
     }
 
+    /**
+     * Removes a tag from this person's tag list.
+     */
+    public boolean removeTags(Tag tag) {
+        Set<Tag> tagList = tags.get().toSet();
+        if (tagList != null) {
+            if (tagList.remove(tag)) {
+                setTags(tagList);
+                return true;
+            }
+            ;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
