@@ -733,6 +733,16 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
 
+|`* * *` |user |specify my data storage location |easily relocate the raw file for editing and/or sync the file to a Cloud Storage service
+
+|`* * *` |user |load from a file |load contact list from a certain location or a Cloud Storage service
+
+|`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
@@ -747,7 +757,24 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |organised user |categorise my contacts |I can better manage my contacts
 
+|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`* *` |user |clear the command I am typing with a key |enter a new command without having to backspace the entire command line
+
+|`* *` |advanced user |scroll through my past few commands |check what I have done and redo actions easily
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*` |user |search based on tags |find all the tasks of a similar nature
+
+|`*` |user |key in emojis/symbols and characters from other languages e.g. Mandarin |capture information in other languages
+
+|`*` |user |exit the application by typing a command |close the app easily
+
+|`*` |advanced user |add my own alias commands |enter commands faster to suit my needs
+
+|`*` |advanced user |remove the alias for a command |use it for another command alias
+
 |=======================================================================
 
 {More to be added}
@@ -790,7 +817,6 @@ Use case resumes at step 2.
 
 1.  User requests to find phone number of a person
 2.  AddressBook shows the phone number of the person
-
 +
 Use case ends.
 
@@ -819,7 +845,7 @@ Use case ends.
 1.  User requests to list persons with a certain tag
 2.  AddressBook shows a list of persons with the tag
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
@@ -835,6 +861,84 @@ Use case ends.
 +
 Use case ends.
 
+[discrete]
+=== Use case: load from file
+
+*MSS*
+
+1.  User requests to load from file
+2.  AddressBook prompts user to browse for a file
+3.  User chooses file to load from
+4.  AddressBook scans through every contact in the file
+5.  For each contact in the contacts file that has the same name as an existing contact in AddressBook, user chooses either Yes or No to overwrite the existing contact with the imported contact. For all other contacts not already in the address book, it is added to the address book.
++
+Use case ends
+
+*Extensions*
+
+* 2a. The chosen file is in an unsupported format.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+* 3a. The file is corrupted.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 4a. A contact's details imported contains unrecognized characters.
++
+[none]
+** 4a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
+** 4a2. User selects one of 2 options and AddressBook performs the corresponding action.
++
+Use case resumes at step 5.
+
+[discrete]
+=== Use case: add my own alias commands
+
+*MSS*
+
+1.  User requests to add new alias command
+2.  AddressBook shows user the list of default commands together with their function, and prompts user to enter in the name of the new command
+3.  AddressBook updates the command list with the new command
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The command name contains illegal characters, is already a system default command name, or is another previously added user command name
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: remove the alias for a command
+
+*MSS*
+
+1.  User requests to remove existing alias command
+2.  AddressBook prompts user to key in the name of the alias command to be deleted
+3.  AddressBook deletes the alias command from the command list
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The alias command name does not exist, or the name is a system default command name
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
 {More to be added}
 
 [appendix]
@@ -843,6 +947,16 @@ Use case ends.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should not violate any copyrights.
+.  Should work offline without an internet connection.
+.  Should work as a standalone application.
+.  Should store data in an editable text file.
+.  Should not require an installer / portable program that does not write data outside its directory
+.  Should not use paid libraries and frameworks.
+.  Should be a free software.
+.  Should not have unhandled exceptions from user input.
+.  Can be set up without assistance other than the user guide.
+.  Should be in ASD STE-100 Simplified Technical English.
 .  The response to any use action should become visible within 5 seconds.
 .  The user interface should be intuitive enough for users who are not IT-savvy
 
