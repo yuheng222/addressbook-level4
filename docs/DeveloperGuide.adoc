@@ -729,6 +729,8 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit a person's details |change a person's details easily without deleting
+
 |`* * *` |user |edit my contact information |I can update my contact info when needed
 
 |`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
@@ -773,6 +775,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |advanced user |scroll through my past few commands |check what I have done and redo actions easily
 
+|`* *` |user |have a birthday calendar |be notified whenever a person's birthday is nearing
+
+|`* *` |user |undo the delete function |recover the details of a person that I have accidentally deleted
+
+|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`* *` |user |list the number of persons in the address book |manage my address book better
+
+|`* *` |user |export the address book in different formats |view/edit the address book contents in whichever format that I want
+
+|`* *` |user with many contacts |add a profile picture for each person |identify a person easily
+
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
 |`*` |user |search based on tags |find all the tasks of a similar nature
@@ -785,11 +799,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`*` |advanced user |remove the alias for a command |use it for another command alias
 
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*`  |user |change the theme of my address book GUI |personalise the address book to what I like
+
+|`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
+
 |`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
 
 |`*` |user |see when I added a person |I know when I added the person to my address book.
 
 |`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
+
 |=======================================================================
 
 {More to be added}
@@ -905,6 +926,69 @@ Use case ends.
 Use case ends.
 
 [discrete]
+=== Use case: Edit person's details
+
+*MSS*
+
+1.  User requests to edit a person's details
+2.  AddressBook prompts user to input new details
+3.  User inputs new details
+4.  AddressBook updates the the old details to the new one
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified detail does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The input is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. AddressBook lists the new details.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add a profile picture
+
+*MSS*
+
+1. User requests to add a profile picture for a person
+2. AddressBook prompts user to browse for a picture
+3. User chooses profile picture
+4. AddressBook updates person with picture
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified person does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The chosen picture is in an unsupported format.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
 === Use case: List persons by tag
 
 *MSS*
@@ -1003,8 +1087,6 @@ Use case ends.
 +
 [none]
 ** 2a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
 
 [appendix]
 == Non Functional Requirements
@@ -1012,6 +1094,11 @@ Use case resumes at step 2.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to handle most logic, I/O, storage related errors.
+.  Should be able to be able to recover to a previous state in the event of a program crash.
+.  Should have proper logging in the event of a program crash.
+.  Log files should be rotated be compressed to minimise hard disk space usage.
+.  Sensitive information should be encrypted.
 .  Should not violate any copyrights.
 .  Should work offline without an internet connection.
 .  Should work as a standalone application.
