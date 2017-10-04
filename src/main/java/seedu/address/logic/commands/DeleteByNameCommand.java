@@ -13,7 +13,6 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
  */
 
 public class DeleteByNameCommand extends UndoableCommand {
-    
     public static final String COMMAND_WORD = "deletebyname";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
