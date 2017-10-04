@@ -1,18 +1,18 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
-import java.util.List;
-
 /**
  * Deletes a person identified using the person's exact name.
  */
 
-public class DeleteByNameCommand extends UndoableCommand{
+public class DeleteByNameCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "deletebyname";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -33,14 +33,14 @@ public class DeleteByNameCommand extends UndoableCommand{
         List<ReadOnlyPerson> list = model.getFilteredPersonList();
         ReadOnlyPerson personToDelete = null;
 
-        for (ReadOnlyPerson person: list){
-            if (person.getName().equals(nameToBeDeleted)){
+        for (ReadOnlyPerson person: list) {
+            if (person.getName().equals(nameToBeDeleted)) {
                 personToDelete = person;
                 break;
             }
         }
 
-        if (personToDelete == null){
+        if (personToDelete == null) {
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         }
 
