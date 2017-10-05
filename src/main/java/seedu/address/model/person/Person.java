@@ -127,16 +127,16 @@ public class Person implements ReadOnlyPerson {
      */
     public boolean removeTags(Tag tag) {
         Set<Tag> tagList = tags.get().toSet();
-        if(tagList != null) {
-            if(tagList.remove(tag)){
+        if (tagList != null) {
+            if (tagList.remove(tag)) {
                 setTags(tagList);
                 return true;
-            };
+            }
+            ;
         }
         return false;
     }
-        
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
