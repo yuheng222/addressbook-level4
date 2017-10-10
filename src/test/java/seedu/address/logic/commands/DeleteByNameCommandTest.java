@@ -31,7 +31,7 @@ public class DeleteByNameCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validName_UnfilteredList_success() throws Exception {
+    public void execute_validNameUnfilteredList_success() throws Exception {
         ReadOnlyPerson personToDelete = ALICE;
         DeleteByNameCommand deleteByNameCommand = prepareCommand(ALICE.getName());
 
@@ -44,7 +44,7 @@ public class DeleteByNameCommandTest {
     }
 
     @Test
-    public void execute_invalidName_UnfilteredList_throwsCommandException() throws Exception {
+    public void execute_invalidNameUnfilteredList_throwsCommandException() throws Exception {
         Name name = new Name("Fake name");
         DeleteByNameCommand deleteByNameCommand = prepareCommand(name);
 
@@ -52,7 +52,7 @@ public class DeleteByNameCommandTest {
     }
 
     @Test
-    public void execute_validName_FilteredList_success() throws Exception {
+    public void execute_validNameFilteredList_success() throws Exception {
         showFirstPersonOnly(model);
 
         ReadOnlyPerson personToDelete = ALICE;
@@ -72,7 +72,7 @@ public class DeleteByNameCommandTest {
      */
 
     @Test
-    public void execute_validName_Not_In_FilteredList_success() throws Exception {
+    public void execute_validNameNotInFilteredList_success() throws Exception {
         showFirstPersonOnly(model);
 
         ReadOnlyPerson personToDelete = CARL;
@@ -88,7 +88,7 @@ public class DeleteByNameCommandTest {
     }
 
     @Test
-    public void execute_invalidName_FilteredList_throwsCommandException() throws IllegalValueException{
+    public void execute_invalidNameFilteredList_throwsCommandException() throws IllegalValueException {
         showFirstPersonOnly(model);
 
         Name name = new Name("Fake name");
