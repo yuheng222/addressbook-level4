@@ -2,10 +2,10 @@ package systemtests;
 
 //import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS;
-import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TestUtil.getLastIndex;
-import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
@@ -27,14 +27,14 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
 
     @Test
     public void deleteByName() {
-        /* ----------------- Performing delete operation while an unfiltered list is being shown -------------------- */
+        /*----------------- Performing delete operation while an unfiltered list is being shown --------------------*/
 
         /* Case: delete ALICE (first person) in the list, command with leading and trailing spaces -> deleted */
         Model expectedModel = getModel();
         Index firstIndex = INDEX_FIRST_PERSON;
         ReadOnlyPerson firstIndexToDelete = getModel().getFilteredPersonList().get(firstIndex.getZeroBased());
-        String command = "     " + DeleteByNameCommand.COMMAND_WORD + "      " +
-                firstIndexToDelete.getName() + "       ";
+        String command = "     " + DeleteByNameCommand.COMMAND_WORD + "      "
+                + firstIndexToDelete.getName() + "       ";
 
         ReadOnlyPerson deletedPerson = removePerson(expectedModel, firstIndexToDelete);
         String expectedResultMessage = String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson);
@@ -68,7 +68,7 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(command, modelBeforeDeletingMid, expectedResultMessage);
 
-        /* ------------------ Performing delete operation while a filtered list is being shown ---------------------- */
+        /*------------------ Performing delete operation while a filtered list is being shown ----------------------*/
 
         /* Case: filtered person list, delete first person shown in person list -> deleted */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
@@ -80,7 +80,7 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         /* Case: filtered person list, delete person NOT shown in person list -> deleted */
         assertCommandSuccess(FIONA);
 
-         /* --------------------- Performing delete operation while a person card is selected ------------------------ */
+        /*--------------------- Performing delete operation while a person card is selected ------------------------*/
 
         /* Case: delete the selected person -> person list panel selects the person before the deleted person */
         showAllPersons();
@@ -112,7 +112,8 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
 
     /**
      * Deletes the person in {@code model}'s address book by creating a default {@code DeleteByNameCommand}
-     * using {@code toDelete} and  performs the same verification as {@code assertCommandSuccess(String, Model, String)}.
+     * using {@code toDelete} and performs the same verification as
+     * {@code assertCommandSuccess(String, Model, String)}.
      * @see DeleteByNameCommandSystemTest#assertCommandSuccess(String, Model, String)
      */
     private void assertCommandSuccess(ReadOnlyPerson toDelete) {
