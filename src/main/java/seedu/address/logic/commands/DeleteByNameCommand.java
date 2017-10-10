@@ -10,6 +10,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Deletes a person identified using the person's exact name.
+ * IMPORTANT: Does not depend on last shown list.
  */
 
 public class DeleteByNameCommand extends UndoableCommand {
@@ -30,7 +31,7 @@ public class DeleteByNameCommand extends UndoableCommand {
 
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
-        List<ReadOnlyPerson> list = model.getFilteredPersonList();
+        List<ReadOnlyPerson> list = model.getAddressBook().getPersonList();
         ReadOnlyPerson personToDelete = null;
 
         for (ReadOnlyPerson person: list) {
