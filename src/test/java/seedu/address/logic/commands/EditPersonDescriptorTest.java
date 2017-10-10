@@ -54,11 +54,11 @@ public class EditPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different NOK name -> returns false
-        EditPersonDescriptor editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withName(VALID_NOK_NAME_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNokName(VALID_NOK_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different NOK phone -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_NOK_PHONE_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNokPhone(VALID_NOK_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
