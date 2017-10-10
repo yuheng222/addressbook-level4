@@ -53,4 +53,11 @@ public class DeleteByNameCommand extends UndoableCommand {
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteByNameCommand // instanceof handles nulls
+                && this.nameToBeDeleted.equals(((DeleteByNameCommand) other).nameToBeDeleted)); // state check
+    }
+
 }
