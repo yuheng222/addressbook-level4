@@ -30,7 +30,7 @@ public class DeleteByNameCommandParserTest {
         assertParseSuccess(parser, VALID_NAME_BOB, expectedDeleteByNameCommand);
 
         //Leading whitespaces
-        assertParseSuccess(parser, (" "+ VALID_NAME_BOB), expectedDeleteByNameCommand);
+        assertParseSuccess(parser, (" " + VALID_NAME_BOB), expectedDeleteByNameCommand);
 
         //Trailing whitespaces
         assertParseSuccess(parser, (VALID_NAME_BOB + "  "), expectedDeleteByNameCommand);
