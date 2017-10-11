@@ -134,15 +134,15 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
-=== Deleting a person by name : `deleteByName`
+=== Deleting a person by name : `deletebyname`
 
 Deletes the specified person from the address book. Case-sensitive.
-Format: `delete NAME`
+Format: `deletebyname NAME`
 
 ****
 * Deletes the person with the specified `NAME`.
 * The name refers to the exact name of the person in the address book.
-* The name *is case-sensitive*
+* The name *is case-sensitive*.
 ****
 
 Examples:
@@ -260,8 +260,8 @@ e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 123466
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
-* *DeleteByName* : `deleteByName NAME` +
-e.g. `deleteByName John Doe`
+* *Delete By Name* : `deletebyname NAME` +
+e.g. `deletebyname John Doe`
 * *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
