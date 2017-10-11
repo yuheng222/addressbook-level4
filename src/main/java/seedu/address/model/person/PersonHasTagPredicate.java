@@ -1,10 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.tag.Tag;
-
 import java.util.function.Predicate;
 import java.util.Set;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code ReadOnlyPerson}'s {@code UniqueTagList} contains the specific tag.
@@ -12,15 +11,15 @@ import java.util.Set;
 public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
     private final String tagKeyword;
 
-    public PersonHasTagPredicate(String tagKeyword){
+    public PersonHasTagPredicate(String tagKeyword) {
         this.tagKeyword = tagKeyword.toLowerCase();
     }
 
     @Override
-    public boolean test(ReadOnlyPerson person){
+    public boolean test(ReadOnlyPerson person) {
         Set<Tag> tagSet = person.getTags();
-        for(Tag t: tagSet){
-            if(t.tagName.toLowerCase().equals(tagKeyword)){
+        for (Tag t: tagSet) {
+            if (t.tagName.toLowerCase().equals(tagKeyword)) {
                 return true;
             }
         }

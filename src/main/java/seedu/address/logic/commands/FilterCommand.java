@@ -2,7 +2,11 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.person.PersonHasTagPredicate;
 
-public class FilterCommand extends Command{
+/**
+ * Filters and lists all persons in address book whose tag list contains the argument tag keyword.
+ * Keyword matching is case insensitive.
+ */
+public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose tag lists contain "

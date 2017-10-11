@@ -7,7 +7,10 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonHasTagPredicate;
 
-public class FilterCommandParser implements Parser<Command>{
+/**
+ * Parses input arguments and creates a new FilterCommand object
+ */
+public class FilterCommandParser implements Parser<Command> {
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.
