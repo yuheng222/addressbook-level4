@@ -81,13 +81,13 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
-        // multiple names - last NOK name accepted
-        assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        // multiple NOK names - last NOK name accepted
+        assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NOK_NAME_DESC_AMY + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
-        // multiple phones - last NOK phone accepted
-        assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
+        // multiple NOK phones - last NOK phone accepted
+        assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_AMY + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
@@ -104,8 +104,8 @@ public class AddCommandParserTest {
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNokName(VALID_NOK_NAME_BOB)
-                .withNokPhone(VALID_NOK_PHONE_BOB).withTags().build();
+                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNokName(VALID_NOK_NAME_AMY)
+                .withNokPhone(VALID_NOK_PHONE_AMY).withTags().build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY,
                 new AddCommand(expectedPerson));
@@ -161,12 +161,12 @@ public class AddCommandParserTest {
         // invalid NOK name
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + INVALID_NOK_NAME_DESC + NOK_PHONE_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Name.MESSAGE_NAME_CONSTRAINTS);
+                NokName.MESSAGE_NOK_NAME_CONSTRAINTS);
 
         // invalid NOK phone
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + INVALID_NOK_PHONE_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Phone.MESSAGE_PHONE_CONSTRAINTS);
+                NokPhone.MESSAGE_NOK_PHONE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
