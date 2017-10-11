@@ -6,7 +6,6 @@ import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
-import javafx.collections.ObservableList;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
@@ -17,6 +16,8 @@ import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+
+import javafx.collections.ObservableList;
 
 
 public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
@@ -82,7 +83,7 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         ObservableList<ReadOnlyPerson> addressBookData = getModel().getAddressBook().getPersonList();
         ReadOnlyPerson personToDelete = null;
 
-        for (ReadOnlyPerson person : addressBookData){
+        for (ReadOnlyPerson person : addressBookData) {
             // To find a person in the address book not shown in filtered list.
             if (displayedList.contains(person)) {
                 continue;
