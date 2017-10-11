@@ -1,13 +1,12 @@
 package systemtests;
 
-//import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
+import javafx.collections.ObservableList;
 import org.junit.Test;
 
 import seedu.address.commons.core.Messages;
@@ -78,7 +77,21 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(deleteFirstPersonInFilteredList);
 
         /* Case: filtered person list, delete person NOT shown in person list -> deleted */
-        assertCommandSuccess(FIONA);
+        /* Pre-condition: At least 1 person present in the address book not shown in current filtered list. */
+        ObservableList<ReadOnlyPerson> displayedList = getModel().getFilteredPersonList();
+        ObservableList<ReadOnlyPerson> addressBookData = getModel().getAddressBook().getPersonList();
+        ReadOnlyPerson personToDelete = null;
+
+        for (ReadOnlyPerson person : addressBookData){
+            // To find a person in the address book not shown in filtered list.
+            if (displayedList.contains(person)) {
+                continue;
+            } else {
+                personToDelete = person;
+                break;
+            }
+        }
+        assertCommandSuccess(personToDelete);
 
         /*--------------------- Performing delete operation while a person card is selected ------------------------*/
 
@@ -93,6 +106,41 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         deletedPerson = removePerson(expectedModel, selectedIndexToDelete);
         expectedResultMessage = String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson);
         assertCommandSuccess(command, expectedModel, expectedResultMessage, expectedIndex);
+
+        /*--------------------------------- Performing invalid delete operation ------------------------------------*/
+
+        /* Case: invalid input (blank) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " ";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Case: invalid character (%) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " %";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Declaring a valid person name for subsequent test cases */
+        ReadOnlyPerson firstPerson = getModel().getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String personName = firstPerson.getName().toString();
+
+        /* Case: invalid character preceding valid name(%NAME) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " %" + personName;
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Case: invalid character preceding valid name with space(% NAME) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " % " + personName;
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Case: invalid character after valid name (NAME%) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " " + personName + "%";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Case: invalid character after valid name with space (NAME %) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " " + personName + " %";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
+
+        /* Although the NAME used below does not exist in the address, the string "Name" is still valid input. */
+        /* Case: invalid character within valid name (N@ME) -> rejected */
+        command = DeleteByNameCommand.COMMAND_WORD + " N@me";
+        assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
 
     }
 
@@ -160,6 +208,26 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
 
         assertCommandBoxShowsDefaultStyle();
         assertStatusBarUnchangedExceptSyncStatus();
+    }
+
+    /**
+     * Executes {@code command} and in addition,<br>
+     * 1. Asserts that the command box displays {@code command}.<br>
+     * 2. Asserts that result display box displays {@code expectedResultMessage}.<br>
+     * 3. Asserts that the model related components equal to the current model.<br>
+     * 4. Asserts that the browser url, selected card and status bar remain unchanged.<br>
+     * 5. Asserts that the command box has the error style.<br>
+     * Verifications 1 to 3 are performed by
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandFailure(String command, String expectedResultMessage) {
+        Model expectedModel = getModel();
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
+        assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
     }
 
 }
