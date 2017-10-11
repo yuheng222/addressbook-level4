@@ -234,12 +234,12 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid NOK name -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_ADDRESS_DESC
                 + INVALID_NOK_NAME_DESC + NOK_PHONE_DESC_AMY;
-        assertCommandFailure(command, NokName.MESSAGE_ADDRESS_CONSTRAINTS);
+        assertCommandFailure(command, NokName.MESSAGE_NOK_NAME_CONSTRAINTS);
 
         /* Case: invalid NOK phone -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + INVALID_ADDRESS_DESC
                 + NOK_NAME_DESC_AMY + INVALID_NOK_PHONE_DESC;
-        assertCommandFailure(command, NokPhone.MESSAGE_ADDRESS_CONSTRAINTS);
+        assertCommandFailure(command, NokPhone.MESSAGE_NOK_PHONE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY

@@ -78,7 +78,7 @@ public class AddCommandParserTest {
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple names - last NOK name accepted
