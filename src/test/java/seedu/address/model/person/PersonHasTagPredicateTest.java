@@ -6,6 +6,7 @@ import seedu.address.testutil.PersonBuilder;
 import static org.junit.Assert.*;
 
 public class PersonHasTagPredicateTest {
+
     @Test
     public void test_personHasTag_returns_true(){
         //person has only one tag
@@ -34,7 +35,7 @@ public class PersonHasTagPredicateTest {
         //keyword matches name, but not tag name
         predicate = new PersonHasTagPredicate("Alice");
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
-    } 
+    }
 
     @Test
     public void equals() throws Exception {

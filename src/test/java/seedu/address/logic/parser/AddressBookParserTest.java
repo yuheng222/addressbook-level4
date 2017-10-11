@@ -65,7 +65,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-    
+
     @Test
     public void parseCommand_filter() throws Exception {
         String tagKeyword = new String("tag");
