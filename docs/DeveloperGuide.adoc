@@ -745,8 +745,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
 
-|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
-
 |`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
 
 |`* *` |user |remove a person from a certain group |so that I can better manage my contacts when my relationship with that person changes
@@ -778,8 +776,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`* *` |user |have a birthday calendar |be notified whenever a person's birthday is nearing
 
 |`* *` |user |undo the delete function |recover the details of a person that I have accidentally deleted
-
-|`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |list the number of persons in the address book |manage my address book better
 
@@ -854,7 +850,7 @@ Use case resumes at step 2.
 1.  User enters command to delete person by name
 2.  AddressBook deletes the person
 +
-Use case ends
+Use case ends.
 
 *Extensions*
 
@@ -896,7 +892,11 @@ Use case resumes at step 1.
 
 * 2a. The entered command is invalid.
 +
+[none]
+** 2a1. AddressBook shows an error message.
++
 Use case resumes at step 1.
+
 
 [discrete]
 === Use case: Find phone number of a person
