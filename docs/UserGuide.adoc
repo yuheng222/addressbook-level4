@@ -112,6 +112,23 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
+=== Locating persons by tag: `filter`
+
+Filters persons who have the given tag. +
+Format: `filter TAG`
+
+****
+* The search is case insensitive. e.g `friends` will match `FriEnds`
+* Only one tag name is allowed.
+* Only the tag field is searched.
+* Only the exact words will be matched. e.g `friends` will not match `friend`
+****
+
+Examples:
+
+* `filter families` +
+Returns all the persons who have the tag `families`
+
 === Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
@@ -243,6 +260,8 @@ e.g. `delete 3`
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
+* *Filter* : `filter TAG` +
+e.g. `filter friends`
 * *List* : `list`
 * *Help* : `help`
 * *Select* : `select INDEX` +
