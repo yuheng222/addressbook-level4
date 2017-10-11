@@ -9,7 +9,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
- * Deletes a person identified using the person's exact name.
+ * Deletes a person identified using the person's exact name. Case-sensitive.
  * IMPORTANT: Does not depend on last shown list.
  */
 
