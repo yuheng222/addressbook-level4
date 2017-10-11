@@ -45,4 +45,7 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
+    /** Sorts the persons in the AddressBook lexicographically */
+    void sort();
+
 }
