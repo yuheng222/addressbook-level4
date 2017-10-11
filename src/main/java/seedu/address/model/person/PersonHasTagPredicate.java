@@ -11,11 +11,11 @@ import java.util.Set;
  */
 public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
     private final String tagKeyword;
-    
+
     public PersonHasTagPredicate(String tagKeyword){
         this.tagKeyword = tagKeyword.toLowerCase();
     }
-    
+
     @Override
     public boolean test(ReadOnlyPerson person){
         Set<Tag> tagSet = person.getTags();

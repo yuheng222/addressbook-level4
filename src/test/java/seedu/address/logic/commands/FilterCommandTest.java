@@ -28,7 +28,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 public class FilterCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    
+
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
@@ -93,5 +93,4 @@ public class FilterCommandTest {
         // different tag -> returns false
         assertFalse(filterFirstCommand.equals(filterSecondCommand));
     }
-
 }

@@ -9,14 +9,14 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class FilterCommandParserTest {
-    
+
     private FilterCommandParser parser = new FilterCommandParser();
-    
+
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
-    
+
     @Test
     public void parse_validArgs_returnsFilterCommand() {
         // no leading and trailing whitespaces
@@ -27,5 +27,4 @@ public class FilterCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n friends  \t", expectedFilterCommand);
     }
-
 }
