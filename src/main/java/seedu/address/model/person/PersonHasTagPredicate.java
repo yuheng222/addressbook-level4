@@ -13,14 +13,14 @@ public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
     private final String tagKeyword;
     
     public PersonHasTagPredicate(String tagKeyword){
-        this.tagKeyword = tagKeyword;
+        this.tagKeyword = tagKeyword.toLowerCase();
     }
     
     @Override
     public boolean test(ReadOnlyPerson person){
         Set<Tag> tagSet = person.getTags();
         for(Tag t: tagSet){
-            if(t.tagName.equals(tagKeyword)){
+            if(t.tagName.toLowerCase().equals(tagKeyword)){
                 return true;
             }
         }
