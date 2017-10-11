@@ -15,9 +15,8 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPerson;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
-
 import javafx.collections.ObservableList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
