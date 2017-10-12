@@ -729,17 +729,59 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit a person's details |change a person's details easily without deleting
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
 |`* * *` |user |specify my data storage location |easily relocate the raw file for editing and/or sync the file to a Cloud Storage service
 
 |`* * *` |user |load from a file |load contact list from a certain location or a Cloud Storage service
 
-`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+|`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
+|`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
+
+|`* *` |user |remove a person from a certain group |so that I can better manage my contacts when my relationship with that person changes
+
+|`* *` |user |add multiple phone numbers/ emails/ addresses to a person |I can have more ways to reach the person
+
+|`* *` |user |find only a particular piece of information(phone number/ email) of a person |I can obtain the information I need immediately
+
+|`* *` |user |see a list of contacts of a certain group |it's easier to locate a person
+
+|`* *` |organised user |categorise my contacts |I can better manage my contacts
 
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
+
+|`* *` |user |delete a person by name |remove entries I no longer need more easily
+
+|`* *` |user |view the person's address on a map |navigate to the address
+
+|`* *` |user |add a birthday |keep track of birthdays
+
+|`* *` |user |create a backup file |recover data in the event of data loss
+
+|`* *` |user |enter commands without worrying about case sensitivity |enter commands more easily
 
 |`* *` |user |clear the command I am typing with a key |enter a new command without having to backspace the entire command line
 
 |`* *` |advanced user |scroll through my past few commands |check what I have done and redo actions easily
+
+|`* *` |user |have a birthday calendar |be notified whenever a person's birthday is nearing
+
+|`* *` |user |undo the delete function |recover the details of a person that I have accidentally deleted
+
+|`* *` |user |list the number of persons in the address book |manage my address book better
+
+|`* *` |user |export the address book in different formats |view/edit the address book contents in whichever format that I want
+
+|`* *` |user with many contacts |add a profile picture for each person |identify a person easily
 
 |`*` |user with many persons in the address book |sort persons by name |locate a person easily
 
@@ -752,6 +794,18 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |advanced user |add my own alias commands |enter commands faster to suit my needs
 
 |`*` |advanced user |remove the alias for a command |use it for another command alias
+
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*`  |user |change the theme of my address book GUI |personalise the address book to what I like
+
+|`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
+
+|`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
+
+|`*` |user |see when I added a person |I know when I added the person to my address book.
+
+|`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
 
 |=======================================================================
 
@@ -789,6 +843,176 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
+=== Use case: Delete person by name
+
+*MSS*
+
+1.  User enters command to delete person by name
+2.  AddressBook deletes the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The list is empty.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The given name is not found in AddressBook.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
+=== Use case: Add person
+
+*MSS*
+
+1.  User enters command to add person
+2.  AddressBook adds the person
+3.  AddressBook displays updated list of persons
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. Another person with the same name is present in AddressBook.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+* 2a. The entered command is invalid.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+
+[discrete]
+=== Use case: Find phone number of a person
+
+*MSS*
+
+1.  User requests to find phone number of a person
+2.  AddressBook shows the phone number of the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The person does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message
++
+Use case ends.
+
+* 2a. There are multiple persons with the name entered.
++
+[none]
+** 2a1. AddressBook shows a list of phone numbers which belong to the matched persons.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit person's details
+
+*MSS*
+
+1.  User requests to edit a person's details
+2.  AddressBook prompts user to input new details
+3.  User inputs new details
+4.  AddressBook updates the the old details to the new one
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified detail does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The input is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. AddressBook lists the new details.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add a profile picture
+
+*MSS*
+
+1. User requests to add a profile picture for a person
+2. AddressBook prompts user to browse for a picture
+3. User chooses profile picture
+4. AddressBook updates person with picture
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified person does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The chosen picture is in an unsupported format.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: List persons by tag
+
+*MSS*
+
+1.  User requests to list persons with a certain tag
+2.  AddressBook shows a list of persons with the tag
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The tag does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message
++
+Use case ends.
+
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
 === Use case: load from file
 
 *MSS*
@@ -799,7 +1023,7 @@ Use case resumes at step 2.
 4.  AddressBook scans through every contact in the file
 5.  For each contact in the contacts file that has the same name as an existing contact in AddressBook, user chooses either Yes or No to overwrite the existing contact with the imported contact. For all other contacts not already in the address book, it is added to the address book.
 +
-Use case ends.
+Use case ends
 
 *Extensions*
 
@@ -838,6 +1062,7 @@ Use case ends.
 
 *Extensions*
 
+[none]
 * 2a. The command name contains illegal characters, is already a system default command name, or is another previously added user command name
 +
 [none]
@@ -862,10 +1087,6 @@ Use case ends.
 +
 [none]
 ** 2a1. AddressBook shows an error message.
-+
-Use case resumes at step 2.
-
-{More to be added}
 
 [appendix]
 == Non Functional Requirements
@@ -873,6 +1094,11 @@ Use case resumes at step 2.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to handle most logic, I/O, storage related errors.
+.  Should be able to be able to recover to a previous state in the event of a program crash.
+.  Should have proper logging in the event of a program crash.
+.  Log files should be rotated be compressed to minimise hard disk space usage.
+.  Sensitive information should be encrypted.
 .  Should not violate any copyrights.
 .  Should work offline without an internet connection.
 .  Should work as a standalone application.
@@ -883,7 +1109,8 @@ Use case resumes at step 2.
 .  Should not have unhandled exceptions from user input.
 .  Can be set up without assistance other than the user guide.
 .  Should be in ASD STE-100 Simplified Technical English.
-
+.  The response to any use action should become visible within 5 seconds.
+.  The user interface should be intuitive enough for users who are not IT-savvy
 
 {More to be added}
 
