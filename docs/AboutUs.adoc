@@ -4,7 +4,7 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :imagesDir: images
 :stylesDir: stylesheets
 
-Address Book & Booklets (AB&B) was developed by the https://github.com/CS2103AUG2017-T10-B3/main[CS2103AUG2017-T10-B3] team. +
+Address Book & Booklets (AB&B) was developed by the https://github.com/CS2103AUG2017-T10-B3[CS2103AUG2017-T10-B3] team. +
 {empty} +
 We are a team based in the http://www.comp.nus.edu.sg[School of Computing, National University of Singapore].
 
@@ -30,7 +30,7 @@ Responsibilities: Documentation
 
 === Wang Jie
 image::wangjieee.jpg[width="150", align="left"]
-{empty}[http://github.com/WangJieee] [<<WangJieee#, portfolio>>]
+{empty}[http://github.com/WangJieee[github]] [<<WangJieee#, portfolio>>]
 
 Role: Developer +
 Responsibilities: UI
