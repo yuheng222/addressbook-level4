@@ -1,14 +1,16 @@
 package seedu.address.model.person;
 
-import org.junit.Test;
-import seedu.address.testutil.PersonBuilder;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
+import seedu.address.testutil.PersonBuilder;
 
 public class PersonHasTagPredicateTest {
 
     @Test
-    public void test_personHasTag_returns_true(){
+    public void test_personHasTag_returnsTrue() {
         //person has only one tag
         PersonHasTagPredicate predicate = new PersonHasTagPredicate("friends");
         assertTrue(predicate.test(new PersonBuilder().build()));
@@ -23,7 +25,7 @@ public class PersonHasTagPredicateTest {
     }
 
     @Test
-    public void test_personHasTag_returns_false(){
+    public void test_personHasTag_returnsFalse() {
         //no keyword
         PersonHasTagPredicate predicate = new PersonHasTagPredicate("");
         assertFalse(predicate.test(new PersonBuilder().build()));
