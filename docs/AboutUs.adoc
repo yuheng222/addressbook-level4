@@ -11,7 +11,7 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Xie Yuheng Xavier
-image::yuheng222.jpg[width="150", align="left"]
+image::yuheng222.JPG[width="150", align="left"]
 {empty}[https://github.com/yuheng222[github]] [<<yuheng222#, portfolio>>]
 
 Role: Developer +
