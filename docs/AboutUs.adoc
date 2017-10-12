@@ -29,7 +29,7 @@ Responsibilities: Documentation
 '''
 
 === Wang Jie
-image::wangjieee.jpg[width="150", align="left"]
+image::wangjieee.png[width="150", align="left"]
 {empty}[http://github.com/WangJieee[github]] [<<WangJieee#, portfolio>>]
 
 Role: Developer +
