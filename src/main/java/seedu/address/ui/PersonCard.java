@@ -60,6 +60,7 @@ public class PersonCard extends UiPart<Region> {
         name.textProperty().bind(Bindings.convert(person.nameProperty()));
         phone.textProperty().bind(Bindings.convert(person.phoneProperty()));
         address.textProperty().bind(Bindings.convert(person.addressProperty()));
+        String test = nokName.toString();                                           // Problem
         nokName.textProperty().bind(Bindings.convert(person.nokNameProperty()));
         nokPhone.textProperty().bind(Bindings.convert(person.nokPhoneProperty()));
         email.textProperty().bind(Bindings.convert(person.emailProperty()));

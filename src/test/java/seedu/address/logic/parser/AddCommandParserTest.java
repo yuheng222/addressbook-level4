@@ -96,8 +96,8 @@ public class AddCommandParserTest {
                 .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withNokName(VALID_NOK_NAME_BOB)
                 .withNokPhone(VALID_NOK_PHONE_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPersonMultipleTags));
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
