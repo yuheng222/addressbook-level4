@@ -23,7 +23,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code DeleteByNameCommand}.
  */
 
 public class DeleteByNameCommandTest {
