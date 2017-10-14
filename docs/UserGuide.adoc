@@ -44,8 +44,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 ====
 *Command Format*
 
-* All command words are not case-sensitive.
-
 * Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 * Items in square brackets are optional e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…`​ after them can be used multiple times including zero times e.g. `[t/TAG]...` can be used as `{nbsp}` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -113,6 +111,23 @@ Examples:
 Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
+
+=== Locating persons by tag: `filter`
+
+Filters persons who have the given tag. +
+Format: `filter TAG`
+
+****
+* The search is case insensitive. e.g `friends` will match `FriEnds`
+* Only one tag name is allowed.
+* Only the tag field is searched.
+* Only the exact words will be matched. e.g `friends` will not match `friend`
+****
+
+Examples:
+
+* `filter families` +
+Returns all the persons who have the tag `families`
 
 === Deleting a person : `delete`
 
@@ -253,8 +268,6 @@ There is no need to save manually.
 
 == Command Summary
 
-* *NOTE* All command words listed below are not case-sensitive.
-
 * *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
 e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 * *Clear* : `clear`
@@ -266,6 +279,8 @@ e.g. `deletebyname John Doe`
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
+* *Filter* : `filter TAG` +
+e.g. `filter friends`
 * *List* : `list`
 * *Help* : `help`
 * *Select* : `select INDEX` +
