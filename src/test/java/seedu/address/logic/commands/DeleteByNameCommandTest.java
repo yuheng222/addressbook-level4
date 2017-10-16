@@ -101,11 +101,11 @@ public class DeleteByNameCommandTest {
 
     @Test
     public void execute_multiplePersonsWithSameName_throwsCommandException() throws IllegalValueException {
-        Person ALICE_2 = new Person(ALICE);
-        ALICE_2.setPhone(new Phone("12345678"));
-        model.addPerson(ALICE_2);
+        Person Alice_2 = new Person(ALICE);
+        Alice_2.setPhone(new Phone("12345678"));
+        model.addPerson(Alice_2);
 
-        DeleteByNameCommand deleteByNameCommand = prepareCommand(ALICE_2.getName());
+        DeleteByNameCommand deleteByNameCommand = prepareCommand(Alice_2.getName());
 
         assertCommandFailure(deleteByNameCommand, model, deleteByNameCommand.MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
     }
