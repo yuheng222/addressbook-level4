@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,10 +33,15 @@ public class DeleteByNameCommand extends UndoableCommand {
 
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
-        List<ReadOnlyPerson> list = model.getAddressBook().getPersonList();
+        List<ReadOnlyPerson> personList = model.getAddressBook().getPersonList();
+
+        Stream<ReadOnlyPerson> filteredPersonStream = personList.stream()
+                .filter(person -> person.getName().equals(nameToBeDeleted));
+
+        List<ReadOnlyPerson> filteredList = filteredPersonStream.collect(Collectors.toList());
         ReadOnlyPerson personToDelete = null;
 
-        for (ReadOnlyPerson person: list) {
+        for (ReadOnlyPerson person: filteredList) {
             if (person.getName().equals(nameToBeDeleted)) {
                 personToDelete = person;
                 break;
