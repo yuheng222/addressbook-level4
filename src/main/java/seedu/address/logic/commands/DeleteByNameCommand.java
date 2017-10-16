@@ -25,6 +25,9 @@ public class DeleteByNameCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    private static final String MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME = "Multiple persons with same name" +
+            " detected. Please use the general delete method shown below. \n" + DeleteCommand.MESSAGE_USAGE;
+
     private final Name nameToBeDeleted;
 
     public DeleteByNameCommand(Name nameToBeDeleted) {
@@ -38,19 +41,15 @@ public class DeleteByNameCommand extends UndoableCommand {
         Stream<ReadOnlyPerson> filteredPersonStream = personList.stream()
                 .filter(person -> person.getName().equals(nameToBeDeleted));
 
-        List<ReadOnlyPerson> filteredList = filteredPersonStream.collect(Collectors.toList());
-        ReadOnlyPerson personToDelete = null;
+        List<ReadOnlyPerson> filteredPersonList = filteredPersonStream.collect(Collectors.toList());
 
-        for (ReadOnlyPerson person: filteredList) {
-            if (person.getName().equals(nameToBeDeleted)) {
-                personToDelete = person;
-                break;
-            }
-        }
-
-        if (personToDelete == null) {
+        if (filteredPersonList.size() == 0) { // No matching name
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+        } else if (filteredPersonList.size() > 1) { // More than 1 person with exact name
+            throw new CommandException(MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
         }
+
+        ReadOnlyPerson personToDelete = filteredPersonList.get(0);
 
         try {
             model.deletePerson(personToDelete);
@@ -67,5 +66,4 @@ public class DeleteByNameCommand extends UndoableCommand {
                 || (other instanceof DeleteByNameCommand // instanceof handles nulls
                 && this.nameToBeDeleted.equals(((DeleteByNameCommand) other).nameToBeDeleted)); // state check
     }
-
 }
