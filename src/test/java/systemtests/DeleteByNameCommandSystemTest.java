@@ -150,13 +150,13 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
 
         /* Attempting to delete multiple persons with same name */
-        Person elle_2 = new Person(ELLE);
-        elle_2.setPhone(new Phone("12345678"));
+        Person elle2 = new Person(ELLE);
+        elle2.setPhone(new Phone("12345678"));
         // Adding a duplicate ELLE with different phone number.
-        executeCommand(AddCommand.COMMAND_WORD + " n/" + elle_2.getName().toString() + " p/"
-                + elle_2.getPhone().toString() + " e/" + elle_2.getEmail().toString() + " a/"
-                      + elle_2.getAddress().toString());
-        command = DeleteByNameCommand.COMMAND_WORD + " " + elle_2.getName().toString();
+        executeCommand(AddCommand.COMMAND_WORD + " n/" + elle2.getName().toString() + " p/"
+                + elle2.getPhone().toString() + " e/" + elle2.getEmail().toString() + " a/"
+                      + elle2.getAddress().toString());
+        command = DeleteByNameCommand.COMMAND_WORD + " " + elle2.getName().toString();
         assertCommandFailure(command, MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
     }
 
