@@ -81,10 +81,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_filter() throws Exception {
-        String tagKeyword = new String("tag");
+        List<String> tags = Arrays.asList("friends", "families", "colleagues");
         FilterCommand command = (FilterCommand) parser.parseCommand(
-                FilterCommand.COMMAND_WORD + " " + tagKeyword);
-        assertEquals(new FilterCommand(new PersonHasTagPredicate(tagKeyword)), command);
+                FilterCommand.COMMAND_WORD + " " + tags.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FilterCommand(new PersonHasTagPredicate(tags)), command);
     }
 
     @Test
