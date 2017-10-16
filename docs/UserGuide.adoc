@@ -114,14 +114,15 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 
 === Locating persons by tag: `filter`
 
-Filters persons who have the given tag. +
-Format: `filter TAG`
+Filters persons who have the any of the given tags. +
+Format: `filter TAG [MORE_TAGS]`
 
 ****
 * The search is case insensitive. e.g `friends` will match `FriEnds`
-* Only one tag name is allowed.
+* The order of the tag names does not matter. e.g. `friends families` will match `families friends`
 * Only the tag field is searched.
 * Only the exact words will be matched. e.g `friends` will not match `friend`
+* Persons matching at least one tag name will be returned (i.e. `OR` search). e.g. `friends colleagues` will return all persons with either tag `friends` or `colleagues` or both
 ****
 
 Examples:
