@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
 
 /**
@@ -96,6 +97,17 @@ public class DeleteByNameCommandTest {
         DeleteByNameCommand deleteByNameCommand = prepareCommand(name);
 
         assertCommandFailure(deleteByNameCommand, model, Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
+    }
+
+    @Test
+    public void execute_multiplePersonsWithSameName_throwsCommandException() throws IllegalValueException {
+        Person ALICE_2 = new Person(ALICE);
+        ALICE_2.setPhone(new Phone("12345678"));
+        model.addPerson(ALICE_2);
+
+        DeleteByNameCommand deleteByNameCommand = prepareCommand(ALICE_2.getName());
+
+        assertCommandFailure(deleteByNameCommand, model, deleteByNameCommand.MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
     }
 
     @Test

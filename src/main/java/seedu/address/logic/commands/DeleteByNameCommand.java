@@ -25,7 +25,7 @@ public class DeleteByNameCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
-    private static final String MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME = "Multiple persons with same name"
+    public static final String MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME = "Multiple persons with same name"
             + " detected. Please use the general delete method shown below. \n" + DeleteCommand.MESSAGE_USAGE;
 
     private final Name nameToBeDeleted;
