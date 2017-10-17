@@ -43,13 +43,13 @@ public class DeleteByNameCommand extends UndoableCommand {
 
         List<ReadOnlyPerson> filteredPersonList = filteredPersonStream.collect(Collectors.toList());
 
-        if (filteredPersonList.size() == 0) { // No matching name
+        if (filteredPersonList.isEmpty()) { // No matching name found
             throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
         } else if (filteredPersonList.size() > 1) { // More than 1 person with exact name
             throw new CommandException(MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
         }
 
-        ReadOnlyPerson personToDelete = filteredPersonList.get(0);
+        ReadOnlyPerson personToDelete = filteredPersonList.get(0); // Get the person to delete
 
         try {
             model.deletePerson(personToDelete);
