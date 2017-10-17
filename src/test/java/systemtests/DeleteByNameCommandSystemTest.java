@@ -20,6 +20,7 @@ import seedu.address.logic.commands.DeleteByNameCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
+import seedu.address.model.person.CaseInsensitiveExactNamePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -157,7 +158,9 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
                 + elle2.getPhone().toString() + " e/" + elle2.getEmail().toString() + " a/"
                       + elle2.getAddress().toString());
         command = DeleteByNameCommand.COMMAND_WORD + " " + elle2.getName().toString();
-        assertCommandFailure(command, MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
+        Model displayPersonsWithSameName = getModel();
+        displayPersonsWithSameName.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(elle2.getName()));
+        assertCommandFailure(command, displayPersonsWithSameName, MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
     }
 
     /**
@@ -242,6 +245,21 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         executeCommand(command);
         assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertSelectedCardUnchanged();
+        assertCommandBoxShowsErrorStyle();
+        assertStatusBarUnchanged();
+    }
+
+    /**
+     * Performs the same verification as {@code assertCommandFailure(String, String)} except that the
+     * model updates the filtered person list according to one of the scenarios below:
+     * 1. Suggested persons to delete
+     * 2. Listing multiple persons with same name
+     * {@code AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)}.<br>
+     * @see AddressBookSystemTest#assertApplicationDisplaysExpected(String, String, Model)
+     */
+    private void assertCommandFailure(String command, Model expectedModel, String expectedResultMessage) {
+        executeCommand(command);
+        assertApplicationDisplaysExpected(command, expectedResultMessage, expectedModel);
         assertCommandBoxShowsErrorStyle();
         assertStatusBarUnchanged();
     }
