@@ -5,10 +5,14 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
+import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_SUGGESTED_PERSONS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -19,7 +23,9 @@ import seedu.address.logic.UndoRedoStack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.CaseInsensitiveExactNamePredicate;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -69,6 +75,32 @@ public class DeleteByNameCommandTest {
         assertCommandSuccess(deleteByNameCommand, model, expectedMessage, expectedModel);
     }
 
+    @Test
+    public void execute_partialNameUnfilteredList_throwsCommandException() throws IllegalValueException {
+        String bensonFirstName = Arrays.asList(BENSON.getName().toString().split(" ")).get(0).toLowerCase();
+        List<String> predicateList = Arrays.asList(bensonFirstName);
+        Name name = new Name(bensonFirstName);
+
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(predicateList));
+        DeleteByNameCommand deleteByNameCommand = prepareCommand(name);
+
+        assertCommandFailure(deleteByNameCommand, model, MESSAGE_SUGGESTED_PERSONS);
+    }
+
+    @Test
+    public void execute_partialNameFilteredList_throwsCommandException() throws IllegalValueException {
+        showFirstPersonOnly(model);
+
+        String carlFirstName = Arrays.asList(CARL.getName().toString().split(" ")).get(0).toLowerCase();
+        List<String> predicateList = Arrays.asList(carlFirstName);
+        Name name = new Name(carlFirstName);
+
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(predicateList));
+        DeleteByNameCommand deleteByNameCommand = prepareCommand(name);
+
+        assertCommandFailure(deleteByNameCommand, model, MESSAGE_SUGGESTED_PERSONS);
+    }
+
     /**
      * Tests the deletion of a person not shown in filtered list.
      */
@@ -100,10 +132,28 @@ public class DeleteByNameCommandTest {
     }
 
     @Test
-    public void execute_multiplePersonsWithSameName_throwsCommandException() throws IllegalValueException {
+    public void execute_multiplePersonsWithSameNameFilteredList_throwsCommandException()
+            throws IllegalValueException {
+
+        showFirstPersonOnly(model);
         Person alice2 = new Person(ALICE);
         alice2.setPhone(new Phone("12345678"));
         model.addPerson(alice2);
+        model.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(alice2.getName()));
+
+        DeleteByNameCommand deleteByNameCommand = prepareCommand(alice2.getName());
+
+        assertCommandFailure(deleteByNameCommand, model, deleteByNameCommand.MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
+    }
+
+    @Test
+    public void execute_multiplePersonsWithSameNameUnfilteredList_throwsCommandException()
+            throws IllegalValueException {
+
+        Person alice2 = new Person(ALICE);
+        alice2.setPhone(new Phone("12345678"));
+        model.addPerson(alice2);
+        model.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(alice2.getName()));
 
         DeleteByNameCommand deleteByNameCommand = prepareCommand(alice2.getName());
 
