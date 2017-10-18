@@ -51,7 +51,8 @@ public class AddTagCommandTest {
     public void execute_unfilteredList_success() throws Exception {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         ReadOnlyPerson lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-        Person editedPerson = new PersonBuilder(lastPerson).withTags("friends", "neighbours","goodFriends", "classmates").build();
+        Person editedPerson = new PersonBuilder(lastPerson)
+                .withTags("friends", "neighbours", "goodFriends", "classmates").build();
         Set<Tag> tags = ParserUtil.parseTags(Collections.singletonList(VALID_TAG_1));
         AddTagCommand addTagCommand = prepareCommand(indexLastPerson, tags);
 
@@ -68,7 +69,8 @@ public class AddTagCommandTest {
         showFirstPersonOnly(model);
 
         ReadOnlyPerson personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withTags("friends", "neighbours","goodFriends", "classmates").build();
+        Person editedPerson = new PersonBuilder(personInFilteredList)
+                .withTags("friends", "neighbours", "goodFriends", "classmates").build();
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         AddTagCommand addTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
 
