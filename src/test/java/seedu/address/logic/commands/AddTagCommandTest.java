@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -21,8 +22,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Person;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
@@ -31,10 +32,11 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for AddTagCommand.
  */
 public class AddTagCommandTest {
+    private static final String VALID_TAG_1 = "goodFriends";
+    private static final String VALID_TAG_2 = "classmates";
+    private static final String VALID_TAG_3 = "friends";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    public static final String VALID_TAG_1 = "goodFriends";
-    public static final String VALID_TAG_2 = "classmates";
-    public static final String VALID_TAG_3 = "friends";
+
     /**
      * Returns an {@code AddTagCommand} with parameters {@code index} and {@code tagsToAdd}
      */
@@ -45,7 +47,7 @@ public class AddTagCommandTest {
     }
 
     @Test
-    public void execute_UnfilteredList_success() throws Exception {
+    public void execute_unfilteredList_success() throws Exception {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         ReadOnlyPerson lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
         Person editedPerson = new PersonBuilder(lastPerson).withTags("goodFriends", "classmates").build();
