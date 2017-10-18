@@ -93,25 +93,28 @@
 }
 
 .list-cell {
+    -fx-background-color: #fafafa ;
     -fx-label-padding: 0 0 5 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 5 0;
-    -fx-border-color: transparent transparent #dcdcdc transparent;
     -fx-border-width: 3px;
 }
 
 .list-cell:filled:even {
     -fx-background-color: #f08080;
     -fx-background-radius: 1;
+    -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #f08080;
     -fx-background-radius: 1;
+    -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #20b2aa;
+    -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:selected #cardPane {
