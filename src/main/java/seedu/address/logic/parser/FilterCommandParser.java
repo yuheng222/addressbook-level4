@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -22,6 +24,9 @@ public class FilterCommandParser implements Parser<Command> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
-        return new FilterCommand(new PersonHasTagPredicate(trimmedArgs));
+
+        String[] tags = trimmedArgs.split("\\s+");
+
+        return new FilterCommand(new PersonHasTagPredicate(Arrays.asList(tags)));
     }
 }

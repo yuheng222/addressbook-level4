@@ -38,14 +38,14 @@ public class FilterCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        FilterCommand command = prepareCommand("");
+        FilterCommand command = prepareCommand(" ");
         assertCommandSuccess(command, expectedMessage, Collections.emptyList());
     }
 
     @Test
     public void execute_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        FilterCommand command = prepareCommand("friends");
+        FilterCommand command = prepareCommand("friends owesMoney");
         assertCommandSuccess(command, expectedMessage, Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
@@ -53,7 +53,7 @@ public class FilterCommandTest {
      * Parses {@code userInput} into a {@code FilterCommand}.
      */
     private FilterCommand prepareCommand(String userInput) {
-        FilterCommand command = new FilterCommand(new PersonHasTagPredicate(userInput));
+        FilterCommand command = new FilterCommand(new PersonHasTagPredicate(Arrays.asList(userInput.split("\\s+"))));
         command.setData(model, new CommandHistory(), new UndoRedoStack());
         return command;
     }
@@ -77,9 +77,9 @@ public class FilterCommandTest {
     @Test
     public void equals() {
         PersonHasTagPredicate firstPredicate =
-                new PersonHasTagPredicate("first");
+                new PersonHasTagPredicate(Collections.singletonList("first"));
         PersonHasTagPredicate secondPredicate =
-                new PersonHasTagPredicate("second");
+                new PersonHasTagPredicate(Collections.singletonList("second"));
 
         FilterCommand filterFirstCommand = new FilterCommand(firstPredicate);
         FilterCommand filterSecondCommand = new FilterCommand(secondPredicate);
