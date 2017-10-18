@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
@@ -124,7 +124,7 @@ public class RemoveTagCommand extends UndoableCommand {
      */
     public static HashSet<Tag> getUpdatedTags(Set<Tag> oldTags, Set<Tag> tagsToRemove) throws TagNotFoundException {
         HashSet<Tag> updatedTags = new HashSet<>(oldTags);
-        for(Tag toRemove : tagsToRemove) {
+        for (Tag toRemove : tagsToRemove) {
             requireNonNull(toRemove);
             if (!oldTags.contains(toRemove)) {
                 throw new TagNotFoundException(toRemove.tagName);
