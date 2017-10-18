@@ -221,6 +221,27 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
+=== Listing all themes : `listthemes`
+
+Shows a list of all themes available for selection. +
+Format: `listthemes`
+
+=== Selecting a theme : `theme`
+
+Switches current theme to the specified one. +
+Format: `theme INDEX`
+
+****
+* Switches current theme to the one given by a specified `INDEX`.
+* The index refers to the index number given in the themes list.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+
+Examples:
+
+`theme 2` +
+Selects the 2nd theme in the themes list.
+
 === Sorting all persons : `sort`
 
 Sorts all persons in the address book by name. +

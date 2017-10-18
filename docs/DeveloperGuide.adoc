@@ -345,6 +345,26 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+// tag::sort[]
+=== Sort mechanism
+
+The sort mechanism mainly replies on the logic component. The primary sorting algorithm resides in 'UniquePersonList' class and it is implemented very simply by using a 'Person' comparator.
+
+The 'indicateAddressBookChanged' event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
+
+'SortCommand"' extends from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SortCommand` +
+**Alternative 1 (current choice):** Only sorts by names of persons in the Address Book. +
+**Pros:** Easy to implement and more intuitive for the user. +
+**Cons:** Functionality is limited and may not satisfy the requirements of the user. +
+**Alternative 2:** Sorts persons in the Address Book by any field (sorting by email or tag for example), which is given as an input by the user. +
+**Pros:** More flexibility for users since they have the option to sort by any field that they want. +
+**Cons:** Harder to implement and constant updating of code is required every time a new field in the 'Person' class is introduced.
+//end:sort[]
+
 === Filter by tag mechanism
 
 The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two main components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
