@@ -45,6 +45,7 @@ public class BrowserPanelTest extends GuiUnitTest {
                 + ALICE.getAddress().toString().replaceAll(" ", "+"));
 
         waitUntilBrowserLoaded(browserPanelHandle);
-        assertEquals(expectedPersonUrl, browserPanelHandle.getLoadedUrl());
+        assertEquals(expectedPersonUrl.toString(),
+                browserPanelHandle.getLoadedUrl().toString());
     }
 }
