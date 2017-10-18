@@ -30,37 +30,37 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for AddTagCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for RemoveTagCommand.
  */
-public class AddTagCommandTest {
+public class RemoveTagCommandTest {
     private static final String VALID_TAG_1 = "goodFriends";
     private static final String VALID_TAG_2 = "classmates";
     private static final String VALID_TAG_3 = "friends";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     /**
-     * Returns an {@code AddTagCommand} with parameters {@code index} and {@code tagsToAdd}
+     * Returns an {@code RemoveTagCommand} with parameters {@code index} and {@code tagsToRemove}
      */
-    private AddTagCommand prepareCommand(Index index, Set<Tag> tagsToAdd) {
-        AddTagCommand addTagCommand = new AddTagCommand(index, tagsToAdd);
-        addTagCommand.setData(model, new CommandHistory(), new UndoRedoStack());
-        return addTagCommand;
+    private RemoveTagCommand prepareCommand(Index index, Set<Tag> tagsToRemove) {
+        RemoveTagCommand removeTagCommand = new RemoveTagCommand(index, tagsToRemove);
+        removeTagCommand.setData(model, new CommandHistory(), new UndoRedoStack());
+        return removeTagCommand;
     }
 
     @Test
     public void execute_unfilteredList_success() throws Exception {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         ReadOnlyPerson lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-        Person editedPerson = new PersonBuilder(lastPerson).withTags("friends", "neighbours","goodFriends", "classmates").build();
-        Set<Tag> tags = ParserUtil.parseTags(Collections.singletonList(VALID_TAG_1));
-        AddTagCommand addTagCommand = prepareCommand(indexLastPerson, tags);
+        Person editedPerson = new PersonBuilder(lastPerson).withTags("neighbours").build();
+        Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_2, VALID_TAG_3));
+        RemoveTagCommand removeTagCommand = prepareCommand(indexLastPerson, tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAG_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemoveTagCommand.MESSAGE_REMOVE_TAG_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updatePerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -68,46 +68,45 @@ public class AddTagCommandTest {
         showFirstPersonOnly(model);
 
         ReadOnlyPerson personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withTags("friends", "neighbours","goodFriends", "classmates").build();
-        Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        AddTagCommand addTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
+        Person editedPerson = new PersonBuilder(personInFilteredList).withTags("neighbours").build();
+        Set<Tag> tags = ParserUtil.parseTags(Collections.singletonList(VALID_TAG_3));
+        RemoveTagCommand removeTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_ADD_TAG_PERSON_SUCCESS, editedPerson);
+        String expectedMessage = String.format(RemoveTagCommand.MESSAGE_REMOVE_TAG_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.updatePerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(removeTagCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicateTagUnfilteredList_failure() throws Exception {
+    public void execute_tagNotFoundUnfilteredList_failure() throws Exception {
         Person firstPerson = new Person(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_2, VALID_TAG_3));
-        AddTagCommand addTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
+        RemoveTagCommand removeTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
 
-        assertCommandFailure(addTagCommand, model, AddTagCommand.MESSAGE_DUPLICATE_TAG + VALID_TAG_3
-        );
+        assertCommandFailure(removeTagCommand, model, RemoveTagCommand.MESSAGE_TAG_NOT_FOUND + VALID_TAG_2);
     }
 
     @Test
-    public void execute_duplicateTagFilteredList_failure() throws Exception {
+    public void execute_tagNotFoundFilteredList_failure() throws Exception {
         showFirstPersonOnly(model);
 
         ReadOnlyPerson personInList = model.getAddressBook().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_2, VALID_TAG_3));
-        AddTagCommand addTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
+        RemoveTagCommand removeTagCommand = prepareCommand(INDEX_FIRST_PERSON, tags);
 
-        assertCommandFailure(addTagCommand, model, AddTagCommand.MESSAGE_DUPLICATE_TAG + VALID_TAG_3);
+        assertCommandFailure(removeTagCommand, model, RemoveTagCommand.MESSAGE_TAG_NOT_FOUND + VALID_TAG_2);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() throws Exception {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_2, VALID_TAG_3));
-        AddTagCommand addTagCommand = prepareCommand(outOfBoundIndex, tags);
+        RemoveTagCommand removeTagCommand = prepareCommand(outOfBoundIndex, tags);
 
-        assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(removeTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -122,8 +121,8 @@ public class AddTagCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_2, VALID_TAG_3));
-        AddTagCommand addTagCommand = prepareCommand(outOfBoundIndex, tags);
-        assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        RemoveTagCommand removeTagCommand = prepareCommand(outOfBoundIndex, tags);
+        assertCommandFailure(removeTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -131,11 +130,11 @@ public class AddTagCommandTest {
         Set<Tag> tags = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
         Set<Tag> tagsOther = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_3));
 
-        final AddTagCommand standardCommand = new AddTagCommand(INDEX_FIRST_PERSON, tags);
+        final RemoveTagCommand standardCommand = new RemoveTagCommand(INDEX_FIRST_PERSON, tags);
 
         // same values -> returns true
         Set<Tag> copyTags = tags;
-        AddTagCommand commandWithSameValues = new AddTagCommand(INDEX_FIRST_PERSON, copyTags);
+        RemoveTagCommand commandWithSameValues = new RemoveTagCommand(INDEX_FIRST_PERSON, copyTags);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
