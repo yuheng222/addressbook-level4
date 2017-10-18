@@ -152,5 +152,4 @@ public class RemoveTagCommandTest {
         // different tags -> returns false
         assertFalse(standardCommand.equals(new AddTagCommand(INDEX_FIRST_PERSON, tagsOther)));
     }
-
 }
