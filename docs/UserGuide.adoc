@@ -92,6 +92,23 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+=== Adding tags to a person : `addtag`
+
+Adds one or more tags to an existing person in the address book. +
+Format: `addtag INDEX [TAG] [MORE_TAGS]`
+
+****
+* Adds tags to the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
+* At least one tag must be provided.
+* You cannot add duplicate tags to the same person.
+* The tag names are case sensitive. e.g `FRiends` is a different tag from `friends`
+****
+
+Examples:
+
+* `addtag 1 neighbours friends` +
+Adds the two tags `neighbours` and `friends` to the 1st person, provided that the person did not have any of the two tag before.
+
 === Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords. +
