@@ -7,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
@@ -29,7 +29,8 @@ public class AddTagCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "addtag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds the entered tag(s) to the person identified by the index number used in the last person listing.\n"
+            + ": Adds the entered tag(s) to the person identified "
+            + "by the index number used in the last person listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[TAG]..."
             + "Example: " + COMMAND_WORD + " 1 " + "friends classmates ";
@@ -124,7 +125,7 @@ public class AddTagCommand extends UndoableCommand {
      */
     public static HashSet<Tag> getUpdatedTags(Set<Tag> oldTags, Set<Tag> tagsToAdd) throws DuplicateTagException {
         HashSet<Tag> updatedTags = new HashSet<>(oldTags);
-        for(Tag toAdd : tagsToAdd) {
+        for (Tag toAdd : tagsToAdd) {
             requireNonNull(toAdd);
             if (oldTags.contains(toAdd)) {
                 throw new DuplicateTagException(toAdd.tagName);
