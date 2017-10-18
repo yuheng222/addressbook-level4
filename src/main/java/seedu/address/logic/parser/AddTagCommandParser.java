@@ -27,7 +27,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand>{
         requireNonNull(args);
         String trimmedArgs = args.trim();
         Index index;
-        
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
@@ -42,16 +42,15 @@ public class AddTagCommandParser implements Parser<AddTagCommand>{
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
-        
-        
-        if(argList.size() == 1) {
+
+        if (argList.size() == 1) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
         }
 
         List<String> tagList = argList.subList(1, argList.size());
         Set<Tag> tagSetToAdd;
-        
+
         try {
             tagSetToAdd = parseTagsToAdd(tagList);
         } catch (IllegalValueException ive) {
@@ -60,7 +59,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand>{
 
         return new AddTagCommand(index, tagSetToAdd);
     }
-    
+
     private Set<Tag> parseTagsToAdd(List<String> tagList) throws IllegalValueException {
         assert tagList != null;
         return ParserUtil.parseTags(tagList);

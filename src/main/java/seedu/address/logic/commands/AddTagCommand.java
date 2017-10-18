@@ -37,7 +37,7 @@ public class AddTagCommand extends UndoableCommand {
     public static final String MESSAGE_ADD_TAG_PERSON_SUCCESS = "Tags updated!";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_DUPLICATE_TAG = "You have entered a duplicate tag! Tag name: ";
-            
+
     private final Index index;
     private final Set<Tag> tagsToAdd;
 
@@ -71,7 +71,7 @@ public class AddTagCommand extends UndoableCommand {
         } catch (PersonNotFoundException pnfe) {
             throw new AssertionError("The target person cannot be missing");
         }
-        
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_TAG_PERSON_SUCCESS, editedPerson));
     }
@@ -88,7 +88,7 @@ public class AddTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
-        
+
         Set<Tag> existingTags = personToEdit.getTags();
         Set<Tag> updatedTags = new HashSet<>();
         try {
