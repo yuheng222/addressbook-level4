@@ -22,7 +22,7 @@ public class DeleteByNameCommand extends UndoableCommand {
     public static final String COMMAND_WORD = "deletebyname";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the CASE-SENSITIVE input.\n"
+            + ": Deletes the person identified by the case-insensitive input NAME.\n"
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " John";
 
