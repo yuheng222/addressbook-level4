@@ -345,6 +345,47 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+=== Filter by tag mechanism
+
+The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two main components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
+
+The following sequence diagram illustrates how the mechanism works:
+
+image::FilterSequenceDiagram.png[width="800"]
+
+As shown in the diagram, to obtain a filtered person list based on the tags entered involves the following steps:
+
+    1. `LogicManager` calls `parseCommand` method in `AddressBookParser` with user inputs as parameters.
+    2. `parseCommand` method detects *command word* `filter` and calls `parse` method in `FilterCommandParser` with the rest of inputs as parameters.
+    3. `parse` method stores the tag names entered as a `List<String>`, which is used to construct a `PersonHasTagPredicate` object.
+    4. `parse` then creates a `FilterCommand` object with the `PersonHasTagPredicate` object as the parameter.
+    5. `execute` method in `FilterCommand` calls `updateFilteredPersonList` method in `ModelManager` by passing its predicate as the parameter and returns the result.
+    
+`PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. It is implemented this way:
+[source,java]
+----
+public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
+    private final List<String> tags;
+    
+    public PersonHasTagPredicate(List<String> tags) {
+            this.tags = tags;
+    }
+        
+    @Override
+    public boolean test(ReadOnlyPerson person) {
+        Set<Tag> tagSet = person.getTags();
+        for (Tag t: tagSet) {
+            if (tags.stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(t.tagName, tag))) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+----
+
+*Alternatively*, in step 3 above, the tag names entered can be store as a `HashSet<Tag>` to construct a `PersonHasTagPredicate` object. Therefore under the `test` method, `Tag` objects of a `Person` and a `PersonHasTagPredicate` can be directly compared instead of comparing `String` tag names.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
