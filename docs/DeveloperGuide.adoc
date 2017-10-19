@@ -360,17 +360,17 @@ As shown in the diagram, to obtain a filtered person list based on the tags ente
     3. `parse` method stores the tag names entered as a `List<String>`, which is used to construct a `PersonHasTagPredicate` object.
     4. `parse` then creates a `FilterCommand` object with the `PersonHasTagPredicate` object as the parameter.
     5. `execute` method in `FilterCommand` calls `updateFilteredPersonList` method in `ModelManager` by passing its predicate as the parameter and returns the result.
-    
+
 `PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. It is implemented this way:
 [source,java]
 ----
 public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
     private final List<String> tags;
-    
+
     public PersonHasTagPredicate(List<String> tags) {
             this.tags = tags;
     }
-        
+
     @Override
     public boolean test(ReadOnlyPerson person) {
         Set<Tag> tagSet = person.getTags();
