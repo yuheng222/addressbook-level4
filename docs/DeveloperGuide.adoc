@@ -236,7 +236,7 @@ will be directly updated within the command.
 
 The sequence diagram of the command is shown below:
 
-image::DeleteByNameCommandSequenceDiagram.PNG[width="800"]
+image::DeleteByNameCommandSequenceDiagram.png[width="800"]
 _Figure 3.1B - Sequence Diagram of DeleteByNameCommand_
 
 Explanation of _Figure 3.1B_:
