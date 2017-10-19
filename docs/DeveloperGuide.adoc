@@ -227,12 +227,36 @@ a person from the Address Book when given an input `Name` parsed by `DeleteByNam
 The class diagram of the command is shown below:
 
 image::DeleteByNameCommandClassDiagram.PNG[width="800"]
-_Figure 3.1.1 Class Diagram of DeleteByNameCommand_
+_Figure 3.1A - Class Diagram of DeleteByNameCommand_
 
-From _Figure 3.1.1_ the `DeleteByNameCommand` class is highly
+From _Figure 3.1A_ the `DeleteByNameCommand` class is highly
 dependent on the `Person` package as well as the `Model` of the Address Book.
 This dependency allows it to carry out its delete operation. The `Model` of the Address Book
 will be directly updated within the command.
+
+The sequence diagram of the command is shown below:
+
+image::DeleteByNameCommandSequenceDiagram.png[width="1417"]
+_Figure 3.1B - Sequence Diagram of DeleteByNameCommand_
+
+Explanation of _Figure 3.1B_:
+
+1. The `execute("deletebyname John Doe")` command is called on the `LogicManager`.
+
+2. `LogicManager` calls the `parse` method `AddressBookParser`.
+
+3. `AddressBookParser` parses the command word, `deletebyname` and calls
+`DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
+
+4. `DeleteByNameCommandParser` calls on `DeleteByNameCommand` which returns a command, `d`,
+all the way back to `LogicManager`.
+
+5. `LogicManager` calls on `DeleteByNameCommand` to execute the command.
+
+6. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
+`CommandResult`, `result`.
+
+7. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
 
 **Advantage(s)** versus `DeleteCommand`:
 
@@ -257,12 +281,12 @@ match part of the query. It will then prompt users to utilise the `DeleteCommand
 ==== Design Considerations
 **Aspect:** Implementation of `DeleteByNameCommand`
 
-**Alternative 1 (current choice):** Utilise `Streams` and create a helper class, `CaseInsensitiveExactNamePredicate`.
+**Current choice:** Filtering the list of persons present in the Address Book and creating a
+helper `Predicate`, `CaseInsensitiveExactNamePredicate`.
 
 **Pros:**
 
-* `Streams` improve code readability, allowing the function to be easily maintained
-and updated by any developer.
+* Filtering from entire list of persons present in the Address Book facilitates a complete search.
 
 * Creating a helper class `CaseInsensitiveExactNamePredicate` allows for better exception
 handling of `DeleteByNameCommand` to show a list of persons with matching names. It also
@@ -270,25 +294,10 @@ improves abstraction, allowing it to be maintained and updated easily.
 
 **Cons:**
 
-* `Streams` have significantly much more overheads when compared to traditional methods
-of iterating and filtering a list.
+* Filtering from entire list of persons present in Address Book can be time consuming.
 
 * Additional class `CaseInsensitiveExactNamePredicate` present within the `Person` package which
 is currently unused by any other function.
-
-**Alternative 2:** Utilise traditional methods of iterating and filtering a list, coupled with `lambda` function.
-
-**Pros:**
-
-* Reduced overheads when iterating and filtering the list of persons in the Address Book.
-
-* A `lambda` predicate removes the need for a separate class within the `Person` package.
-
-**Cons:**
-
-* Code is significantly harder to read and debug. This is attributed to a lack of abstraction.
-
-* Code is not easily maintainable or updatable.
 
 ---
 
