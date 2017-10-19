@@ -151,13 +151,14 @@ Deletes the 1st person in the results of the `find` command.
 
 === Deleting a person by name : `deletebyname`
 
-Deletes the specified person from the address book. Case-sensitive.
+Deletes the specified person from the address book. Case insensitive.
+
 Format: `deletebyname NAME`
 
 ****
 * Deletes the person with the specified `NAME`.
 * The name refers to the exact name of the person in the address book.
-* The name *is case-sensitive*.
+* The name is case insensitive.
 ****
 
 Examples:
@@ -165,6 +166,12 @@ Examples:
 * `deleteByName John Doe` +
 Deletes John Doe in the address book, if the person exists.
 
+If there is no person with a matching name can be found, it will update the displayed
+person list to provide suggestions on possible persons to delete.
+
+If there is more than 1 person with the exact same name, it will update the displayed
+person list to show all the persons with the same name. You will then be prompted to use
+the `delete` command.
 
 === Selecting a person : `select`
 
