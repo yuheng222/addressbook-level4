@@ -163,7 +163,7 @@ Format: `deletebyname NAME`
 
 Examples:
 
-* `deleteByName John Doe` +
+* `deletebyname John Doe` +
 Deletes John Doe in the address book, if the person exists.
 
 If there is no person with a matching name can be found, it will update the displayed
