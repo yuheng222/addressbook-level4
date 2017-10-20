@@ -89,6 +89,8 @@ public class RemoveTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        NokName updatedNokName = personToEdit.getNokName();
+        NokPhone updatedNokPhone = personToEdit.getNokPhone();
 
         Set<Tag> existingTags = personToEdit.getTags();
         Set<Tag> updatedTags = new HashSet<>();
@@ -98,7 +100,7 @@ public class RemoveTagCommand extends UndoableCommand {
             throw new CommandException(tnfe.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNokName, updatedNokPhone, updatedTags);
     }
 
     @Override
