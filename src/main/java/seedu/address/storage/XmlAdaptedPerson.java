@@ -11,6 +11,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -29,6 +31,10 @@ public class XmlAdaptedPerson {
     private String email;
     @XmlElement(required = true)
     private String address;
+    @XmlElement(required = true)
+    private String nokName;
+    @XmlElement(required = true)
+    private String nokPhone;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -50,6 +56,8 @@ public class XmlAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        nokName = source.getNokName().value;
+        nokPhone = source.getNokPhone().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -70,7 +78,9 @@ public class XmlAdaptedPerson {
         final Phone phone = new Phone(this.phone);
         final Email email = new Email(this.email);
         final Address address = new Address(this.address);
+        final NokName nokName = new NokName(this.nokName);
+        final NokPhone nokPhone = new NokPhone(this.nokPhone);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, nokName, nokPhone, tags);
     }
 }
