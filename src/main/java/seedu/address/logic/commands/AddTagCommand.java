@@ -102,7 +102,7 @@ public class AddTagCommand extends UndoableCommand {
             throw new CommandException(dte.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, 
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                           updatedNokName, updatedNokPhone, updatedTags);
     }
 
