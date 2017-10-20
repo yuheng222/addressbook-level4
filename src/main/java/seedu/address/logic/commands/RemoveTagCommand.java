@@ -102,7 +102,8 @@ public class RemoveTagCommand extends UndoableCommand {
             throw new CommandException(tnfe.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedNokName, updatedNokPhone, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, 
+                          updatedNokName, updatedNokPhone, updatedTags);
     }
 
     @Override
