@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -86,6 +87,11 @@ public class ModelManager extends ComponentManager implements Model {
         addressBook.sort();
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         indicateAddressBookChanged();
+    }
+
+    @Override
+    public ArrayList<String> getThemesList() {
+        return this.addressBook.getThemesList();
     }
 
     //=========== Filtered Person List Accessors =============================================================
