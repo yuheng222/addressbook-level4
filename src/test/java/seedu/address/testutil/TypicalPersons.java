@@ -31,7 +31,7 @@ public class TypicalPersons {
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("85355255").withNokName("Bob Pauline").withNokPhone("81541854")
-            .withTags("friends").build();
+            .withTags("friends", "neighbours").build();
     public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
@@ -51,7 +51,8 @@ public class TypicalPersons {
             .withNokName("Cecilia Kunz").withNokPhone("91654865").build();
     public static final ReadOnlyPerson GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street")
-            .withNokName("Gregory Best").withNokPhone("94518515").build();
+            .withNokName("Gregory Best").withNokPhone("94518515")
+            .withTags("friends", "classmates", "neighbours").build();
 
     // Manually added
     public static final ReadOnlyPerson HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
