@@ -1,11 +1,20 @@
 package systemtests;
 
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NOK_NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.NOK_PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS;
 import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.TestUtil.getLastIndex;
 import static seedu.address.testutil.TestUtil.getMidIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 
 import org.junit.Test;
@@ -21,8 +30,7 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.CaseInsensitiveExactNamePredicate;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -151,15 +159,24 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, MESSAGE_INVALID_DELETE_BY_NAME_COMMAND_FORMAT);
 
         /* Attempting to delete multiple persons with same name */
-        Person elle2 = new Person(ELLE);
-        elle2.setPhone(new Phone("12345678"));
-        // Adding a duplicate ELLE with different phone number.
-        executeCommand(AddCommand.COMMAND_WORD + " n/" + elle2.getName().toString() + " p/"
-                + elle2.getPhone().toString() + " e/" + elle2.getEmail().toString() + " a/"
-                      + elle2.getAddress().toString());
-        command = DeleteByNameCommand.COMMAND_WORD + " " + elle2.getName().toString();
+
+        //Adding Amy
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + TAG_DESC_FRIEND;
+        executeCommand(command);
+
+        //Adding another Amy with same name
+        String phoneDescAmy2 = " " + PREFIX_PHONE + VALID_PHONE_AMY + "1";
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + phoneDescAmy2 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + TAG_DESC_FRIEND;
+        executeCommand(command);
+
+        command = DeleteByNameCommand.COMMAND_WORD + " " + VALID_NAME_AMY;
+
         Model displayPersonsWithSameName = getModel();
-        displayPersonsWithSameName.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(elle2.getName()));
+        displayPersonsWithSameName.updateFilteredPersonList(
+                new CaseInsensitiveExactNamePredicate(new Name(VALID_NAME_AMY)));
+
         assertCommandFailure(command, displayPersonsWithSameName, MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
     }
 
