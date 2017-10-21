@@ -221,11 +221,6 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
-=== Listing all themes : `listthemes`
-
-Shows a list of all themes available for selection. +
-Format: `listthemes`
-
 === Selecting a theme : `theme`
 
 Switches current theme to the specified one. +
