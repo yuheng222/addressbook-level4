@@ -47,7 +47,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Initialises the themes within this {@code AddressBook}.
+     * Creates an AddressBook using the Persons and Tags in the {@code toBeCopied}
+     */
+    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+        this();
+        resetData(toBeCopied);
+    }
+
+    /**
+     * Initialises the themes in this {@code AddressBook}.
      */
 
     private void initialiseThemes() {
@@ -59,14 +67,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public ArrayList<String> getThemesList() {
         return themes;
-    }
-
-    /**
-     * Creates an AddressBook using the Persons and Tags in the {@code toBeCopied}
-     */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
-        this();
-        resetData(toBeCopied);
     }
 
     //// list overwrite operations
