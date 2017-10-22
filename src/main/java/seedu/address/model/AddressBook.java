@@ -54,6 +54,21 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
     }
 
+    /**
+     * Initialises the themes in this {@code AddressBook}.
+     */
+
+    private void initialiseThemes() {
+        themes.add("MidnightTheme.css");
+        themes.add("SummerTheme.css");
+        themes.add("CoffeeTheme.css");
+        themes.add("CrayonTheme.css");
+    }
+
+    public ArrayList<String> getThemesList() {
+        return themes;
+    }
+
     //// list overwrite operations
 
     public void setPersons(List<? extends ReadOnlyPerson> persons) throws DuplicatePersonException {
@@ -203,13 +218,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(persons, tags);
-    }
-
-    private void initialiseThemes() {
-        themes.add("DarkTheme.css");
-    }
-
-    public ArrayList<String> getThemesList() {
-        return themes;
     }
 }

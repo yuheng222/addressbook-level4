@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class SelectThemeCommand extends UndoableCommand {
 
-    public static final String COMMAND_WORD = "switchtheme";
+    public static final String COMMAND_WORD = "theme";
     public static final String COMMAND_ALIAS = "st";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
