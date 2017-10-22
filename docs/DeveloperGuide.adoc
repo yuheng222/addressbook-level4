@@ -1,4 +1,4 @@
-= AB&B (Address Book and Booklets) - Developer Guide
+= Address Book and Booklets (AB&B) - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -12,7 +12,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team AB&B`      Since: `October 2017`      Licence: `MIT`
+By: `Team T10-B3`      Since: `October 2017`      Licence: `MIT`
 
 == Setting up
 
