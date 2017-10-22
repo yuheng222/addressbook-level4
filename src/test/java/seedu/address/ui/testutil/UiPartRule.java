@@ -13,7 +13,7 @@ import seedu.address.ui.UiPart;
  */
 public class UiPartRule extends StageRule {
     private static final String[] CSS_FILES = {"view/MidnightTheme.css", "view/SummerTheme.css",
-            "view/CoffeeTheme.css", "view/CrayonTheme.css", "view/Extensions.css"};
+        "view/CoffeeTheme.css", "view/CrayonTheme.css", "view/Extensions.css"};
 
     public void setUiPart(final UiPart<? extends Parent> uiPart) {
         try {
