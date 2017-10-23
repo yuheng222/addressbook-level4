@@ -108,8 +108,12 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid arguments (extra argument) -> rejected */
         assertCommandFailure(DeleteCommand.COMMAND_WORD + " 1 abc", MESSAGE_INVALID_DELETE_COMMAND_FORMAT);
 
-        /* Case: mixed case command word -> rejected */
-        assertCommandFailure("DelETE 1", MESSAGE_UNKNOWN_COMMAND);
+        /* Case: mixed case command word -> deleted */
+        expectedModel = getModel();
+        command = "DelETE " + INDEX_FIRST_PERSON.getOneBased();
+        deletedPerson = removePerson(expectedModel, INDEX_FIRST_PERSON);
+        expectedResultMessage = String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPerson);
+        assertCommandSuccess(command, expectedModel, expectedResultMessage, INDEX_FIRST_PERSON);
     }
 
     /**
