@@ -116,7 +116,7 @@ image::LogicClassDiagram.png[width="800"]
 _Figure 2.1.2 : Class Diagram of the Logic Component_
 
 The section below gives detailed explanation for each component.
- 
+
 === Components
 ==== Main
 `Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
