@@ -82,21 +82,23 @@ public class SelectThemeCommandTest {
     }
 
     /**
-     * Executes a {@code SelectThemeCommand} with the given {@code index}, and checks that {@code SelectThemeRequestEvent}
-     * is raised with the correct index.
+     * Executes a {@code SelectThemeCommand} with the given {@code index}, and checks that
+     * {@code SelectThemeRequestEvent} is raised with the correct index.
      */
     private void assertExecutionSuccess(Index index, String themeName) {
         SelectThemeCommand selectThemeCommand = prepareCommand(index);
 
         try {
             CommandResult commandResult = selectThemeCommand.execute();
-            assertEquals(String.format(SelectThemeCommand.MESSAGE_SWITCH_THEME_SUCCESS, model.getThemesList().get(index.getOneBased() - 1)),
+            assertEquals(String.format(SelectThemeCommand.MESSAGE_SWITCH_THEME_SUCCESS,
+                    model.getThemesList().get(index.getOneBased() - 1)),
                     commandResult.feedbackToUser);
         } catch (CommandException ce) {
             throw new IllegalArgumentException("Execution of command should not fail.", ce);
         }
 
-        SelectThemeRequestEvent lastEvent = (SelectThemeRequestEvent) eventsCollectorRule.eventsCollector.getMostRecent();
+        SelectThemeRequestEvent lastEvent = (SelectThemeRequestEvent)
+                eventsCollectorRule.eventsCollector.getMostRecent();
         assertEquals(themeName, lastEvent.theme);
     }
 

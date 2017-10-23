@@ -38,7 +38,8 @@ public class SelectThemeCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: invalid index (size + 1) -> rejected */
         int invalidIndex = getModel().getThemesList().size() + 1;
-        assertCommandFailure(SelectThemeCommand.COMMAND_WORD + " " + invalidIndex, MESSAGE_INVALID_THEME_DISPLAYED_INDEX);
+        assertCommandFailure(SelectThemeCommand.COMMAND_WORD + " " + invalidIndex,
+                MESSAGE_INVALID_THEME_DISPLAYED_INDEX);
 
         /* Case: themes list, select index within bounds of address book and themes list -> selected */
         Index validIndex = Index.fromOneBased(1);
