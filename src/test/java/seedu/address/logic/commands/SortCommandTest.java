@@ -47,4 +47,3 @@ public class SortCommandTest {
         assertEquals(result.feedbackToUser, SortCommand.MESSAGE_SUCCESS);
     }
 }
-

@@ -6,9 +6,11 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_THEME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_THEME;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_THEME;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalThemes.NAME_FIRST_THEME;
 import static seedu.address.testutil.TypicalThemes.NAME_SECOND_THEME;
+import static seedu.address.testutil.TypicalThemes.NAME_THIRD_THEME;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -46,6 +48,7 @@ public class SelectThemeCommandTest {
 
         assertExecutionSuccess(INDEX_FIRST_THEME, NAME_FIRST_THEME);
         assertExecutionSuccess(INDEX_SECOND_THEME, NAME_SECOND_THEME);
+        assertExecutionSuccess(INDEX_THIRD_THEME, NAME_THIRD_THEME);
         assertExecutionSuccess(lastThemeIndex, lastThemeName);
     }
 
