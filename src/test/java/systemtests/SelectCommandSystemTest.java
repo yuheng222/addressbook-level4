@@ -80,6 +80,10 @@ public class SelectCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid arguments (extra argument) -> rejected */
         assertCommandFailure(SelectCommand.COMMAND_WORD + " 1 abc",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
+      
+        /* Case: mixed case command word -> accepted */
+        command = "SeLeCt " + INDEX_FIRST_PERSON.getOneBased();
+        assertCommandSuccess(command, INDEX_FIRST_PERSON);
 
         /* Case: select from empty address book -> rejected */
         executeCommand(ClearCommand.COMMAND_WORD);
