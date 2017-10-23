@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static junit.framework.TestCase.assertEquals;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.Before;
@@ -25,14 +25,26 @@ public class SortCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-
         sortCommand = new SortCommand();
         sortCommand.setData(model, new CommandHistory(), new UndoRedoStack());
     }
 
     @Test
-    public void execute_sortByName_success() {
-        assertCommandSuccess(sortCommand, model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+    public void execute_sortEmptyAddressBook_success() {
+        Model model = new ModelManager();
+        SortCommand command = new SortCommand();
+        command.setData(model, new CommandHistory(), new UndoRedoStack());
+        CommandResult result = command.executeUndoableCommand();
+        assertEquals(result.feedbackToUser, SortCommand.MESSAGE_SUCCESS);
+    }
+
+    @Test
+    public void execute_sortNonEmptyAddressBook_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        SortCommand command = new SortCommand();
+        command.setData(model, new CommandHistory(), new UndoRedoStack());
+        CommandResult result = command.executeUndoableCommand();
+        assertEquals(result.feedbackToUser, SortCommand.MESSAGE_SUCCESS);
     }
 }
 
