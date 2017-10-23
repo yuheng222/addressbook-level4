@@ -11,7 +11,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <stylesheets>
-    <URL value="@DarkTheme.css" />
+    <URL value="@MidnightTheme.css" />
     <URL value="@Extensions.css" />
   </stylesheets>
 
@@ -26,14 +26,14 @@
 
   <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
     <padding>
-      <Insets top="5" right="10" bottom="5" left="10" />
+      <Insets top="15" right="250" bottom="10" left="250" />
     </padding>
   </StackPane>
 
   <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
       minHeight="100" prefHeight="100" maxHeight="100">
     <padding>
-      <Insets top="5" right="10" bottom="5" left="10" />
+      <Insets top="5" right="100" bottom="10" left="100" />
     </padding>
   </StackPane>
 

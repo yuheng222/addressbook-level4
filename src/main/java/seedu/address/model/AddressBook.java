@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,6 +27,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueTagList tags;
+    private final ArrayList<String> themes;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -37,9 +39,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         tags = new UniqueTagList();
+        themes = new ArrayList<>();
     }
 
-    public AddressBook() {}
+    public AddressBook() {
+        initialiseThemes();
+    }
 
     /**
      * Creates an AddressBook using the Persons and Tags in the {@code toBeCopied}
@@ -47,6 +52,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Initialises the themes in this {@code AddressBook}.
+     */
+
+    private void initialiseThemes() {
+        themes.add("MidnightTheme.css");
+        themes.add("SummerTheme.css");
+        themes.add("CoffeeTheme.css");
+        themes.add("CrayonTheme.css");
+    }
+
+    public ArrayList<String> getThemesList() {
+        return themes;
     }
 
     //// list overwrite operations
@@ -154,6 +174,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         } else {
             throw new PersonNotFoundException();
         }
+    }
+
+    /** Sorts the persons in this {@code AddressBook} lexicographically */
+
+    public void sort() {
+        persons.sort();
     }
 
     //// tag-level operations

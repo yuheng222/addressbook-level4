@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= Address Book and Booklets (AB&B) - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -12,7 +12,7 @@ endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :repoURL: https://github.com/se-edu/addressbook-level4/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T10-B3`      Since: `October 2017`      Licence: `MIT`
 
 == Setting up
 
@@ -21,21 +21,23 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 . *JDK `1.8.0_60`* or later
 +
 [NOTE]
-Having any Java 8 version is not enough. +
-This app will not work with earlier versions of Java 8.
+This app will not work with earlier versions of Java 8. +
+Make sure you have installed Java JDK 1.8.0_60 or later.
 +
 
 . *IntelliJ* IDE
 +
 [NOTE]
-IntelliJ by default has Gradle and JavaFx plugins installed. +
-Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
+IntelliJ has Gradle and JavaFx plugins installed by default. +
+Do not disable these plugins. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
 
 === Setting up the project in your computer
 
-. Fork this repo, and clone the fork to your computer
-. Open IntelliJ (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
+If this is your first time working on the project, you have to set it up by following the steps as shown below:
+
+. Fork this repo and clone it to your computer
+. Open IntelliJ (if you are not on the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
 . Set up the correct JDK version for Gradle
 .. Click `Configure` > `Project Defaults` > `Project Structure`
 .. Click `New...` and find the directory of the JDK
@@ -48,14 +50,14 @@ This will generate all resources required by the application and tests.
 
 === Verifying the setup
 
-. Run the `seedu.address.MainApp` and try a few commands
+. Run `seedu.address.MainApp` and try a few commands.
 . link:#testing[Run the tests] to ensure they all pass.
 
 === Configurations to do before writing code
 
 ==== Configuring the coding style
 
-This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order from ours. To rectify,
+This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order. To rectify,
 
 . Go to `File` > `Settings...` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS)
 . Select `Editor` > `Code Style` > `Java`
@@ -64,7 +66,7 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 * For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set to `999` to prevent IntelliJ from contracting the import statements
 * For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
 
-Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
+Optionally, you can follow <<UsingCheckstyle#, UsingCheckstyle.adoc>> in configuring Intellij to ensure style-compliance as you write code.
 
 ==== Updating documentation to match your fork
 
@@ -81,9 +83,9 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 
 ==== Getting started with coding
 
-When you are ready to start coding,
+Before you get started, take a short while to complete the following:
 
-1. Get some sense of the overall design by reading the link:#architecture[Architecture] section.
+1. Understand the overall design by reading the link:#architecture[Architecture] section.
 2. Take a look at the section link:#suggested-programming-tasks-to-get-started[Suggested Programming Tasks to Get Started].
 
 == Design
@@ -218,6 +220,117 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::DeleteByNameCommand
+=== DeleteByNameCommand
+
+The `DeleteByNameCommand` extends the `UndoableCommand` class. It enables the deletion of
+a person from the Address Book when given an input `Name` parsed by `DeleteByNameCommandParser`.
+
+The class diagram of the command is shown below:
+
+image::DeleteByNameCommandClassDiagram.PNG[width="800"]
+_Figure 3.1A - Class Diagram of DeleteByNameCommand_
+
+From _Figure 3.1A_ the `DeleteByNameCommand` class is highly
+dependent on the `Person` package as well as the `Model` of the Address Book.
+This dependency allows it to carry out its delete operation. The `Model` of the Address Book
+will be directly updated within the command.
+
+The sequence diagram of the command is shown below:
+
+image::DeleteByNameCommandSequenceDiagram.png[width="1417"]
+_Figure 3.1B - Sequence Diagram of DeleteByNameCommand_
+
+Explanation of _Figure 3.1B_:
+
+1. The `execute("deletebyname John Doe")` command is called on the `LogicManager`.
+
+2. `LogicManager` calls the `parse` method `AddressBookParser`.
+
+3. `AddressBookParser` parses the command word, `deletebyname` and calls
+`DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
+
+4. `DeleteByNameCommandParser` calls on `DeleteByNameCommand` which returns a command, `d`,
+all the way back to `LogicManager`.
+
+5. `LogicManager` calls on `DeleteByNameCommand` to execute the command.
+
+6. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
+`CommandResult`, `result`.
+
+7. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
+
+**Advantage(s)** versus `DeleteCommand`:
+
+* Allows users to carry out delete operations regardless of the last shown list.
+
+**Disadvantage(s)** versus `DeleteCommand`:
+
+
+* Requires the exact name of the person to be deleted in order to perform a successful deletion.
+* Inability to delete a person if there is another person with the exact name present in the Address Book.
+
+In order to mitigate the disadvantages when compared to `DeleteCommand`, `DeleteByNameCommand`
+also suggests possible persons for deletion with similar names when no matching
+name is found in the Address Book. The `Model` is also updated to display the list of suggested persons,
+similar to `FindCommand`.
+
+`DeleteByNameCommand` also updates the `Model` to list all persons with matching names if
+there is more than 1 person with the exact same name as the person to be deleted. This is an
+enhancement over the traditional `FindCommand` as it will not list any other persons whose names
+match part of the query. It will then prompt users to utilise the `DeleteCommand`.
+
+==== Design Considerations
+**Aspect:** Implementation of `DeleteByNameCommand`
+
+**Current choice:** Filtering the list of persons present in the Address Book and creating a
+helper `Predicate`, `CaseInsensitiveExactNamePredicate`.
+
+**Pros:**
+
+* Filtering from entire list of persons present in the Address Book facilitates a complete search.
+
+* Creating a helper class `CaseInsensitiveExactNamePredicate` allows for better exception
+handling of `DeleteByNameCommand` to show a list of persons with matching names. It also
+improves abstraction, allowing it to be maintained and updated easily.
+
+**Cons:**
+
+* Filtering from entire list of persons present in Address Book can be time consuming.
+
+* Additional class `CaseInsensitiveExactNamePredicate` present within the `Person` package which
+is currently unused by any other function.
+
+---
+
+**Aspect:** Implementation of `DeleteByNameCommandParser`
+
+**Alternative 1 (current choice):** Create a separate command word, `deletebyname`.
+
+**Pros:**
+
+* The `delete` command word is not overloaded, providing clear distinctions for the user.
+
+**Cons:**
+
+* An additional and lengthier command word for the user to enter.
+
+* Creating an additional class within the `Parser` package.
+
+**Alternative 2:** Overload `DeleteCommandParser`
+
+**Pros:**
+
+* Users are able to achieve different results with the same command word.
+
+* Eliminates need for extra classes within the `Parser` package.
+
+**Cons:**
+
+* Parsing logic for `DeleteCommandParser` becomes more complicated.
+
+// end::DeleteByNameCommand
+
 // tag::undoredo[]
 === Undo/Redo mechanism
 
@@ -345,6 +458,67 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+// tag::sort[]
+=== Sort mechanism
+
+The sort mechanism mainly replies on the logic component. The primary sorting algorithm resides in 'UniquePersonList' class and it is implemented very simply by using a 'Person' comparator.
+
+The 'indicateAddressBookChanged' event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
+
+'SortCommand"' extends from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SortCommand` +
+**Alternative 1 (current choice):** Only sorts by names of persons in the Address Book. +
+**Pros:** Easy to implement and more intuitive for the user. +
+**Cons:** Functionality is limited and may not satisfy the requirements of the user. +
+**Alternative 2:** Sorts persons in the Address Book by any field (sorting by email or tag for example), which is given as an input by the user. +
+**Pros:** More flexibility for users since they have the option to sort by any field that they want. +
+**Cons:** Harder to implement and constant updating of code is required every time a new field in the 'Person' class is introduced.
+//end:sort[]
+
+=== Filter by tag mechanism
+
+The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two main components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
+
+The following sequence diagram illustrates how the mechanism works:
+
+image::FilterSequenceDiagram.png[width="800"]
+
+As shown in the diagram, to obtain a filtered person list based on the tags entered involves the following steps:
+
+    1. `LogicManager` calls `parseCommand` method in `AddressBookParser` with user inputs as parameters.
+    2. `parseCommand` method detects *command word* `filter` and calls `parse` method in `FilterCommandParser` with the rest of inputs as parameters.
+    3. `parse` method stores the tag names entered as a `List<String>`, which is used to construct a `PersonHasTagPredicate` object.
+    4. `parse` then creates a `FilterCommand` object with the `PersonHasTagPredicate` object as the parameter.
+    5. `execute` method in `FilterCommand` calls `updateFilteredPersonList` method in `ModelManager` by passing its predicate as the parameter and returns the result.
+
+`PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. It is implemented this way:
+[source,java]
+----
+public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
+    private final List<String> tags;
+
+    public PersonHasTagPredicate(List<String> tags) {
+            this.tags = tags;
+    }
+
+    @Override
+    public boolean test(ReadOnlyPerson person) {
+        Set<Tag> tagSet = person.getTags();
+        for (Tag t: tagSet) {
+            if (tags.stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(t.tagName, tag))) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+----
+
+*Alternatively*, in step 3 above, the tag names entered can be store as a `HashSet<Tag>` to construct a `PersonHasTagPredicate` object. Therefore under the `test` method, `Tag` objects of a `Person` and a `PersonHasTagPredicate` can be directly compared instead of comparing `String` tag names.
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -366,14 +540,14 @@ Certain properties of the application can be controlled (e.g App name, logging l
 
 == Documentation
 
-We use asciidoc for writing documentation.
+We use AsciiDoc to document our project.
 
 [NOTE]
-We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
+We chose AsciiDoc over Markdown since it provides more flexibility in formatting, even though it is slightly more complex.
 
 === Editing Documentation
 
-See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally to preview the end result of your edits.
+See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally so that you can preview your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `.adoc` files in real-time.
 
 === Publishing Documentation
@@ -382,14 +556,14 @@ See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to dep
 
 === Converting Documentation to PDF format
 
-We use https://www.google.com/chrome/browser/desktop/[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
+We use https://www.google.com/chrome/browser/desktop/[Google Chrome] to convert our documentation into PDF format since Chrome's PDF engine preserves hyperlinks used in webpages.
 
 Here are the steps to convert the project documentation files to PDF format.
 
 .  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to convert the AsciiDoc files in the `docs/` directory to HTML format.
 .  Go to your generated HTML files in the `build/docs` folder, right click on them and select `Open with` -> `Google Chrome`.
 .  Within Chrome, click on the `Print` option in Chrome's menu.
-.  Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
+.  Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. For best results, use the settings shown in the screenshot below.
 
 image::chrome_save_as_pdf.png[width="300"]
 _Figure 5.6.1 : Saving documentation as PDF files in Chrome_
@@ -729,6 +903,34 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |user |edit a person's details |change a person's details easily without deleting
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
+|`* * *` |user |specify my data storage location |easily relocate the raw file for editing and/or sync the file to a Cloud Storage service
+
+|`* * *` |user |load from a file |load contact list from a certain location or a Cloud Storage service
+
+|`* * *` |user |undo my last action(s) |easily correct any accidental mistakes in the last command(s)
+
+|`* * *` |user |edit my contact information |I can update my contact info when needed
+
+|`* * *` |user |have a neat and nice user interface |I can have a pleasant user experience
+
+|`* *` |user |have the messages displayed in the app to be more cordial |it feels more like interacting with a person rather than a machine
+
+|`* *` |user |remove a person from a certain group |so that I can better manage my contacts when my relationship with that person changes
+
+|`* *` |user |add multiple phone numbers/ emails/ addresses to a person |I can have more ways to reach the person
+
+|`* *` |user |find only a particular piece of information(phone number/ email) of a person |I can obtain the information I need immediately
+
+|`* *` |user |see a list of contacts of a certain group |it's easier to locate a person
+
+|`* *` |organised user |categorise my contacts |I can better manage my contacts
+
 |`* *` |user |hide link:#private-contact-detail[private contact details] by default |minimize chance of someone else seeing them by accident
 
 |`* *` |user |delete a person by name |remove entries I no longer need more easily
@@ -741,13 +943,44 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |`* *` |user |enter commands without worrying about case sensitivity |enter commands more easily
 
+|`* *` |user |clear the command I am typing with a key |enter a new command without having to backspace the entire command line
+
+|`* *` |advanced user |scroll through my past few commands |check what I have done and redo actions easily
+
+|`* *` |user |have a birthday calendar |be notified whenever a person's birthday is nearing
+
+|`* *` |user |undo the delete function |recover the details of a person that I have accidentally deleted
+
+|`* *` |user |list the number of persons in the address book |manage my address book better
+
+|`* *` |user |export the address book in different formats |view/edit the address book contents in whichever format that I want
+
+|`* *` |user with many contacts |add a profile picture for each person |identify a person easily
+
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*` |user |search based on tags |find all the tasks of a similar nature
+
+|`*` |user |key in emojis/symbols and characters from other languages e.g. Mandarin |capture information in other languages
+
+|`*` |user |exit the application by typing a command |close the app easily
+
+|`*` |advanced user |add my own alias commands |enter commands faster to suit my needs
+
+|`*` |advanced user |remove the alias for a command |use it for another command alias
+
+|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+
+|`*`  |user |change the theme of my address book GUI |personalise the address book to what I like
+
+|`*` |user with many contacts |import contacts from other sources |update my address book contacts easily
+
 |`*` |user |add a person who does not have an English name |do not need to convert the person's name to English
 
 |`*` |user |see when I added a person |I know when I added the person to my address book.
 
 |`*` |user with multiple devices |syncrhonise my address book across all my devices |to reduce the need of updating each device separately
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
 |=======================================================================
 
 {More to be added}
@@ -839,7 +1072,195 @@ Use case resumes at step 1.
 Use case resumes at step 1.
 
 
-{More to be added}
+[discrete]
+=== Use case: Find phone number of a person
+
+*MSS*
+
+1.  User requests to find phone number of a person
+2.  AddressBook shows the phone number of the person
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The person does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message
++
+Use case ends.
+
+* 2a. There are multiple persons with the name entered.
++
+[none]
+** 2a1. AddressBook shows a list of phone numbers which belong to the matched persons.
++
+Use case ends.
+
+[discrete]
+=== Use case: Edit person's details
+
+*MSS*
+
+1.  User requests to edit a person's details
+2.  AddressBook prompts user to input new details
+3.  User inputs new details
+4.  AddressBook updates the the old details to the new one
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified detail does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The input is invalid.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[none]
+* 4a. AddressBook lists the new details.
++
+Use case ends.
+
+[discrete]
+=== Use case: Add a profile picture
+
+*MSS*
+
+1. User requests to add a profile picture for a person
+2. AddressBook prompts user to browse for a picture
+3. User chooses profile picture
+4. AddressBook updates person with picture
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 2a. The specified person does not exist.
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 3a. The chosen picture is in an unsupported format.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: List persons by tag
+
+*MSS*
+
+1.  User requests to list persons with a certain tag
+2.  AddressBook shows a list of persons with the tag
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The tag does not exist.
++
+[none]
+** 1a1. AddressBook shows an error message
++
+Use case ends.
+
+* 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: load from file
+
+*MSS*
+
+1.  User requests to load from file
+2.  AddressBook prompts user to browse for a file
+3.  User chooses file to load from
+4.  AddressBook scans through every contact in the file
+5.  For each contact in the contacts file that has the same name as an existing contact in AddressBook, user chooses either Yes or No to overwrite the existing contact with the imported contact. For all other contacts not already in the address book, it is added to the address book.
++
+Use case ends
+
+*Extensions*
+
+* 3a. The chosen file is in an unsupported format.
++
+[none]
+** 3a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+* 4a. The file is corrupted.
++
+[none]
+** 4a1. AddressBook shows an error message.
++
+Use case ends.
+
+* 5a. A contact's details imported contains unrecognized characters.
++
+[none]
+** 5a1. AddressBook prompts user for either one of 2 actions: Do not import contact, or import contact but deletes the unrecognized characters.
+** 5a2. User selects one of 2 options and AddressBook performs the corresponding action.
++
+Use case resumes at step 5.
+
+[discrete]
+=== Use case: add my own alias commands
+
+*MSS*
+
+1.  User requests to add new alias command
+2.  AddressBook shows user the list of default commands together with their function, and prompts user to enter in the name of the new command
+3.  AddressBook updates the command list with the new command
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 2a. The command name contains illegal characters, is already a system default command name, or is another previously added user command name
++
+[none]
+** 2a1. AddressBook shows an error message.
++
+Use case resumes at step 2.
+
+[discrete]
+=== Use case: remove the alias for a command
+
+*MSS*
+
+1.  User requests to remove existing alias command
+2.  AddressBook prompts user to key in the name of the alias command to be deleted
+3.  AddressBook deletes the alias command from the command list
++
+Use case ends.
+
+*Extensions*
+
+* 2a. The alias command name does not exist, or the name is a system default command name
++
+[none]
+** 2a1. AddressBook shows an error message.
 
 [appendix]
 == Non Functional Requirements
@@ -847,6 +1268,23 @@ Use case resumes at step 1.
 .  Should work on any link:#mainstream-os[mainstream OS] as long as it has Java `1.8.0_60` or higher installed.
 .  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Should be able to handle most logic, I/O, storage related errors.
+.  Should be able to be able to recover to a previous state in the event of a program crash.
+.  Should have proper logging in the event of a program crash.
+.  Log files should be rotated be compressed to minimise hard disk space usage.
+.  Sensitive information should be encrypted.
+.  Should not violate any copyrights.
+.  Should work offline without an internet connection.
+.  Should work as a standalone application.
+.  Should store data in an editable text file.
+.  Should not require an installer / portable program that does not write data outside its directory
+.  Should not use paid libraries and frameworks.
+.  Should be a free software.
+.  Should not have unhandled exceptions from user input.
+.  Can be set up without assistance other than the user guide.
+.  Should be in ASD STE-100 Simplified Technical English.
+.  The response to any use action should become visible within 5 seconds.
+.  The user interface should be intuitive enough for users who are not IT-savvy
 
 {More to be added}
 
