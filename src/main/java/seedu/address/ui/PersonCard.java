@@ -17,9 +17,11 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static String[] colors = {"red", "green", "blue", "black", "brown", "grey"};
+    private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue","DarkGreen",
+            "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
+            "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
-    private static Random randomColor = new Random();
+    private static int colourIndex = 0;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -64,10 +66,23 @@ public class PersonCard extends UiPart<Region> {
      */
     private static String getColorForTag(String tagValue) {
         if (!tagColors.containsKey(tagValue)) {
-            tagColors.put(tagValue, colors[randomColor.nextInt(colors.length)]);
+            tagColors.put(tagValue, colors[colourIndex]);
+            updateColourIndex();
         }
 
         return tagColors.get(tagValue);
+    }
+
+    /**
+     * update the index of colour
+     */
+    private static void updateColourIndex() {
+        if (colourIndex == colors.length - 1) {
+            colourIndex = 0;
+        }
+        else {
+            colourIndex++;
+        }
     }
 
     /**
@@ -94,7 +109,9 @@ public class PersonCard extends UiPart<Region> {
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
-            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName));
+            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";"
+                    + "-fx-font-size: 15px;" + "-fx-background-radius: 5px;"
+                    + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
             tags.getChildren().add(tagLabel);
         });
     }
