@@ -1,6 +1,26 @@
 .background {
     -fx-background-color: derive(#f5f5f5, 20%);
-    background-color: #fafafa; /* Used in the default.html file (google window) */
+    background-image: url(../images/bg2.png); /* Used in the default.html file */
+    background-size: 800px;
+    
+}
+
+.container {
+    padding-top: 20px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    padding-left: 100px;
+}
+
+.header {
+    font-family: "fantasy";
+    font-size: 45px;
+    color: white;
+}
+
+.text {
+    font-family: "Verdana";
+    color: white;
 }
 
 .label {
@@ -127,14 +147,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-font-family: "Chalkboard SE";
+    -fx-font-size: 25px;
+    -fx-text-fill: #3e7b91;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-family: "Avenir Next Condensed";
+    -fx-font-size: 20px;
     -fx-text-fill: #010504;
 }
 
