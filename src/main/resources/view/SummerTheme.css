@@ -1,25 +1,6 @@
 .background {
     -fx-background-color: derive(#f5f5f5, 20%);
-    background-image: url(../images/bg2.png); /* Used in the default.html file */
-    background-size: 800px;
-}
-
-.container {
-    padding-top: 20px;
-    padding-right: 100px;
-    padding-bottom: 50px;
-    padding-left: 100px;
-}
-
-.header {
-    font-family: "fantasy";
-    font-size: 45px;
-    color: white;
-}
-
-.text {
-    font-family: "Verdana";
-    color: white;
+    background-color: #fafafa; /* Used in the default.html file (google window) */
 }
 
 .label {
@@ -101,7 +82,7 @@
 }
 
 .split-pane {
-    -fx-border-radius: 1;
+    -fx-border-radius: 7;
     -fx-border-width: 1;
     -fx-background-color: derive(#fafafa, 20%);
 }
@@ -112,29 +93,29 @@
 }
 
 .list-cell {
-    -fx-background-color: #fafafa ;
+    -fx-background-color: #85fcf0;
     -fx-label-padding: 0 0 5 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 5 0;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #f08080;
+    -fx-background-color: #85fcf0;
     -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #ffc1c1;
+    -fx-background-color: #5ef4f9;
     -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #20b2aa;
+    -fx-background-color: #eaea5b;
     -fx-border-color: transparent transparent #dcdcdc transparent;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #20b2aa;
+    -fx-border-color: #eaea5b;
     -fx-border-width: 1;
 }
 
@@ -143,14 +124,14 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Chalkboard SE";
-    -fx-font-size: 25px;
-    -fx-text-fill: #3e7b91;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Avenir Next Condensed";
-    -fx-font-size: 20px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
@@ -159,8 +140,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#48d1cc, 20%);
-     -fx-border-color: derive(#48d1cc, 10%);
+     -fx-background-color: derive(#fffdbc, 20%);
+     -fx-border-color: derive(#fffdbc, 10%);
      -fx-border-top-width: 1px;
 }
 
@@ -202,7 +183,7 @@
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#48d1cc, 30%);
+    -fx-background-color: derive(#fffdbc, 30%);
 }
 
 .context-menu {
