@@ -53,10 +53,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
             parseAvatarForEdit(argMultimap.getAvatarValue(PREFIX_AVATAR)).ifPresent(editPersonDescriptor::setAvatar);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
-        } catch (IllegalValueException ive) {
+        } catch (IllegalValueException | IOException ive) {
             throw new ParseException(ive.getMessage(), ive);
-        } catch (IOException e) {
-            throw new ParseException(e.getMessage(), e);
         }
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -67,9 +65,9 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * Parses {@code String avatar} into a {@code String<Avatar>} if {@code avatar} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * {@code String<Avatar>} containing zero tags.
      */
     private Optional<Avatar> parseAvatarForEdit(String avatar) throws IllegalValueException, IOException {
         assert avatar != null;
