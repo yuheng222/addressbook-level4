@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 /**
  * Selects a theme based on the index provided by the user, which can be referred from the themes list.
  */
-public class SelectThemeCommand extends UndoableCommand {
+public class SelectThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";
     public static final String COMMAND_ALIAS = "st";
@@ -31,7 +31,7 @@ public class SelectThemeCommand extends UndoableCommand {
 
 
     @Override
-    public CommandResult executeUndoableCommand() throws CommandException {
+    public CommandResult execute() throws CommandException {
 
         ArrayList<String> themesList = model.getThemesList();
 
