@@ -1,11 +1,16 @@
 package seedu.address.ui;
 
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Random;
 
+
 import javafx.beans.binding.Bindings;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -44,6 +49,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private ImageView avatarDisplay;
+    @FXML
     private FlowPane tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
@@ -52,6 +59,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         initTags(person);
         bindListeners(person);
+        setAvatar(person);
     }
 
     /**
@@ -79,6 +87,17 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().clear();
             initTags(person);
         });
+    }
+
+    /**
+     *  Assigns URL to the image depending on the path
+     *
+     */
+    private void setAvatar(ReadOnlyPerson person) {
+
+        BufferedImage avatar = person.getAvatar().getAvatar();
+        Image image = SwingFXUtils.toFXImage(avatar, null);
+        avatarDisplay.setImage(image);
     }
 
     /**
