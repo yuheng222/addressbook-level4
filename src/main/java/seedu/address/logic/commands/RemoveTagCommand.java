@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -89,6 +90,7 @@ public class RemoveTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Avatar updatedAvatar = personToEdit.getAvatar();
 
         Set<Tag> existingTags = personToEdit.getTags();
         Set<Tag> updatedTags = new HashSet<>();
@@ -98,7 +100,7 @@ public class RemoveTagCommand extends UndoableCommand {
             throw new CommandException(tnfe.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar, updatedTags);
     }
 
     @Override
