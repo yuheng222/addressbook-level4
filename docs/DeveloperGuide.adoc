@@ -976,9 +976,17 @@ Use case resumes at step 1.
 * 2a. The given name is not found in AddressBook.
 +
 [none]
-** 2a1. AddressBook shows an error message.
+** 2a1. AddressBook suggests possible persons for deletion.
 +
 Use case resumes at step 1.
+
+[none]
+* 3a. Multiple persons have the same name.
++
+[none]
+** 3a1. AddressBook displays all persons with the same name and prompts user to use the `DELETE` command.
++
+Use case ends.
 
 [discrete]
 === Use case: Add person
