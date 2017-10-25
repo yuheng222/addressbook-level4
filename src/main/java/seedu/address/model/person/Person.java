@@ -22,18 +22,20 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Phone> phone;
     private ObjectProperty<Email> email;
     private ObjectProperty<Address> address;
+    private ObjectProperty<Avatar> avatar;
 
     private ObjectProperty<UniqueTagList> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Avatar avatar, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = new SimpleObjectProperty<>(name);
         this.phone = new SimpleObjectProperty<>(phone);
         this.email = new SimpleObjectProperty<>(email);
         this.address = new SimpleObjectProperty<>(address);
+        this.avatar = new SimpleObjectProperty<>(avatar);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
     }
@@ -43,7 +45,7 @@ public class Person implements ReadOnlyPerson {
      */
     public Person(ReadOnlyPerson source) {
         this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),
-                source.getTags());
+                source.getAvatar(), source.getTags());
     }
 
     public void setName(Name name) {
@@ -86,6 +88,20 @@ public class Person implements ReadOnlyPerson {
     @Override
     public Email getEmail() {
         return email.get();
+    }
+
+    public void setAvatar(Avatar avatar) {
+        this.avatar.set(requireNonNull(avatar));
+    }
+
+    @Override
+    public ObjectProperty<Avatar> avatarProperty() {
+        return avatar;
+    }
+
+    @Override
+    public Avatar getAvatar() {
+        return avatar.get();
     }
 
     public void setAddress(Address address) {
@@ -147,7 +163,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, avatar, tags);
     }
 
     @Override
