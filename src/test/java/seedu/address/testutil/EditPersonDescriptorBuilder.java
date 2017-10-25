@@ -91,9 +91,7 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withAvatar(String avatar) {
         try {
             descriptor.setAvatar(ParserUtil.parseAvatar(avatar));
-        } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("avatar is expected to be unique.");
-        } catch (IOException e) {
+        } catch (IllegalValueException | IOException ive) {
             throw new IllegalArgumentException("avatar is expected to be unique.");
         }
         return this;
