@@ -23,19 +23,19 @@ public class Avatar {
     /**
      * Sets avatar based on the given filepath.
      *
-     * @throws IllegalValueException if the filepath is invalid.
+     * @throws IllegalValueException if the image filepath is invalid.
      */
     public Avatar(String path) throws IllegalValueException, IOException {
-        if (path == null) {
+        if (path.isEmpty()) {
             File placeholder = new File(DEFAULT_PATH);
             this.avatar = ImageIO.read(placeholder);
         }
-        else if (!isValidAvatar(path.trim())) {
+        else if (!isValidAvatar(path)) {
             throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
         }
         else {
             try {
-                File source = new File(path.trim());
+                File source = new File(path);
                 this.avatar = ImageIO.read(source);
             } catch (IOException e) {
                 throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
@@ -63,8 +63,8 @@ public class Avatar {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && this.value.equals(((Email) other).value)); // state check
+                || (other instanceof Avatar // instanceof handles nulls
+                && this.value.equals(((Avatar) other).value)); // state check
     }
 
     @Override
