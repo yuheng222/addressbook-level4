@@ -26,7 +26,7 @@ public class Avatar {
      * @throws IllegalValueException if the image filepath is invalid.
      */
     public Avatar(String path) throws IllegalValueException, IOException {
-        if (path.isEmpty()) {
+        if (path == null || (path.length()) == 0) {
             File placeholder = new File(DEFAULT_PATH);
             this.avatar = ImageIO.read(placeholder);
         }
