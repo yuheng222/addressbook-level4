@@ -67,7 +67,7 @@ public class PersonCard extends UiPart<Region> {
     }
 
     /**
-     * Assign a random color to a tag if it does not have an existing color.
+     * Assign a color to a tag if it does not have an existing color.
      * @return the color assigned to that tag
      */
     private static String getColorForTag(String tagValue) {
@@ -125,9 +125,7 @@ public class PersonCard extends UiPart<Region> {
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
-            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";"
-                    + "-fx-font-size: 15px;" + "-fx-background-radius: 5px;"
-                    + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
+            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";");
             tags.getChildren().add(tagLabel);
         });
     }
