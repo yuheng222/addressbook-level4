@@ -65,7 +65,7 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-    
+
     @FXML
     private StackPane tagPanePlaceholder;
 
