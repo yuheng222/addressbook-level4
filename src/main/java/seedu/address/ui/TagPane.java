@@ -2,8 +2,8 @@ package seedu.address.ui;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.logging.Logger;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,8 +25,8 @@ public class TagPane extends UiPart<Region> {
     private static final Logger logger = LogsCenter.getLogger(TagPane.class);
 
     private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
-            "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
-            "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
+        "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
+        "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static int colourIndex = 0;
 
@@ -91,7 +91,8 @@ public class TagPane extends UiPart<Region> {
         for (ReadOnlyPerson person: personList) {
             person.tagProperty().addListener(new ChangeListener<UniqueTagList>() {
                 @Override
-                public void changed(ObservableValue<? extends UniqueTagList> observable, UniqueTagList oldValue, UniqueTagList newValue) {
+                public void changed(ObservableValue<? extends UniqueTagList> observable,
+                                      UniqueTagList oldValue, UniqueTagList newValue) {
                     totalTags.getChildren().clear();
                     initTags(personList);
                 }
