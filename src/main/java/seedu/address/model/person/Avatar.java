@@ -29,6 +29,7 @@ public class Avatar {
         if (path == null || (path.length()) == 0) {
             File placeholder = new File(DEFAULT_PATH);
             this.avatar = ImageIO.read(placeholder);
+            this.value = DEFAULT_PATH;
         }
         else if (!isValidAvatar(path)) {
             throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
@@ -37,11 +38,11 @@ public class Avatar {
             try {
                 File source = new File(path);
                 this.avatar = ImageIO.read(source);
+                this.value = path;
             } catch (IOException e) {
                 throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
             }
         }
-        this.value = path;
     }
 
     public BufferedImage getAvatar() {
