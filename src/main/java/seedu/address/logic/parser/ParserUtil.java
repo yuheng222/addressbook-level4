@@ -90,7 +90,8 @@ public class ParserUtil {
     public static Avatar parseAvatar(String avatar) throws IllegalValueException, IOException {
         requireNonNull(avatar);
         return new Avatar(avatar);
-      
+    }
+    
     /**
      * Parses a {@code Optional<String> nokName} into an {@code Optional<NokName>} if {@code nokName} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
