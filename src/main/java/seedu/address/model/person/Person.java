@@ -23,19 +23,24 @@ public class Person implements ReadOnlyPerson {
     private ObjectProperty<Email> email;
     private ObjectProperty<Address> address;
     private ObjectProperty<Avatar> avatar;
+    private ObjectProperty<NokName> nokName;
+    private ObjectProperty<NokPhone> nokPhone;
 
     private ObjectProperty<UniqueTagList> tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Avatar avatar, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Avatar avatar, NokName nokName, 
+                  NokPhone nokPhone, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, nokName, nokPhone, tags);
         this.name = new SimpleObjectProperty<>(name);
         this.phone = new SimpleObjectProperty<>(phone);
         this.email = new SimpleObjectProperty<>(email);
         this.address = new SimpleObjectProperty<>(address);
         this.avatar = new SimpleObjectProperty<>(avatar);
+        this.nokName = new SimpleObjectProperty<>(nokName);
+        this.nokPhone = new SimpleObjectProperty<>(nokPhone);
         // protect internal tags from changes in the arg list
         this.tags = new SimpleObjectProperty<>(new UniqueTagList(tags));
     }
@@ -44,8 +49,8 @@ public class Person implements ReadOnlyPerson {
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),
-                source.getAvatar(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),  source.getAvatar(), 
+             source.getNokName(), source.getNokPhone(), source.getTags());
     }
 
     public void setName(Name name) {
@@ -118,6 +123,34 @@ public class Person implements ReadOnlyPerson {
         return address.get();
     }
 
+    public void setNokName(NokName nokName) {
+        this.nokName.set(requireNonNull(nokName));
+    }
+
+    @Override
+    public ObjectProperty<NokName> nokNameProperty() {
+        return nokName;
+    }
+
+    @Override
+    public NokName getNokName() {
+        return nokName.get();
+    }
+
+    public void setNokPhone(NokPhone nokPhone) {
+        this.nokPhone.set(requireNonNull(nokPhone));
+    }
+
+    @Override
+    public ObjectProperty<NokPhone> nokPhoneProperty() {
+        return nokPhone;
+    }
+
+    @Override
+    public NokPhone getNokPhone() {
+        return nokPhone.get();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -163,7 +196,7 @@ public class Person implements ReadOnlyPerson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, avatar, tags);
+        return Objects.hash(name, phone, email, address, avatar, nokName, nokPhone, tags);
     }
 
     @Override

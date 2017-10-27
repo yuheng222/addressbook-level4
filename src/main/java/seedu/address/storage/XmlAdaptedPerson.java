@@ -13,6 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -33,6 +35,10 @@ public class XmlAdaptedPerson {
     private String address;
     @XmlElement(required = true)
     private String avatar;
+    @XmlElement(required = true)
+    private String nokName;
+    @XmlElement(required = true)
+    private String nokPhone;
 
     @XmlElement
     private List<XmlAdaptedTag> tagged = new ArrayList<>();
@@ -55,6 +61,8 @@ public class XmlAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         avatar = source.getAvatar().value;
+        nokName = source.getNokName().value;
+        nokPhone = source.getNokPhone().value;
         tagged = new ArrayList<>();
         for (Tag tag : source.getTags()) {
             tagged.add(new XmlAdaptedTag(tag));
@@ -76,7 +84,9 @@ public class XmlAdaptedPerson {
         final Email email = new Email(this.email);
         final Address address = new Address(this.address);
         final Avatar avatar = new Avatar(this.avatar);
+        final NokName nokName = new NokName(this.nokName);
+        final NokPhone nokPhone = new NokPhone(this.nokPhone);
         final Set<Tag> tags = new HashSet<>(personTags);
-        return new Person(name, phone, email, address, avatar, tags);
+        return new Person(name, phone, email, address, avatar, nokName, nokPhone, tags);
     }
 }

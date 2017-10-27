@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVATAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,6 +21,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -36,8 +40,11 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AVATAR, PREFIX_TAG);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)) {
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AVATAR
+                                           PREFIX_NOK_NAME, PREFIX_NOK_PHONE, PREFIX_TAG);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+                                PREFIX_NOK_NAME, PREFIX_NOK_PHONE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -47,9 +54,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
             Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
             Avatar avatar = ParserUtil.parseAvatar(argMultimap.getAvatarValue(PREFIX_AVATAR));
+            NokName nokName = ParserUtil.parseNokName(argMultimap.getValue(PREFIX_NOK_NAME)).get();
+            NokPhone nokPhone = ParserUtil.parseNokPhone(argMultimap.getValue(PREFIX_NOK_PHONE)).get();
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-            ReadOnlyPerson person = new Person(name, phone, email, address, avatar, tagList);
+            ReadOnlyPerson person = new Person(name, phone, email, address, avatar, nokName, nokPhone, tagList);
 
             return new AddCommand(person);
         } catch (IllegalValueException | IOException e) {

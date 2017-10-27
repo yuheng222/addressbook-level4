@@ -15,6 +15,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -91,6 +93,8 @@ public class RemoveTagCommand extends UndoableCommand {
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
         Avatar updatedAvatar = personToEdit.getAvatar();
+        NokName updatedNokName = personToEdit.getNokName();
+        NokPhone updatedNokPhone = personToEdit.getNokPhone();
 
         Set<Tag> existingTags = personToEdit.getTags();
         Set<Tag> updatedTags = new HashSet<>();
@@ -100,7 +104,8 @@ public class RemoveTagCommand extends UndoableCommand {
             throw new CommandException(tnfe.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar,
+                          updatedNokName, updatedNokPhone, updatedTags);
     }
 
     @Override

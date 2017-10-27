@@ -8,6 +8,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -24,6 +26,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_AVATAR = "src/main/resources/images/default.png";
+    public static final String DEFAULT_NOK_NAME = "Beth Pauline";
+    public static final String DEFAULT_NOK_PHONE = "84541946";
     public static final String DEFAULT_TAGS = "friends";
 
     private Person person;
@@ -35,9 +39,11 @@ public class PersonBuilder {
             Email defaultEmail = new Email(DEFAULT_EMAIL);
             Address defaultAddress = new Address(DEFAULT_ADDRESS);
             Avatar defaultAvatar = new Avatar(DEFAULT_AVATAR);
+            NokName defaultNokName = new NokName(DEFAULT_NOK_NAME);
+            NokPhone defaultNokPhone = new NokPhone(DEFAULT_NOK_PHONE);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultAddress, defaultAvatar,
-                    defaultTags);
+            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultAddress, 
+                    defaultAvatar, defaultNokName, defaultNokPhone, defaultTags);
         } catch (IllegalValueException | IOException ive) {
             throw new AssertionError("Default person's values are invalid.");
         }
@@ -63,30 +69,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
-     */
-    public PersonBuilder withTags(String ... tags) {
-        try {
-            this.person.setTags(SampleDataUtil.getTagSet(tags));
-        } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("tags are expected to be unique.");
-        }
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withAddress(String address) {
-        try {
-            this.person.setAddress(new Address(address));
-        } catch (IllegalValueException ive) {
-            throw new IllegalArgumentException("address is expected to be unique.");
-        }
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
     public PersonBuilder withPhone(String phone) {
@@ -106,6 +88,54 @@ public class PersonBuilder {
             this.person.setEmail(new Email(email));
         } catch (IllegalValueException ive) {
             throw new IllegalArgumentException("email is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAddress(String address) {
+        try {
+            this.person.setAddress(new Address(address));
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("address is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokName} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNokName(String nokName) {
+        try {
+            this.person.setNokName(new NokName(nokName));
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("NOK name is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code NokPhone} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withNokPhone(String nokPhone) {
+        try {
+            this.person.setNokPhone(new NokPhone(nokPhone));
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("NOK phone is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withTags(String ... tags) {
+        try {
+            this.person.setTags(SampleDataUtil.getTagSet(tags));
+        } catch (IllegalValueException ive) {
+            throw new IllegalArgumentException("tags are expected to be unique.");
         }
         return this;
     }

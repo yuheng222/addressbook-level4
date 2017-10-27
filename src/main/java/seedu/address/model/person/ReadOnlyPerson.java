@@ -22,6 +22,10 @@ public interface ReadOnlyPerson {
     Address getAddress();
     ObjectProperty<Avatar> avatarProperty();
     Avatar getAvatar();
+    ObjectProperty<NokName> nokNameProperty();
+    NokName getNokName();
+    ObjectProperty<NokPhone> nokPhoneProperty();
+    NokPhone getNokPhone();
     ObjectProperty<UniqueTagList> tagProperty();
     Set<Tag> getTags();
 
@@ -36,6 +40,8 @@ public interface ReadOnlyPerson {
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress())
                 && other.getAvatar().equals(this.getAvatar()));
+                && other.getNokName().equals(this.getNokName())
+                && other.getNokPhone().equals(this.getNokPhone()));
     }
 
     /**
@@ -52,6 +58,10 @@ public interface ReadOnlyPerson {
                 .append(getAddress())
                 .append(" Avatar: ")
                 .append(getAvatar())
+                .append(" Next-of-Kin Name: ")
+                .append(getNokName())
+                .append(" Next-of-Kin Phone: ")
+                .append(getNokPhone())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

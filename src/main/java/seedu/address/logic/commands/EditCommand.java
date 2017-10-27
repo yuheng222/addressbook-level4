@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVATAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -21,6 +23,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.NokName;
+import seedu.address.model.person.NokPhone;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -44,6 +48,8 @@ public class EditCommand extends UndoableCommand {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_AVATAR + "PATH] "
+            + "[" + PREFIX_NOK_NAME + "NOK NAME] "
+            + "[" + PREFIX_NOK_PHONE + "NOK PHONE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -104,9 +110,12 @@ public class EditCommand extends UndoableCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Avatar updatedAvatar = editPersonDescriptor.getAvatar().orElse(personToEdit.getAvatar());
+        NokName updatedNokName = editPersonDescriptor.getNokName().orElse(personToEdit.getNokName());
+        NokPhone updatedNokPhone = editPersonDescriptor.getNokPhone().orElse(personToEdit.getNokPhone());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar, 
+                          updatedNokName, updatedNokPhone, updatedTags);
     }
 
     @Override
@@ -137,6 +146,8 @@ public class EditCommand extends UndoableCommand {
         private Email email;
         private Address address;
         private Avatar avatar;
+        private NokName nokName;
+        private NokPhone nokPhone;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -147,6 +158,8 @@ public class EditCommand extends UndoableCommand {
             this.email = toCopy.email;
             this.address = toCopy.address;
             this.avatar = toCopy.avatar;
+            this.nokName = toCopy.nokName;
+            this.nokPhone = toCopy.nokPhone;
             this.tags = toCopy.tags;
         }
 
@@ -154,7 +167,8 @@ public class EditCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.avatar, this.tags);
+            return CollectionUtil.isAnyNonNull(this.name, this.phone, this.email, this.address, this.avatar, this.nokName,
+                                               this.nokPhone, this.tags);
         }
 
         public void setName(Name name) {
@@ -191,10 +205,24 @@ public class EditCommand extends UndoableCommand {
 
         public void setAvatar(Avatar avatar) {
             this.avatar = avatar;
-        }
 
         public Optional<Avatar> getAvatar() {
             return Optional.ofNullable(avatar);
+
+        public void setNokName(NokName nokName) {
+            this.nokName = nokName;
+        }
+
+        public Optional<NokName> getNokName() {
+            return Optional.ofNullable(nokName);
+        }
+
+        public void setNokPhone(NokPhone nokPhone) {
+            this.nokPhone = nokPhone;
+        }
+
+        public Optional<NokPhone> getNokPhone() {
+            return Optional.ofNullable(nokPhone);
         }
 
         public void setTags(Set<Tag> tags) {
@@ -225,6 +253,8 @@ public class EditCommand extends UndoableCommand {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getAvatar().equals(e.getAvatar())
+                    && getNokName().equals(e.getNokName())
+                    && getNokPhone().equals(e.getNokPhone())
                     && getTags().equals(e.getTags());
         }
     }

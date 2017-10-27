@@ -6,6 +6,8 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">4th street</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Chew Muster</nokName>
+        <nokPhone>97568437</nokPhone>
     </persons>
     <persons>
         <name>Ruth Mueller</name>
@@ -13,6 +15,8 @@
         <email isPrivate="false">ruth@example.com</email>
         <address isPrivate="false">81th street</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Roth Mueller</nokName>
+        <nokPhone>81516548</nokPhone>
     </persons>
     <persons>
         <name>Heinz Kurz</name>
@@ -20,6 +24,8 @@
         <email isPrivate="false">heinz@example.com</email>
         <address isPrivate="false">wall street</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Helen Kurz</nokName>
+        <nokPhone>91541856</nokPhone>
     </persons>
     <persons>
         <name>Cornelia Meier</name>
@@ -27,6 +33,8 @@
         <email isPrivate="false">cornelia@example.com</email>
         <address isPrivate="false">10th street</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Cornelius Meier</nokName>
+        <nokPhone>81521654</nokPhone>
     </persons>
     <persons>
         <name>Werner Meyer</name>
@@ -34,6 +42,8 @@
         <email isPrivate="false">werner@example.com</email>
         <address isPrivate="false">michegan ave</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Warner Meyer</nokName>
+        <nokPhone>91854495</nokPhone>
     </persons>
     <persons>
         <name>Lydia Kunz</name>
@@ -41,6 +51,8 @@
         <email isPrivate="false">lydia@example.com</email>
         <address isPrivate="false">little tokyo</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Lynn Kunz</nokName>
+        <nokPhone>84151614</nokPhone>
     </persons>
     <persons>
         <name>Anna Best</name>
@@ -48,6 +60,8 @@
         <email isPrivate="false">anna@example.com</email>
         <address isPrivate="false">4th street</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Hanna Best</nokName>
+        <nokPhone>91854985</nokPhone>
     </persons>
     <persons>
         <name>Stefan Meier</name>
@@ -55,6 +69,8 @@
         <email isPrivate="false">stefan@example.com</email>
         <address isPrivate="false">little india</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Stephen Meier</nokName>
+        <nokPhone>81516515</nokPhone>
     </persons>
     <persons>
         <name>Martin Mueller</name>
@@ -62,5 +78,7 @@
         <email isPrivate="false">hans@example.com</email>
         <address isPrivate="false">chicago ave</address>
         <avatarDisplay isPrivate="false">src/main/resources/images/default.png</avatarDisplay>
+        <nokName>Carter Mueller</nokName>
+        <nokPhone>91549854</nokPhone>
     </persons>
 </addressbook>

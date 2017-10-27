@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVATAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -27,6 +29,8 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_AVATAR + "PATH "
+            + PREFIX_NOK_NAME + "NOK NAME "
+            + PREFIX_NOK_PHONE + "NOK PHONE "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -34,6 +38,8 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_AVATAR + "src/main/resources/images/app_icon.png "
+            + PREFIX_NOK_NAME + "Peter Doe "
+            + PREFIX_NOK_PHONE + "87654321 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

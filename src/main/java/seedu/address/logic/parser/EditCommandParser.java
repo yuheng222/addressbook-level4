@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVATAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -36,7 +38,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AVATAR, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AVATAR,
+                                           PREFIX_NOK_NAME, PREFIX_NOK_PHONE, PREFIX_TAG);
 
         Index index;
 
@@ -52,6 +55,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).ifPresent(editPersonDescriptor::setEmail);
             ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).ifPresent(editPersonDescriptor::setAddress);
             parseAvatarForEdit(argMultimap.getAvatarValue(PREFIX_AVATAR)).ifPresent(editPersonDescriptor::setAvatar);
+            ParserUtil.parseNokName(argMultimap.getValue(PREFIX_NOK_NAME)).ifPresent(editPersonDescriptor::setNokName);
+            ParserUtil.parseNokPhone(argMultimap.getValue(PREFIX_NOK_PHONE))
+                    .ifPresent(editPersonDescriptor::setNokPhone);
             parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         } catch (IllegalValueException | IOException ive) {
             throw new ParseException(ive.getMessage(), ive);
