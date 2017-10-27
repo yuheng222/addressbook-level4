@@ -39,7 +39,7 @@ public interface ReadOnlyPerson {
                 && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress())
-                && other.getAvatar().equals(this.getAvatar()));
+                && other.getAvatar().equals(this.getAvatar())
                 && other.getNokName().equals(this.getNokName())
                 && other.getNokPhone().equals(this.getNokPhone()));
     }
