@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.AVATAR_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVATAR_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
@@ -20,7 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AVATAR_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AVATAR_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -37,6 +37,7 @@ import org.junit.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -73,9 +74,9 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
-        // multiple addresses - last address accepted
+        // multiple avatars - last avatar accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_AMY + AVATAR_DESC_AMY + AVATAR_DESC_BOB + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + AVATAR_DESC_AMY + AVATAR_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
@@ -89,7 +90,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags
+        // zero tags and zero avatars
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
@@ -142,6 +143,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB 
                         + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + AVATAR_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Address.MESSAGE_ADDRESS_CONSTRAINTS);
+
+        // invalid avatar
+        assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_AVATAR_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                Avatar.MESSAGE_AVATAR_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
