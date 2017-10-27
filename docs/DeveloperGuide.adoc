@@ -325,7 +325,7 @@ is currently unused by any other function.
 
 **Pros:**
 
-* Users are able to achieve different results with the same command word.
+* Users can achieve different results with the same command word.
 
 * Eliminates need for extra classes within the `Parser` package.
 
