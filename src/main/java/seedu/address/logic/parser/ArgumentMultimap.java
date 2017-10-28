@@ -40,6 +40,19 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the last value of {@code prefix}.
+     */
+    public String getAvatarValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        if (values.isEmpty()) {
+            return "";
+        } else {
+            return values.get((values.size() - 1));
+        }
+    }
+
+
+    /**
      * Returns all values of {@code prefix}.
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.

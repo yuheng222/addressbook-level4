@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokName;
@@ -91,6 +92,7 @@ public class AddTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Avatar updatedAvatar = personToEdit.getAvatar();
         NokName updatedNokName = personToEdit.getNokName();
         NokPhone updatedNokPhone = personToEdit.getNokPhone();
 
@@ -101,8 +103,7 @@ public class AddTagCommand extends UndoableCommand {
         } catch (DuplicateTagException dte) {
             throw new CommandException(dte.getMessage());
         }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar,
                           updatedNokName, updatedNokPhone, updatedTags);
     }
 

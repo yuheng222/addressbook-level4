@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AVATAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOK_NAME;
@@ -35,6 +36,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_AVATAR_AMY = "src/main/resources/images/default.png";
+    public static final String VALID_AVATAR_BOB = "src/main/resources/images/default.png";
     public static final String VALID_NOK_NAME_AMY = "Beth Bee";
     public static final String VALID_NOK_NAME_BOB = "Boyang Choo";
     public static final String VALID_NOK_PHONE_AMY = "12121212";
@@ -50,6 +53,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String AVATAR_DESC_AMY = " " + PREFIX_AVATAR + VALID_AVATAR_AMY;
+    public static final String AVATAR_DESC_BOB = " " + PREFIX_AVATAR + VALID_AVATAR_BOB;
     public static final String NOK_NAME_DESC_AMY = " " + PREFIX_NOK_NAME + VALID_NOK_NAME_AMY;
     public static final String NOK_NAME_DESC_BOB = " " + PREFIX_NOK_NAME + VALID_NOK_NAME_BOB;
     public static final String NOK_PHONE_DESC_AMY = " " + PREFIX_NOK_PHONE + VALID_NOK_PHONE_AMY;
@@ -61,6 +66,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_AVATAR_DESC = " " + PREFIX_AVATAR + "notafilepath"; // invalid filepath
     public static final String INVALID_NOK_NAME_DESC = " " + PREFIX_NOK_NAME + "Jessie%"; // '%' not allowed in names
     public static final String INVALID_NOK_PHONE_DESC = " " + PREFIX_NOK_PHONE + "999m"; // 'm' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -71,10 +77,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNokName(VALID_NOK_NAME_AMY).withNokPhone(VALID_NOK_PHONE_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withAvatar(VALID_AVATAR_AMY).withNokName(VALID_NOK_NAME_AMY).withNokPhone(VALID_NOK_PHONE_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNokName(VALID_NOK_NAME_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
+                .withAvatar(VALID_AVATAR_BOB).withNokName(VALID_NOK_NAME_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
