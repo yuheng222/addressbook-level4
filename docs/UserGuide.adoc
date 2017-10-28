@@ -356,7 +356,7 @@ e.g. `filter friends`
 * *Select* : `select INDEX` +
 e.g.`select 2`
 * *Theme* : `theme INDEX` +
-e.g. `theme 2`
+e.g.`theme 2`
 * *Sort* : `sort`
 * *History* : `history`
 * *Undo* : `undo`

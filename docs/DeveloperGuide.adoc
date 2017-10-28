@@ -462,14 +462,24 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
-// tag::sort[]
 === Sort mechanism
 
-The sort mechanism mainly replies on the logic component. The primary sorting algorithm resides in 'UniquePersonList' class and it is implemented very simply by using a 'Person' comparator.
+The sort mechanism mainly relies on the logic component. The primary sorting algorithm resides in `UniquePersonList` class and it is implemented very simply by using a 'Person' comparator.
 
-The 'indicateAddressBookChanged' event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
+`IndicateAddressBookChanged` event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
 
-'SortCommand"' extends from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+'SortCommand"' inherits from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+
+The sequence diagram below illustrates how the sort mechanism works:
+
+image::SortSequenceDiagram.png[width="800"]
+
+
+    1. User executes the `sort` command which is then parsed through `AddressBookParser`.
+    2. A new `sort` command is created and it executes the `sort` method in `ModelManager`.
+    3. `ModelManager` calls the internal sorting function in the `UniquePersonList` class and the person list is sorted.
+    4. Lastly, the `updateFilteredPersonList()` method in `ModelManager` is invoked and it returns the result.
+
 
 ==== Design Considerations
 
@@ -480,7 +490,40 @@ The 'indicateAddressBookChanged' event is raised by 'Model' after the sorting is
 **Alternative 2:** Sorts persons in the Address Book by any field (sorting by email or tag for example), which is given as an input by the user. +
 **Pros:** More flexibility for users since they have the option to sort by any field that they want. +
 **Cons:** Harder to implement and constant updating of code is required every time a new field in the 'Person' class is introduced.
-//end:sort[]
+
+=== Select Theme mechanism
+
+The select theme mechanism inherits from `Command` class and it cannot be undone. It relies on the `Logic` and `UI` components.
+The `Logic` component mainly handles the parsing of command and posting of the `SelectThemeRequestEvent`, while the `UI` component subscribes to the event and updates the GUI accordingly.
+
+The sequence diagram below illustrates how the select theme mechanism works:
+
+image::SelectThemeSequenceDiagram.png[width="800"]
+
+    1. User executes the `theme` command which is then parsed through `AddressBookParser`.
+    2. The index `1` is extracted and parsed into `SelectThemeCommandParser` and an `index` instance is created together with a `SelectThemeCommand` object.
+    3. `SelectThemeCommand` then posts a `SelectThemeRequestEvent` which is picked up and handled by `EventsCenter`.
+    4. The `Main Window` of the `UI` component is then updates with the theme at the given index provided by the user.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SelectThemeCommand` +
+**Alternative 1 (current choice):** User can only select themes that are provided in the themes list. +
+**Pros:** Easy to implement and less prone to UI and design bugs. +
+**Cons:** No flexibility since the user is unable to change to a specific colour scheme that is not given in the themes list. +
+**Alternative 2:** Allows user to customise and choose their own colour scheme using a colour palette. +
+**Pros:** More flexibility for the user. +
+**Cons:** Much harder to implement and many UI related bugs may occur.
+
+---
+
+**Aspect:** Addition of `ThemesList` +
+**Alternative 1 (current choice):** User can refer to the user guide if they wish to view the list of themes that are available for selection. +
+**Pros:** Saves the hassle of implementing a new command, and the user can figure out how each theme looks like since screenshots are provided. +
+**Cons:** It is tedious for the user to keep referring to the user guide if he is unable to remember the index of each theme. +
+**Alternative 2:** Implement a new `ThemesList` command. +
+**Pros:** More convenient for the user since he can easily find out which themes are available by typing a command. +
+**Cons:** It is a trivial command which may never be used since the user can simply refer to the user guide for the list of themes.
 
 === Filter by tag mechanism
 
@@ -1062,6 +1105,26 @@ Use case resumes at step 1.
 Use case ends.
 
 [discrete]
+=== Use case: Select theme
+
+*MSS*
+
+1.  User enters command to select theme
+2.  AddressBook GUI is updated with the selected theme
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The entered index is invalid.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
 === Use case: Add person
 
 *MSS*
@@ -1088,7 +1151,6 @@ Use case resumes at step 1.
 ** 2a1. AddressBook shows an error message.
 +
 Use case resumes at step 1.
-
 
 [discrete]
 === Use case: Find phone number of a person
