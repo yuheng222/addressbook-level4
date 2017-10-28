@@ -37,7 +37,7 @@ public class ExportCommand extends Command {
 
         for (String field : propertyNames) {
             builder.append(field);
-            builder.append(',');
+            builder.append(",");
         }
 
         int lastChar = builder.lastIndexOf(",");
