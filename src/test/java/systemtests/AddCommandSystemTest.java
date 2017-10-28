@@ -58,7 +58,6 @@ import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokName;
@@ -105,13 +104,14 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         // This test will fail if a new tag that is not in the model is used, see the bug documented in
         // AddressBook#addPerson(ReadOnlyPerson)
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + AVATAR_DESC_AMY + " " + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + " " + PREFIX_TAG.getPrefix() + "friends";
+                + AVATAR_DESC_AMY + " " + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + " " + PREFIX_TAG.getPrefix()
+                + "friends";
         assertCommandFailure(command, AddCommand.MESSAGE_DUPLICATE_PERSON);
 
         /* Case: add a person with all fields same as another person in the address book except name -> added */
         toAdd = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withAvatar(VALID_AVATAR_AMY).withNokName(VALID_NOK_NAME_AMY).withNokPhone(VALID_NOK_PHONE_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withAddress(VALID_ADDRESS_AMY).withAvatar(VALID_AVATAR_AMY).withNokName(VALID_NOK_NAME_AMY)
+                .withNokPhone(VALID_NOK_PHONE_AMY).withTags(VALID_TAG_FRIEND).build();
         command = AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + AVATAR_DESC_AMY + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + TAG_DESC_FRIEND;
         assertCommandSuccess(command, toAdd);

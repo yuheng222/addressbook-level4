@@ -50,7 +50,6 @@ import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokName;
@@ -98,7 +97,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
 
         /* Case: edit a person with new values same as existing values -> edited */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND;
         assertCommandSuccess(command, index, BOB);
 
         /* Case: edit some fields -> edited */
@@ -204,7 +204,8 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         index = INDEX_FIRST_PERSON;
         assertFalse(getModel().getFilteredPersonList().get(index.getZeroBased()).equals(BOB));
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND + TAG_DESC_HUSBAND;
+                + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND
+                + TAG_DESC_HUSBAND;
         assertCommandFailure(command, EditCommand.MESSAGE_DUPLICATE_PERSON);
 
         /* Case: edit a person with new values same as another person's values but with different tags -> rejected */
