@@ -46,8 +46,7 @@ public class ArgumentMultimap {
         List<String> values = getAllValues(prefix);
         if (values.isEmpty()) {
             return "";
-        }
-        else {
+        } else {
             return values.get((values.size() - 1));
         }
     }

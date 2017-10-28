@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
-
 import javafx.beans.binding.Bindings;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;

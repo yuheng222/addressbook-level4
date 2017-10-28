@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import seedu.address.commons.exceptions.IllegalValueException;
 
 import java.awt.image.BufferedImage;
+
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 /**
@@ -30,11 +32,9 @@ public class Avatar {
             File placeholder = new File(DEFAULT_PATH);
             this.avatar = ImageIO.read(placeholder);
             this.value = DEFAULT_PATH;
-        }
-        else if (!isValidAvatar(path)) {
+        } else if (!isValidAvatar(path)) {
             throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
-        }
-        else {
+        } else {
             try {
                 File source = new File(path);
                 this.avatar = ImageIO.read(source);
