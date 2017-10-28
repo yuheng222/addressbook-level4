@@ -1,13 +1,11 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import java.awt.image.BufferedImage;
-
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Person's avatar in the address book.
