@@ -17,8 +17,6 @@ public class ExportCommand extends Command {
 
     public static final String DATA_FILE_PATH = "AddressBookData.csv";
 
-    //public static final String MESSAGE_IO_EXCEPTION = "Read/Write Exception Occurred";
-
     private final List<ReadOnlyPerson> currentData;
 
     public ExportCommand() { this.currentData = model.getAddressBook().getPersonList(); }
