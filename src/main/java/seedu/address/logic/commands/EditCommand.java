@@ -206,11 +206,11 @@ public class EditCommand extends UndoableCommand {
         public void setAvatar(Avatar avatar) {
             this.avatar = avatar;
         }
-        
+
         public Optional<Avatar> getAvatar() {
             return Optional.ofNullable(avatar);
         }
-        
+
         public void setNokName(NokName nokName) {
             this.nokName = nokName;
         }

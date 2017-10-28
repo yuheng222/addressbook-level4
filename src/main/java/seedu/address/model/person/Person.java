@@ -31,7 +31,7 @@ public class Person implements ReadOnlyPerson {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Avatar avatar, NokName nokName, 
+    public Person(Name name, Phone phone, Email email, Address address, Avatar avatar, NokName nokName,
                   NokPhone nokPhone, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, nokName, nokPhone, tags);
         this.name = new SimpleObjectProperty<>(name);
@@ -49,8 +49,8 @@ public class Person implements ReadOnlyPerson {
      * Creates a copy of the given ReadOnlyPerson.
      */
     public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),  source.getAvatar(), 
-             source.getNokName(), source.getNokPhone(), source.getTags());
+        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(),  source.getAvatar(),
+                source.getNokName(), source.getNokPhone(), source.getTags());
     }
 
     public void setName(Name name) {
