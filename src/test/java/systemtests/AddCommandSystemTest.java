@@ -246,7 +246,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         assertCommandFailure(command, NokPhone.MESSAGE_NOK_PHONE_CONSTRAINTS);
 
         /* Case: invalid tag -> rejected */
-        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY 
+        command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + AVATAR_DESC_AMY + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + INVALID_TAG_DESC;
         assertCommandFailure(command, Tag.MESSAGE_TAG_CONSTRAINTS);
     }

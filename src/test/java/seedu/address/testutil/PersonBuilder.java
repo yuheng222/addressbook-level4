@@ -42,7 +42,7 @@ public class PersonBuilder {
             NokName defaultNokName = new NokName(DEFAULT_NOK_NAME);
             NokPhone defaultNokPhone = new NokPhone(DEFAULT_NOK_PHONE);
             Set<Tag> defaultTags = SampleDataUtil.getTagSet(DEFAULT_TAGS);
-            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultAddress, 
+            this.person = new Person(defaultName, defaultPhone, defaultEmail, defaultAddress,
                     defaultAvatar, defaultNokName, defaultNokPhone, defaultTags);
         } catch (IllegalValueException | IOException ive) {
             throw new AssertionError("Default person's values are invalid.");
