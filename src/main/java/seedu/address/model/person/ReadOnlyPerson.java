@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
@@ -40,6 +42,24 @@ public interface ReadOnlyPerson {
                 && other.getNokName().equals(this.getNokName())
                 && other.getNokPhone().equals(this.getNokPhone()));
     }
+
+    /**
+     * Returns a List containing all the property names of a Person.
+     */
+    default List<String> getPropertyNamesAsList() {
+        List<String> propertyNames = new ArrayList<String>();
+
+        propertyNames.add("Name");
+        propertyNames.add("Phone");
+        propertyNames.add("Email");
+        propertyNames.add("Address");
+        propertyNames.add("NokName");
+        propertyNames.add("NokPhone");
+
+        return propertyNames;
+    }
+
+
 
     /**
      * Formats the person as text, showing all contact details.
