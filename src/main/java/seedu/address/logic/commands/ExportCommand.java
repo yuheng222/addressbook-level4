@@ -28,6 +28,7 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute() throws CommandException {
         this.currentData = model.getAddressBook().getPersonList();
+
         if (currentData.isEmpty()) {
             throw new CommandException(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
