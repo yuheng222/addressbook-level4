@@ -23,13 +23,11 @@ public class ExportCommand extends Command {
 
     public static final String DATA_FILE_PATH = "AddressBookData.csv";
 
-    private final List<ReadOnlyPerson> currentData;
-
-    public ExportCommand() { this.currentData = model.getAddressBook().getPersonList(); }
+    private List<ReadOnlyPerson> currentData;
 
     @Override
     public CommandResult execute() throws CommandException {
-
+        this.currentData = model.getAddressBook().getPersonList();
         if (currentData.isEmpty()) {
             throw new CommandException(MESSAGE_EMPTY_ADDRESS_BOOK);
         }
@@ -54,9 +52,8 @@ public class ExportCommand extends Command {
             builder.append(field);
             builder.append(",");
         }
-
-        int lastChar = builder.lastIndexOf(",");
-        builder.setCharAt(lastChar, '\n');
+        builder.append("Tags");
+        builder.append("\n");
 
         return builder.toString();
     }
@@ -95,6 +92,7 @@ public class ExportCommand extends Command {
         String phone = person.getPhone().toString();
         String email = person.getEmail().toString();
         String address = person.getAddress().toString();
+        address = address.replace(',',';');
         String nokName = person.getNokName().toString();
         String nokPhone = person.getNokPhone().toString();
         String tags = parseTagsToString(person);
@@ -125,7 +123,6 @@ public class ExportCommand extends Command {
         for (Tag tag : tags) {
             String convertedTag = tag.toString();
             builder.append(convertedTag);
-            builder.append(";");
         }
 
         return builder.toString();
