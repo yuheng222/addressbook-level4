@@ -27,7 +27,8 @@ public class Avatar {
      */
     public Avatar(String path) throws IllegalValueException, IOException {
         if (path == null || (path.length()) == 0) {
-            this.avatar = ImageIO.read(getClass().getClassLoader().getResource(DEFAULT_PATH));
+            File source = new File(DEFAULT_PATH);
+            this.avatar = ImageIO.read(source);
             this.value = DEFAULT_PATH;
         } else if (!isValidAvatar(path)) {
             throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
