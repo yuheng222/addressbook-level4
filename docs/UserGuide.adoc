@@ -319,10 +319,16 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+
+=== Exporting the data : `export`
+Exports the current data in the address book into a CSV (Comma-Separated Values) file.
+Format: `export`
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
 
 == FAQ
 
@@ -359,6 +365,7 @@ e.g.`select 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Export* : `export`
 
 == Themes List
 
