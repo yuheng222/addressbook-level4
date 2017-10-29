@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_AVATAR = "src/main/resources/images/default.png";
+    public static final String DEFAULT_AVATAR = "default.png";
     public static final String DEFAULT_NOK_NAME = "Beth Pauline";
     public static final String DEFAULT_NOK_PHONE = "84541946";
     public static final String DEFAULT_TAGS = "friends";
