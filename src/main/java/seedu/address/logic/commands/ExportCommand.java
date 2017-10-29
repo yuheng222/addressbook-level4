@@ -92,7 +92,7 @@ public class ExportCommand extends Command {
         String phone = person.getPhone().toString();
         String email = person.getEmail().toString();
         String address = person.getAddress().toString();
-        address = address.replace(',',';');
+        address = address.replace(',', ';');
         String nokName = person.getNokName().toString();
         String nokPhone = person.getNokPhone().toString();
         String tags = parseTagsToString(person);
