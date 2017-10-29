@@ -4,14 +4,20 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.ReadOnlyPerson;
+import seedu.address.model.tag.Tag;
 
 /**
  * Exports the current Address Book data into a CSV file.
  */
 public class ExportCommand extends Command {
+
+    public static final String COMMAND_WORD = "export";
+
+    public static final String MESSAGE_EXPORT_SUCCESS = "Successfully exported data.";
 
     public static final String MESSAGE_EMPTY_ADDRESS_BOOK = "Export failed. Current Address Book is empty.";
 
@@ -33,10 +39,8 @@ public class ExportCommand extends Command {
         }
 
         createFile();
-
         writeData();
-
-        return null;
+        return new CommandResult(MESSAGE_EXPORT_SUCCESS);
     }
 
     /** Constructing the headers for CSV */
@@ -59,15 +63,72 @@ public class ExportCommand extends Command {
 
     /** Function to write data to the CSV */
     private void writeData() throws CommandException {
+        final StringBuilder builder = new StringBuilder();
+
         File csvData = new File(DATA_FILE_PATH);
         String headers = constructHeaders();
+
+        for (ReadOnlyPerson person : currentData) {
+            String personData = generatePersonData(person);
+            builder.append(personData);
+        }
+
+        String dataToWrite = builder.toString();
+
         try {
             PrintWriter pw = new PrintWriter(csvData);
             pw.write(headers);
+            pw.write(dataToWrite);
+            pw.close();
         } catch (IOException ioe) {
             throw new CommandException(ioe.getMessage());
         }
 
+    }
+
+    /**
+     * Function to generate Person data as text.
+     * Mostly hardcoded for now, until a better implementation can be found.
+     */
+    private String generatePersonData(ReadOnlyPerson person) {
+        String name = person.getName().toString();
+        String phone = person.getPhone().toString();
+        String email = person.getEmail().toString();
+        String address = person.getAddress().toString();
+        String nokName = person.getNokName().toString();
+        String nokPhone = person.getNokPhone().toString();
+        String tags = parseTagsToString(person);
+
+        final StringBuilder builder = new StringBuilder();
+        builder.append(name);
+        builder.append(",");
+        builder.append(phone);
+        builder.append(",");
+        builder.append(email);
+        builder.append(",");
+        builder.append(address);
+        builder.append(",");
+        builder.append(nokName);
+        builder.append(",");
+        builder.append(nokPhone);
+        builder.append(",");
+        builder.append(tags);
+        builder.append("\n");
+
+        return builder.toString();
+    }
+
+    /** Function to convert tags into a suitable String format for CSV */
+    private String parseTagsToString(ReadOnlyPerson person) {
+        Set<Tag> tags = person.getTags();
+        final StringBuilder builder = new StringBuilder();
+        for (Tag tag : tags) {
+            String convertedTag = tag.toString();
+            builder.append(convertedTag);
+            builder.append(";");
+        }
+
+        return builder.toString();
     }
 
     /** Function to create the CSV */
