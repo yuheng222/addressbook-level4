@@ -14,7 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class Avatar {
     public static final String MESSAGE_AVATAR_CONSTRAINTS =
             "The file path must be valid and the avatar should be of correct image file format";
-    public static final String DEFAULT_PATH = "src/main/resources/images/default.png";
+    public static final String DEFAULT_PATH = "images/default.png";
     private static final String AVATAR_VALIDATION_REGEX =
             "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
     public final String value;
