@@ -113,7 +113,7 @@ public class DeleteByNameCommandTest {
         ReadOnlyPerson personToDelete = CARL;
         DeleteByNameCommand deleteByNameCommand = prepareCommand(CARL.getName());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
