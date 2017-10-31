@@ -536,12 +536,24 @@ into a CSV file.
 The class diagram of the command is shown below:
 
 image::ExportCommandClassDiagram.png[width="800"]
-_Figure 3.6A - Class Diagram of ExportNameCommand_
+_Figure 3.6A - Class Diagram of ExportCommand_
 
 From _Figure 3.6A_, the ExportCommand depends on `java.io` to carry out the file IO operations to create the CSV file.
 It also depends on the `Model` class and `Person` package in order to extract the required information to export.
 
-The sequence diagram of the command is shown below: 
+The sequence diagram of the command is shown below:
+
+
+_Figure 3.6B - Sequence Diagram of ExportCommand_
+
+Explanation of _Figure 3.6B_:
+
+1. The `execute("export")` command is called on the `LogicManager`.
+
+2. `LogicManager` calls the `parse` method on `AddressBookParser`.
+
+3. The `parse` method creates a new `ExportCommand`.
+
 
 === Logging
 
