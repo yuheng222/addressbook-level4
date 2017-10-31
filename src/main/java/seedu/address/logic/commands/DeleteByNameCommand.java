@@ -33,7 +33,7 @@ public class DeleteByNameCommand extends UndoableCommand {
             + "Please use the general delete method shown below. \n" + DeleteCommand.MESSAGE_USAGE;
 
     public static final String MESSAGE_SUGGESTED_PERSONS = "Could not find the person to delete. "
-            + "Here are some suggestions. You may use the general delete method shown below. \n"
+            + "Here are some suggestions. You may edit the input name or use the general delete method shown below.\n"
             + DeleteCommand.MESSAGE_USAGE;
 
     private final Name nameToBeDeleted;

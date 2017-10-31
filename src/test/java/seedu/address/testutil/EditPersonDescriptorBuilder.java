@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -32,6 +33,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
+        descriptor.setAvatar(person.getAvatar());
         descriptor.setNokName(person.getNokName());
         descriptor.setNokPhone(person.getNokPhone());
         descriptor.setTags(person.getTags());
@@ -81,6 +83,18 @@ public class EditPersonDescriptorBuilder {
             ParserUtil.parseAddress(Optional.of(address)).ifPresent(descriptor::setAddress);
         } catch (IllegalValueException ive) {
             throw new IllegalArgumentException("address is expected to be unique.");
+        }
+        return this;
+    }
+
+    /**
+     * Sets the {@code Avatar} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withAvatar(String avatar) {
+        try {
+            descriptor.setAvatar(ParserUtil.parseAvatar(avatar));
+        } catch (IllegalValueException | IOException ive) {
+            throw new IllegalArgumentException("avatar is expected to be unique.");
         }
         return this;
     }

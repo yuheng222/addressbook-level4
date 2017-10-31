@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javafx.beans.property.ObjectProperty;
@@ -20,6 +22,8 @@ public interface ReadOnlyPerson {
     Email getEmail();
     ObjectProperty<Address> addressProperty();
     Address getAddress();
+    ObjectProperty<Avatar> avatarProperty();
+    Avatar getAvatar();
     ObjectProperty<NokName> nokNameProperty();
     NokName getNokName();
     ObjectProperty<NokPhone> nokPhoneProperty();
@@ -37,9 +41,28 @@ public interface ReadOnlyPerson {
                 && other.getPhone().equals(this.getPhone())
                 && other.getEmail().equals(this.getEmail())
                 && other.getAddress().equals(this.getAddress())
+                && other.getAvatar().equals(this.getAvatar())
                 && other.getNokName().equals(this.getNokName())
                 && other.getNokPhone().equals(this.getNokPhone()));
     }
+
+    /**
+     * Returns a List containing all the property names of a Person.
+     */
+    default List<String> getPropertyNamesAsList() {
+        List<String> propertyNames = new ArrayList<String>();
+
+        propertyNames.add("Name");
+        propertyNames.add("Phone");
+        propertyNames.add("Email");
+        propertyNames.add("Address");
+        propertyNames.add("NokName");
+        propertyNames.add("NokPhone");
+
+        return propertyNames;
+    }
+
+
 
     /**
      * Formats the person as text, showing all contact details.
@@ -53,6 +76,8 @@ public interface ReadOnlyPerson {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
+                .append(" Avatar: ")
+                .append(getAvatar())
                 .append(" Next-of-Kin Name: ")
                 .append(getNokName())
                 .append(" Next-of-Kin Phone: ")
