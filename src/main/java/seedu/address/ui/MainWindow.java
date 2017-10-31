@@ -148,7 +148,7 @@ public class MainWindow extends UiPart<Region> {
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        tagPane = new TagPane(logic.getFilteredPersonList());
+        tagPane = new TagPane(logic.getTagList());
         tagPanePlaceholder.getChildren().add(tagPane.getRoot());
     }
 
