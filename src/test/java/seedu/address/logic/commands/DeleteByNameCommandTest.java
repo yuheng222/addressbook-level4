@@ -66,7 +66,7 @@ public class DeleteByNameCommandTest {
         ReadOnlyPerson personToDelete = ALICE;
         DeleteByNameCommand deleteByNameCommand = prepareCommand(ALICE.getName());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -112,7 +112,7 @@ public class DeleteByNameCommandTest {
         ReadOnlyPerson personToDelete = CARL;
         DeleteByNameCommand deleteByNameCommand = prepareCommand(CARL.getName());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -183,7 +183,7 @@ public class DeleteByNameCommandTest {
     }
 
     /**
-     * Returns a {@code DeleteCommand} with the parameter {@code index}.
+     * Returns a {@code DeleteByNameCommand} with the parameter {@code index}.
      */
     private DeleteByNameCommand prepareCommand(Name name) {
         DeleteByNameCommand deleteByNameCommand = new DeleteByNameCommand(name);
