@@ -5,7 +5,6 @@ import static org.junit.Assert.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showFirstPersonOnly;
-import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_DELETE_PERSON_SUCCESS;
 import static seedu.address.logic.commands.DeleteByNameCommand.MESSAGE_SUGGESTED_PERSONS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
