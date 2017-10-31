@@ -528,6 +528,21 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
 **Pros:** Might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
 **Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
 
+=== Export
+
+The `ExportCommand` extends the `Command` class. It allows users to export the current Address Book data
+into a CSV file.
+
+The class diagram of the command is shown below:
+
+image::ExportCommandClassDiagram.png[width="800"]
+_Figure 3.6A - Class Diagram of ExportNameCommand_
+
+From _Figure 3.6A_, the ExportCommand depends on `java.io` to carry out the file IO operations to create the CSV file.
+It also depends on the `Model` class and `Person` package in order to extract the required information to export.
+
+The sequence diagram of the command is shown below: 
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
