@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -30,16 +33,16 @@ public class TagPane extends UiPart<Region> {
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static int colourIndex = 0;
 
-    public final ObservableList<ReadOnlyPerson> personList;
+    public final ObservableList<Tag> tagList;
 
     @FXML
     private FlowPane totalTags;
 
-    public TagPane(ObservableList<ReadOnlyPerson> personList) {
+    public TagPane(ObservableList<Tag> tagList) {
         super(FXML);
-        this.personList = personList;
-        initTags(personList);
-        bindListeners(personList);
+        this.tagList = tagList;
+        initTags(tagList);
+        bindListeners(tagList);
     }
 
     /**
@@ -69,17 +72,11 @@ public class TagPane extends UiPart<Region> {
     /**
      * Creates a tag label for every unique {@code Tag} and sets a color for each tag label.
      */
-    private void initTags(ObservableList<ReadOnlyPerson> personList) {
-        Set<Tag> tagList = new HashSet<>();
-        for (ReadOnlyPerson person: personList) {
-            person.getTags().forEach(tag -> {
-                if (!tagList.contains(tag)) {
-                    Label tagLabel = new Label(tag.tagName);
-                    tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";");
-                    totalTags.getChildren().add(tagLabel);
-                    tagList.add(tag);
-                }
-            });
+    private void initTags(ObservableList<Tag> tagList) {
+        for (Tag tag: tagList) { 
+            Label tagLabel = new Label(tag.tagName);
+            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName) + ";");
+            totalTags.getChildren().add(tagLabel);
         }
     }
 
@@ -87,17 +84,12 @@ public class TagPane extends UiPart<Region> {
      * Binds the tags to observe their respective {@code Person} properties
      * so that they will be notified of any changes.
      */
-    private void bindListeners(ObservableList<ReadOnlyPerson> personList) {
-        for (ReadOnlyPerson person: personList) {
-            person.tagProperty().addListener(new ChangeListener<UniqueTagList>() {
-                @Override
-                public void changed(ObservableValue<? extends UniqueTagList> observable,
-                                      UniqueTagList oldValue, UniqueTagList newValue) {
-                    totalTags.getChildren().clear();
-                    initTags(personList);
-                }
-            });
-        }
+    private void bindListeners(ObservableList<Tag> tagList) {
+        ObjectProperty<ObservableList<Tag>> tagListProperty = new SimpleObjectProperty<ObservableList<Tag>>(tagList);
+        tagListProperty.addListener((observable, oldValue, newValue) -> {
+            totalTags.getChildren().clear();
+            initTags(tagList);
+        });
     }
 }
 
