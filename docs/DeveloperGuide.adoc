@@ -543,7 +543,7 @@ It also depends on the `Model` class and `Person` package in order to extract th
 
 The sequence diagram of the command is shown below:
 
-
+image::ExportCommandSequenceDiagram.png[width="800"]
 _Figure 3.6B - Sequence Diagram of ExportCommand_
 
 Explanation of _Figure 3.6B_:
