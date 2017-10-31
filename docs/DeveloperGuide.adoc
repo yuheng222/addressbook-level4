@@ -10,7 +10,7 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103AUG2017-T10-B3/main
 
 By: `Team T10-B3`      Since: `October 2017`      Licence: `MIT`
 
@@ -95,29 +95,19 @@ Before you get started, take a short while to complete the following:
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
+The *_Architecture Diagram_* given above explains the high-level design of the App. It consists of the following 6 components:
+
+* link:#main[*`Main`*]
+* link:#commons[*`Commons`*]
+* link:#ui-component[*`UI`*]
+* link:#logic-component[*`Logic`*]
+* link:#model-component[*`Model`*]
+* link:#storage-component[*`Storage`*]
 
 [TIP]
 The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
-`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
-
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup method where necessary.
-
-link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
-
-* `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
-* `LogsCenter` : Used by many classes to write log messages to the App's log file.
-
-The rest of the App consists of four components.
-
-* link:#ui-component[*`UI`*] : The UI of the App.
-* link:#logic-component[*`Logic`*] : The command executor.
-* link:#model-component[*`Model`*] : Holds the data of the App in-memory.
-* link:#storage-component[*`Storage`*] : Reads data from, and writes data to, the hard disk.
-
-Each of the four components
+Each of the four components, `UI`, `Logic`, `Model` and `Storage`:
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -127,28 +117,25 @@ For example, the `Logic` component (see the class diagram given below) defines i
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.1.2 : Class Diagram of the Logic Component_
 
-[discrete]
-==== Events-Driven nature of the design
+The section below gives detailed explanation for each component.
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+=== Components
+==== Main
+`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
 
-image::SDforDeletePerson.png[width="800"]
-_Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup method where necessary.
 
-[NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+==== Commons
+`Commons` represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
 
-The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
+* `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
+* `LogsCenter` : Used by many classes to write log messages to the App's log file.
 
-image::SDforDeletePersonEventHandling.png[width="800"]
-_Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
-[NOTE]
-Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-
-The sections below give more details of each component.
-
-=== UI component
+==== UI component
+The `UI` component is the User Interface of the App. The following diagram illustrates the structure of UI component.
 
 image::UiClassDiagram.png[width="800"]
 _Figure 2.2.1 : Structure of the UI Component_
@@ -165,7 +152,8 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-=== Logic component
+==== Logic component
+The `Logic` component is the command executor. The following diagram illustrates the structure of Logic component.
 
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -181,12 +169,13 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+For example, given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 image::DeletePersonSdForLogic.png[width="800"]
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
-=== Model component
+==== Model component
+The `Model` component holds the data of the App in-memory. The following diagram illustrates the structure of Model component.
 
 image::ModelClassDiagram.png[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
@@ -200,7 +189,8 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-=== Storage component
+==== Storage component
+The `Storage` component reads data from, and writes data to, the hard disk. The following diagram illustrates the structure of Storage component.
 
 image::StorageClassDiagram.png[width="800"]
 _Figure 2.5.1 : Structure of the Storage Component_
@@ -212,9 +202,23 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in xml format and read it back.
 
-=== Common classes
+=== Events-Driven nature of the design
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+
+image::SDforDeletePerson.png[width="800"]
+_Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
+
+[NOTE]
+Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+
+The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
+
+image::SDforDeletePersonEventHandling.png[width="800"]
+_Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
+
+[NOTE]
+Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
 
 == Implementation
 
@@ -480,7 +484,7 @@ The 'indicateAddressBookChanged' event is raised by 'Model' after the sorting is
 
 === Filter by tag mechanism
 
-The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two main components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
+The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
 
 The following sequence diagram illustrates how the mechanism works:
 
@@ -494,30 +498,35 @@ As shown in the diagram, to obtain a filtered person list based on the tags ente
     4. `parse` then creates a `FilterCommand` object with the `PersonHasTagPredicate` object as the parameter.
     5. `execute` method in `FilterCommand` calls `updateFilteredPersonList` method in `ModelManager` by passing its predicate as the parameter and returns the result.
 
-`PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. It is implemented this way:
-[source,java]
-----
-public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
-    private final List<String> tags;
-
-    public PersonHasTagPredicate(List<String> tags) {
-            this.tags = tags;
-    }
-
-    @Override
-    public boolean test(ReadOnlyPerson person) {
-        Set<Tag> tagSet = person.getTags();
-        for (Tag t: tagSet) {
-            if (tags.stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(t.tagName, tag))) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-----
+`PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. Its `test` method loops through the person's tags and returns **true** when it finds a match with the predicates' tags.
 
 *Alternatively*, in step 3 above, the tag names entered can be store as a `HashSet<Tag>` to construct a `PersonHasTagPredicate` object. Therefore under the `test` method, `Tag` objects of a `Person` and a `PersonHasTagPredicate` can be directly compared instead of comparing `String` tag names.
+
+=== Add tag mechanism
+
+The add tag command inherits from `UndoableCommand`. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the person based on the inputs.
+
+The following sequence diagram illustrates how the mechanism works:
+
+image::AddTagSequenceDiagram.png[width="800"]
+
+As shown in the diagram, to add a new tag or tags to a person involves the following steps:
+
+    1. `LogicManager` calls `parseCommand` method in `AddressBookParser` with user inputs as parameters.
+    2. `parseCommand` method detects *command word* `addtag` and calls `parse` method in `AddTagCommandParser` with the rest of inputs as parameters.
+    3. `parse` method creates an `Index` instance and a `Set<Tag>` instance through `ParserUtil` and then construct an `AddTagCommand` object.
+    4. `executeUndoableCommand` method in `AddTagCommand` constructs a new Person with the tags added by calling its `createUpdatedPerson` method.
+    5. It then invokes `updatePerson` in `ModelManager` to replace the person with the updated one.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `createUpdatedPerson` in `AddCommand` +
+**Alternative 1 (current choice):** The execution is unsuccessful once any of the tags entered is found in the person's existing tags. +
+**Pros:** Easy to implement and alerts the user about duplicate tags. +
+**Cons:** The user will have to enter the tags again. +
+**Alternative 2:** The person is updated successfully with non-duplicate tags. +
+**Pros:** Might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
+**Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
 
 === Logging
 
@@ -639,8 +648,9 @@ Here are the steps to create a new release.
 === Managing Dependencies
 
 A project often depends on third-party libraries. For example, Address Book depends on the http://wiki.fasterxml.com/JacksonHome[Jackson library] for XML parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives. +
-a. Include those libraries in the repo (this bloats the repo size) +
-b. Require developers to download those libraries manually (this creates extra work for developers)
+
+* Include those libraries in the repo (this bloats the repo size) +
+* Require developers to download those libraries manually (this creates extra work for developers)
 
 [appendix]
 == Suggested Programming Tasks to Get Started
@@ -1039,9 +1049,17 @@ Use case resumes at step 1.
 * 2a. The given name is not found in AddressBook.
 +
 [none]
-** 2a1. AddressBook shows an error message.
+** 2a1. AddressBook suggests possible persons for deletion.
 +
 Use case resumes at step 1.
+
+[none]
+* 3a. Multiple persons have the same name.
++
+[none]
+** 3a1. AddressBook displays all persons with the same name and prompts user to use the `DELETE` command.
++
+Use case ends.
 
 [discrete]
 === Use case: Add person
