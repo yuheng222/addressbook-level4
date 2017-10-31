@@ -219,7 +219,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::DeleteByNameCommand
-=== DeleteByNameCommand
+=== DeleteByName Command
 
 The `DeleteByNameCommand` extends the `UndoableCommand` class. It enables the deletion of
 a person from the Address Book when given an input `Name` parsed by `DeleteByNameCommandParser`.
@@ -243,15 +243,15 @@ Explanation of _Figure 3.1B_:
 
 1. The `execute("deletebyname John Doe")` command is called on the `LogicManager`.
 
-2. `LogicManager` calls the `parse` method `AddressBookParser`.
+2. `LogicManager` calls the `parse` method on `AddressBookParser`.
 
 3. `AddressBookParser` parses the command word, `deletebyname` and calls
-`DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
+`parse` on `DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
 
-4. `DeleteByNameCommandParser` calls on `DeleteByNameCommand` which returns a command, `d`,
-all the way back to `LogicManager`.
+4. `DeleteByNameCommandParser` creates a new `DeleteByNameCommand`, `d`,
+and returns it all the way back to `LogicManager`.
 
-5. `LogicManager` calls on `DeleteByNameCommand` to execute the command.
+5. `LogicManager` calls the `execute()` method on `d`, a `DeleteByNameCommand`
 
 6. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
 `CommandResult`, `result`.
