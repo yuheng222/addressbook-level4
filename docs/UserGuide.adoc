@@ -166,7 +166,7 @@ Examples:
 * `deletebyname John Doe` +
 Deletes John Doe in the address book, if the person exists.
 
-If there is no person with a matching name can be found, it will update the displayed
+If no person with a matching name can be found, it will update the displayed
 person list to provide suggestions on possible persons to delete.
 
 If there is more than 1 person with the exact same name, it will update the displayed
