@@ -1292,6 +1292,26 @@ Use case ends.
 Use case ends.
 
 [discrete]
+=== Use case: Exporting data
+
+*MSS*
+
+1.  User requests to export data.
+2.  AddressBook exports the data into a CSV file.
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The AddressBook is empty.
++
+[none]
+** 1a1. AddressBook shows an error message
++
+Use case ends.
+
+[discrete]
 === Use case: load from file
 
 *MSS*
