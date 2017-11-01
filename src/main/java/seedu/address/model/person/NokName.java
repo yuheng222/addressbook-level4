@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -18,6 +16,7 @@ public class NokName {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NOK_NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String NOK_NAME_UNDEFINED_DEFAULT = "NIL";
 
     public final String value;
 
@@ -27,19 +26,21 @@ public class NokName {
      * @throws IllegalValueException if given NOK name string is invalid.
      */
     public NokName(String nokName) throws IllegalValueException {
-        requireNonNull(nokName);
-        String trimmedName = nokName.trim();
-        if (!isValidNokName(trimmedName)) {
-            throw new IllegalValueException(MESSAGE_NOK_NAME_CONSTRAINTS);
+        if (nokName == null) {
+            this.value = NOK_NAME_UNDEFINED_DEFAULT;
+        } else {
+            if (!isValidNokName(nokName)) {
+                throw new IllegalValueException(MESSAGE_NOK_NAME_CONSTRAINTS);
+            }
+            this.value = nokName;
         }
-        this.value = trimmedName;
     }
 
     /**
      * Returns true if a given string is a valid NOK name.
      */
     public static boolean isValidNokName(String test) {
-        return test.matches(NOK_NAME_VALIDATION_REGEX);
+        return test.matches(NOK_NAME_VALIDATION_REGEX) || test.equals(NOK_NAME_UNDEFINED_DEFAULT);
     }
 
 
@@ -59,5 +60,4 @@ public class NokName {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

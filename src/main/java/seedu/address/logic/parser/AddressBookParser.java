@@ -53,6 +53,7 @@ public class AddressBookParser {
         //@@author Ryan Teo
         final String commandWord = matcher.group("commandWord").toLowerCase();
         //@@author
+
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
@@ -77,10 +78,12 @@ public class AddressBookParser {
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
+
         //@@author Ryan Teo
         case DeleteByNameCommand.COMMAND_WORD:
             return new DeleteByNameCommandParser().parse(arguments);
         //@@author
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -90,11 +93,15 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        //@@author yuheng222
         case SortCommand.COMMAND_WORD:
             return new SortCommand();
+        //@@author
 
+        //@@author yuheng222
         case SelectThemeCommand.COMMAND_WORD: case SelectThemeCommand.COMMAND_ALIAS:
             return new SelectThemeCommandParser().parse(arguments);
+        //@@author
 
         //@@author WangJieee
         case FilterCommand.COMMAND_WORD:
