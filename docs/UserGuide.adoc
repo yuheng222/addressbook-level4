@@ -201,7 +201,7 @@ Examples:
 * `deletebyname John Doe` +
 Deletes John Doe in the address book, if the person exists.
 
-If there is no person with a matching name can be found, it will update the displayed
+If no person with a matching name can be found, it will update the displayed
 person list to provide suggestions on possible persons to delete.
 
 If there is more than 1 person with the exact same name, it will update the displayed
@@ -319,15 +319,26 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+
+=== Exporting the data : `export`
+Saves the current data in the address book into a CSV (Comma-Separated Values) file.
+The file will be saved in the same location where you stored the application.
+
+Format: `export`
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
+
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+
+*Q*: How do I transfer my data to another application? +
+*A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
 
 == Command Summary
 
@@ -361,6 +372,7 @@ e.g.`theme 2`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Export* : `export`
 
 == Themes List
 

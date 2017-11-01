@@ -2,6 +2,8 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -12,8 +14,15 @@ public class Tag {
 
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
-
+    //@@author WangJieee
+    private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
+                                      "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
+                                      "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
+    private static HashMap<String, String> tagColors = new HashMap<String, String>();
+    private static int colourIndex = 0;
     public final String tagName;
+    public final String tagColour;
+    //@@author
 
     /**
      * Validates given tag name.
@@ -27,6 +36,7 @@ public class Tag {
             throw new IllegalValueException(MESSAGE_TAG_CONSTRAINTS);
         }
         this.tagName = trimmedName;
+        this.tagColour = getColorForTag(tagName);
     }
 
     /**
@@ -55,4 +65,29 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    //@@author WangJieee
+    /**
+     * Assign a color to a tag if it does not have an existing color.
+     * @return the color assigned to that tag
+     */
+    private static String getColorForTag(String tagValue) {
+        if (!tagColors.containsKey(tagValue)) {
+            tagColors.put(tagValue, colors[colourIndex]);
+            updateColourIndex();
+        }
+
+        return tagColors.get(tagValue);
+    }
+
+    /**
+     * update the index of colour
+     */
+    private static void updateColourIndex() {
+        if (colourIndex == colors.length - 1) {
+            colourIndex = 0;
+        } else {
+            colourIndex++;
+        }
+    }
+    //@@author
 }

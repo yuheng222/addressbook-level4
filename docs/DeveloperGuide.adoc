@@ -225,7 +225,7 @@ Note how the event is propagated through the `EventsCenter` to the `Storage` and
 This section describes some noteworthy details on how certain features are implemented.
 
 // tag::DeleteByNameCommand
-=== DeleteByNameCommand
+=== DeleteByName Command
 
 The `DeleteByNameCommand` extends the `UndoableCommand` class. It enables the deletion of
 a person from the Address Book when given an input `Name` parsed by `DeleteByNameCommandParser`.
@@ -249,15 +249,15 @@ Explanation of _Figure 3.1B_:
 
 1. The `execute("deletebyname John Doe")` command is called on the `LogicManager`.
 
-2. `LogicManager` calls the `parse` method `AddressBookParser`.
+2. `LogicManager` calls the `parse` method on `AddressBookParser`.
 
 3. `AddressBookParser` parses the command word, `deletebyname` and calls
-`DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
+`parse` on `DeleteByNameCommandParser` to parse the remaining argument, `"John Doe"`.
 
-4. `DeleteByNameCommandParser` calls on `DeleteByNameCommand` which returns a command, `d`,
-all the way back to `LogicManager`.
+4. `DeleteByNameCommandParser` creates a new `DeleteByNameCommand`, `d`,
+and returns it all the way back to `LogicManager`.
 
-5. `LogicManager` calls on `DeleteByNameCommand` to execute the command.
+5. `LogicManager` calls the `execute()` method on `d`, a `DeleteByNameCommand`
 
 6. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
 `CommandResult`, `result`.
@@ -325,7 +325,7 @@ is currently unused by any other function.
 
 **Pros:**
 
-* Users are able to achieve different results with the same command word.
+* Users can achieve different results with the same command word.
 
 * Eliminates need for extra classes within the `Parser` package.
 
@@ -570,6 +570,93 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
 **Alternative 2:** The person is updated successfully with non-duplicate tags. +
 **Pros:** Might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
 **Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
+
+=== Export
+
+The `ExportCommand` extends the `Command` class. It allows users to export the current Address Book data
+into a CSV file.
+
+The class diagram of the command is shown below:
+
+image::ExportCommandClassDiagram.png[width="800"]
+_Figure 3.6A - Class Diagram of ExportCommand_
+
+From _Figure 3.6A_, the ExportCommand depends on `java.io` to carry out the file IO operations to create the CSV file.
+It also depends on the `Model` class and `Person` package in order to extract the required information to export.
+
+The sequence diagram of the command is shown below:
+
+image::ExportCommandSequenceDiagram.png[width="800"]
+_Figure 3.6B - Sequence Diagram of ExportCommand_
+
+Explanation of _Figure 3.6B_:
+
+1. The `execute("export")` command is called on the `LogicManager`.
+
+2. `LogicManager` calls the `parse` method on `AddressBookParser`.
+
+3. The `parse` method creates a new `ExportCommand` which returns an `ExportCommand`, `e`,
+all the way back to `LogicManager`.
+
+4. `LogicManager` calls the `execute()` method on `e`, an `ExportCommand`.
+
+5. `ExportCommand` obtains the `PersonList` from the `Model`.
+
+6. `ExportCommand` checks if an exported file exists. If the file exists, it will delete the file.
+
+7. `ExportCommand` generates the exported file through a series of self calls and generates a new `CommandResult`, `result`.
+
+8. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
+
+==== Design Considerations
+**Aspect:** Construction of Strings
+
+*Alternative 1 (current choice):* Using `StringBuilder`
+
+*Pros:*
+
+* Able to easily construct the `String` due to the mutability of `StringBuilder`.
+
+*Cons:*
+
+* Dependency on the `StringBuilder` class.
+
+*Alternative 2:* Using `String` only.
+
+*Pros:*
+
+* Reduced dependency on additional classes.
+
+*Cons:*
+
+* Constant re-assignment of resultant `String` is required as it is not mutable.
+
+**Aspect:** Generating Person Data
+
+*Alternative 1 (current choice):* "Hard-code" the data to obtain from a `ReadOnlyPerson`.
+
+*Pros:*
+
+* Code is executed at a faster rate.
+
+*Cons:*
+
+* Coupling is increased with `ReadOnlyPerson`.
+
+* Code is not adaptable should new fields be added to `ReadOnlyPerson`.
+
+*Alternative 2:* Generate person data according to the fields present in `ReadOnlyPerson`.
+
+*Pros:*
+
+* Code is adaptable should new fields be added to `ReadOnlyPerson`.
+
+*Cons:*
+
+* Additional processing overhead.
+
+* Difficult and time-consuming to implement.
+
 
 === Logging
 
@@ -1263,6 +1350,26 @@ Use case ends
 Use case ends.
 
 * 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Exporting data
+
+*MSS*
+
+1.  User requests to export data.
+2.  AddressBook exports the data into a CSV file.
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The AddressBook is empty.
++
+[none]
+** 1a1. AddressBook shows an error message
 +
 Use case ends.
 

@@ -14,6 +14,7 @@ import seedu.address.logic.commands.DeleteByNameCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -49,9 +50,9 @@ public class AddressBookParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-
+        //@@author Ryan Teo
         final String commandWord = matcher.group("commandWord").toLowerCase();
-
+        //@@author
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
@@ -61,18 +62,25 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        //@@author Ryan Teo
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommand();
+        //@@author
+
+        //@@author WangJieee
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
         case RemoveTagCommand.COMMAND_WORD:
             return new RemoveTagCommandParser().parse(arguments);
+        //@@author
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
-
+        //@@author Ryan Teo
         case DeleteByNameCommand.COMMAND_WORD:
             return new DeleteByNameCommandParser().parse(arguments);
-
+        //@@author
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -88,8 +96,10 @@ public class AddressBookParser {
         case SelectThemeCommand.COMMAND_WORD: case SelectThemeCommand.COMMAND_ALIAS:
             return new SelectThemeCommandParser().parse(arguments);
 
+        //@@author WangJieee
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+        //@@author
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
