@@ -157,15 +157,25 @@ public class AddCommandParserTest {
                         + NOK_PHONE_DESC_AMY + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson3));
 
-        // without nok name and nok phone
+        // without avatar
         Person expectedPerson4 = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
+                .withEmail(VALID_EMAIL_AMY).withAddress(DEFAULT_UNDEFINED)
+                .withNokName(VALID_NOK_NAME_AMY).withNokPhone(VALID_NOK_PHONE_AMY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+                        + EMAIL_DESC_AMY + ADDRESS_DEFAULT_UNDEFINED + NOK_NAME_DESC_AMY
+                        + NOK_PHONE_DESC_AMY + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                new AddCommand(expectedPerson4));
+
+        // without nok name and nok phone
+        Person expectedPerson5 = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withAvatar(VALID_AVATAR_AMY)
                 .withNokName(DEFAULT_UNDEFINED).withNokPhone(DEFAULT_UNDEFINED)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                         + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + AVATAR_DESC_AMY + NOK_NAME_DEFAULT_UNDEFINED
                         + NOK_PHONE_DEFAULT_UNDEFINED + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedPerson4));
+                new AddCommand(expectedPerson5));
     }
 
     @Test
