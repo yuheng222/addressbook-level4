@@ -199,8 +199,9 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.show();
     }
 
+    //@@author yuheng222
     /**
-     * Selects the theme given by user input
+     * Selects the theme given by user input.
      */
     public void handleSelectTheme(String theme) {
         if (getRoot().getStylesheets().size() > 1) {
@@ -208,6 +209,7 @@ public class MainWindow extends UiPart<Region> {
         }
         getRoot().getStylesheets().add("/view/" + theme);
     }
+    //@@author
 
     /**
      * Closes the application.
@@ -231,9 +233,11 @@ public class MainWindow extends UiPart<Region> {
         handleHelp();
     }
 
+    //@@author yuheng222
     @Subscribe
     private void handleSelectThemeEvent(SelectThemeRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleSelectTheme(event.theme);
     }
+    //@@author
 }

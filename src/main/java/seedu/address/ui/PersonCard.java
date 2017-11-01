@@ -108,9 +108,9 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    //@@author yuheng222
     /**
-     *  Assigns URL to the image depending on the path
-     *
+     *  Sets the chosen Avatar for the specified person.
      */
     private void setAvatar(ReadOnlyPerson person) {
 
@@ -118,6 +118,7 @@ public class PersonCard extends UiPart<Region> {
         Image image = SwingFXUtils.toFXImage(avatar, null);
         avatarDisplay.setImage(image);
     }
+    //@@author
 
     /**
      * Creates a tag label for every {@code Person} and sets a color for each tag label.
