@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,23 +40,55 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_AVATAR,
-                                           PREFIX_NOK_NAME, PREFIX_NOK_PHONE, PREFIX_TAG);
+        Email email;
+        Address address;
+        NokName nokName;
+        NokPhone nokPhone;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                                PREFIX_NOK_NAME, PREFIX_NOK_PHONE)) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_AVATAR);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_AVATAR)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         try {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)).get();
             Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE)).get();
-            Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL)).get();
-            Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS)).get();
             Avatar avatar = ParserUtil.parseAvatar(argMultimap.getAvatarValue(PREFIX_AVATAR));
-            NokName nokName = ParserUtil.parseNokName(argMultimap.getValue(PREFIX_NOK_NAME)).get();
-            NokPhone nokPhone = ParserUtil.parseNokPhone(argMultimap.getValue(PREFIX_NOK_PHONE)).get();
+
+            // Gets the email of the new person if possible. If not, it creates a null value
+            Optional<Email> optionalEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL));
+            if (optionalEmail.isPresent()) {
+                email = optionalEmail.get();
+            } else {
+                email = new Email(null);
+            }
+
+            // Gets the address of the new person if possible. If not, it creates a null value
+            Optional<Address> optionalAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS));
+            if (optionalAddress.isPresent()) {
+                address = optionalAddress.get();
+            } else {
+                address = new Address(null);
+            }
+
+            // Gets the Nok Name of the new person if possible. If not, it creates a null value
+            Optional<NokName> optionalNokName = ParserUtil.parseNokName(argMultimap.getValue(PREFIX_NOK_NAME));
+            if (optionalNokName.isPresent()) {
+                nokName = optionalNokName.get();
+            } else {
+                nokName = new NokName(null);
+            }
+
+            // Gets the Nok Name of the new person if possible. If not, it creates a null value
+            Optional<NokPhone> optionalNokPhone = ParserUtil.parseNokPhone(argMultimap.getValue(PREFIX_NOK_PHONE));
+            if (optionalNokPhone.isPresent()) {
+                nokPhone = optionalNokPhone.get();
+            } else {
+                nokPhone = new NokPhone(null);
+            }
+
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
             ReadOnlyPerson person = new Person(name, phone, email, address, avatar, nokName, nokPhone, tagList);

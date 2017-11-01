@@ -28,6 +28,7 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String DEFAULT_UNDEFINED = "Undefined";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -49,14 +50,18 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
+    public static final String EMAIL_DEFAULT_UNDEFINED = " " + PREFIX_EMAIL + DEFAULT_UNDEFINED;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String ADDRESS_DEFAULT_UNDEFINED = " " + PREFIX_ADDRESS + DEFAULT_UNDEFINED;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String AVATAR_DESC_AMY = " " + PREFIX_AVATAR + VALID_AVATAR_AMY;
     public static final String AVATAR_DESC_BOB = " " + PREFIX_AVATAR + VALID_AVATAR_BOB;
+    public static final String NOK_NAME_DEFAULT_UNDEFINED = " " + PREFIX_NOK_NAME + DEFAULT_UNDEFINED;
     public static final String NOK_NAME_DESC_AMY = " " + PREFIX_NOK_NAME + VALID_NOK_NAME_AMY;
     public static final String NOK_NAME_DESC_BOB = " " + PREFIX_NOK_NAME + VALID_NOK_NAME_BOB;
+    public static final String NOK_PHONE_DEFAULT_UNDEFINED = " " + PREFIX_NOK_PHONE + DEFAULT_UNDEFINED;
     public static final String NOK_PHONE_DESC_AMY = " " + PREFIX_NOK_PHONE + VALID_NOK_PHONE_AMY;
     public static final String NOK_PHONE_DESC_BOB = " " + PREFIX_NOK_PHONE + VALID_NOK_PHONE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
