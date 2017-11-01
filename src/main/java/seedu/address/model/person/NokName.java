@@ -16,7 +16,7 @@ public class NokName {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String NOK_NAME_VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-    public static final String NOK_NAME_UNDEFINED_DEFAULT = "N/A";
+    public static final String NOK_NAME_UNDEFINED_DEFAULT = "Undefined";
 
     public final String value;
 
