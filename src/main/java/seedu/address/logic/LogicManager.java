@@ -55,6 +55,11 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<Tag> getTagList() {
         return model.getTagList();
     }
+
+    @Override
+    public ObservableList<Tag> getRealTagList() {
+        return model.getRealTagList();
+    }
     
     @Override
     public ListElementPointer getHistorySnapshot() {

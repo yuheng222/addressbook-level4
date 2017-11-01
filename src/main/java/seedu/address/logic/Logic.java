@@ -23,9 +23,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<ReadOnlyPerson> getFilteredPersonList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the tag list */
     ObservableList<Tag> getTagList();
 
+    /** Returns an unmodifiable view of the existing tag list */
+    ObservableList<Tag> getRealTagList();
+    
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */
     ListElementPointer getHistorySnapshot();
 }

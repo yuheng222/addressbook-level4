@@ -43,6 +43,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the tag list */
     ObservableList<Tag> getTagList();
+
+    /** Returns an unmodifiable view of the list containing existing tags */
+    ObservableList<Tag> getRealTagList();
     
     /** Returns the themes list */
     ArrayList<String> getThemesList();
