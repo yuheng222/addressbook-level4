@@ -45,7 +45,7 @@ public interface ReadOnlyPerson {
                 && other.getNokName().equals(this.getNokName())
                 && other.getNokPhone().equals(this.getNokPhone()));
     }
-
+    //@@author Ryan Teo
     /**
      * Returns a List containing all the property names of a Person.
      */
@@ -63,7 +63,7 @@ public interface ReadOnlyPerson {
     }
 
 
-
+    //@@author
     /**
      * Formats the person as text, showing all contact details.
      */
