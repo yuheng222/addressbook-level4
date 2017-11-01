@@ -61,11 +61,13 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        //@@author WangJieee
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
         case RemoveTagCommand.COMMAND_WORD:
             return new RemoveTagCommandParser().parse(arguments);
+        //@@author
 
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
@@ -88,8 +90,10 @@ public class AddressBookParser {
         case SelectThemeCommand.COMMAND_WORD: case SelectThemeCommand.COMMAND_ALIAS:
             return new SelectThemeCommandParser().parse(arguments);
 
+        //@@author WangJieee    
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
+        //@@author 
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

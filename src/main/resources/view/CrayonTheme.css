@@ -1,3 +1,4 @@
+/* @@author WangJieee */
 .background {
     -fx-background-color: derive(#f5f5f5, 20%);
     background-image: url(../images/bg2.png); /* Used in the default.html file */
@@ -21,6 +22,7 @@
     font-family: "Verdana";
     color: white;
 }
+/* @@author */
 
 .label {
     -fx-font-size: 11pt;
@@ -363,6 +365,7 @@
     -fx-vgap: 3;
 }
 
+/* @@author WangJieee */
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;

@@ -14,6 +14,7 @@ public class Tag {
 
     public static final String MESSAGE_TAG_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
+    //@@author WangJieee
     private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
             "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
             "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
@@ -21,6 +22,7 @@ public class Tag {
     private static int colourIndex = 0;
     public final String tagName;
     public final String tagColour;
+    //@@author  
 
     /**
      * Validates given tag name.
@@ -63,6 +65,7 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    //@@author WangJieee
     /**
      * Assign a color to a tag if it does not have an existing color.
      * @return the color assigned to that tag
@@ -86,4 +89,5 @@ public class Tag {
             colourIndex++;
         }
     }
+    //@@author
 }

@@ -44,8 +44,10 @@ public interface Model {
     /** Returns an unmodifiable view of the tag list */
     ObservableList<Tag> getTagList();
 
+    //@@author WangJieee
     /** Returns an unmodifiable view of the list containing existing tags */
     ObservableList<Tag> getRealTagList();
+    //@@author   
 
     /** Returns the themes list */
     ArrayList<String> getThemesList();

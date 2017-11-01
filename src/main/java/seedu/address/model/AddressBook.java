@@ -137,6 +137,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.setPerson(target, editedPerson);
     }
 
+    //@@author WangJieee
     /**
      * Updates the {@code tagPersonMap} with {@code updatedPerson}.
      */
@@ -188,6 +189,8 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
     }
+    //@@author
+
     /**
      * Ensures that every tag in this person:
      *  - exists in the master list {@link #tags}
@@ -219,6 +222,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.forEach(this::syncMasterTagListWith);
     }
 
+    //@@author WangJieee
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * Update {@code tagPersonMap}
@@ -232,6 +236,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new PersonNotFoundException();
         }
     }
+    //@@author  
 
     /** Sorts the persons in this {@code AddressBook} lexicographically */
 
@@ -263,6 +268,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tags.asObservableList();
     }
 
+    //@@author WangJieee
     /**
      * Returns a tag list containing the existing tags
      */
@@ -270,6 +276,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         UniqueTagList tagList = new UniqueTagList(tagPersonMap.keySet());
         return tagList.asObservableList();
     }
+    //@@author   
 
     @Override
     public boolean equals(Object other) {

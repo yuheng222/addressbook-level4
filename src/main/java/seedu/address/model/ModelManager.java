@@ -106,10 +106,12 @@ public class ModelManager extends ComponentManager implements Model {
         return FXCollections.unmodifiableObservableList(filteredPersons);
     }
 
+    //@@author WangJieee
     @Override
     public ObservableList<Tag> getRealTagList() {
         return addressBook.getRealTagList();
     }
+    //@@author   
 
     @Override
     public ObservableList<Tag> getTagList() {
