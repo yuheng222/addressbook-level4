@@ -17,8 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DEFAULT_UNDEFINED;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
