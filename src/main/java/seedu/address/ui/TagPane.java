@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.beans.EventHandler;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
@@ -7,6 +8,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
@@ -28,7 +30,13 @@ public class TagPane extends UiPart<Region> {
         super(FXML);
         tagList = new SimpleObjectProperty<ObservableList<Tag>>(tagListCopy);
         initTags();
-        bindListeners();
+        totalTags.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER) {
+                totalTags.getChildren().clear();
+                initTags();
+            }
+        });
+        //bindListeners();
     }
 
     /**

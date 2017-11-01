@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.HashMap;
-
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -82,7 +80,7 @@ public class PersonCard extends UiPart<Region> {
             tags.getChildren().add(tagLabel);
         });
     }
-    
+
     /*public static String getColour(String tag) {
         return tagColors.get(tag);
     }*/
