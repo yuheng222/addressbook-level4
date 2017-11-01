@@ -12,7 +12,7 @@ public class NokPhone {
     public static final String MESSAGE_NOK_PHONE_CONSTRAINTS =
             "NOK Phone numbers can only contain numbers, and should be at least 3 digits long";
     public static final String NOK_PHONE_VALIDATION_REGEX = "\\d{3,}";
-    public static final String NOK_PHONE_UNDEFINED_DEFAULT = "Undefined";
+    public static final String NOK_PHONE_UNDEFINED_DEFAULT = "-";
 
     public final String value;
 
