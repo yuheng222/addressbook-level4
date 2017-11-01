@@ -169,7 +169,6 @@ public class AddressBook implements ReadOnlyAddressBook {
                tagPersonMap.remove(tag);
            }
         }
-        
     }
 
     /**
@@ -271,7 +270,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         UniqueTagList tagList = new UniqueTagList(tagPersonMap.keySet());
         return tagList.asObservableList();
     }
-    
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

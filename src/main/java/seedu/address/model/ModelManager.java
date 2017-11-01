@@ -105,7 +105,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ObservableList<ReadOnlyPerson> getFilteredPersonList() {
         return FXCollections.unmodifiableObservableList(filteredPersons);
     }
-    
+
     @Override
     public ObservableList<Tag> getRealTagList() {
         return addressBook.getRealTagList();
