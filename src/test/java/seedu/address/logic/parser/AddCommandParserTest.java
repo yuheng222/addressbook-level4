@@ -129,12 +129,12 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags and zero avatars
+        // zero tags
         Person expectedPerson = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNokName(VALID_NOK_NAME_AMY)
-                .withNokPhone(VALID_NOK_PHONE_AMY).withTags().build();
+                .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withAvatar(VALID_AVATAR_AMY)
+                .withNokName(VALID_NOK_NAME_AMY).withNokPhone(VALID_NOK_PHONE_AMY).withTags().build();
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY,
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + AVATAR_DESC_AMY + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY,
                 new AddCommand(expectedPerson));
 
         // without email
