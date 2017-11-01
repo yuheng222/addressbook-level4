@@ -51,16 +51,18 @@ public interface Model {
     ObjectProperty<UniqueTagList> getRealTagList();
     //@@author
 
-    /** Returns the themes list */
-    ArrayList<String> getThemesList();
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate);
 
+    //@@author yuheng222
     /** Sorts the persons in the AddressBook lexicographically */
     void sort();
+
+    /** Returns the themes list */
+    ArrayList<String> getThemesList();
+    //@@author
 
 }

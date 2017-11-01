@@ -1,3 +1,5 @@
+//@@author yuheng222
+
 package seedu.address.model.person;
 
 import java.awt.image.BufferedImage;
