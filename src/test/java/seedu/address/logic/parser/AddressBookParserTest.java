@@ -135,8 +135,8 @@ public class AddressBookParserTest {
         try {
             parser.parseCommand("histories");
             fail("The expected ParseException was not thrown.");
-        } catch (ParseException pe) {
-            assertEquals(MESSAGE_UNKNOWN_COMMAND, pe.getMessage());
+        } catch (ParseException e) {
+            assertEquals(MESSAGE_UNKNOWN_COMMAND, e.getMessage());
         }
     }
 

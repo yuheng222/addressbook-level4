@@ -107,6 +107,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid arguments (extra argument) -> rejected */
         assertCommandFailure(DeleteCommand.COMMAND_WORD + " 1 abc", MESSAGE_INVALID_DELETE_COMMAND_FORMAT);
 
+        //@@author Ryan Teo
         /* Case: mixed case command word -> deleted */
         expectedModel = getModel();
         command = "DelETE " + INDEX_FIRST_PERSON.getOneBased();
@@ -115,6 +116,7 @@ public class DeleteCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel, expectedResultMessage, INDEX_FIRST_PERSON);
     }
 
+    //@@author
     /**
      * Removes the {@code ReadOnlyPerson} at the specified {@code index} in {@code model}'s address book.
      * @return the removed person
