@@ -40,7 +40,7 @@ public class NokName {
      * Returns true if a given string is a valid NOK name.
      */
     public static boolean isValidNokName(String test) {
-        return test.matches(NOK_NAME_VALIDATION_REGEX) | test.equals(NOK_NAME_UNDEFINED_DEFAULT);
+        return test.matches(NOK_NAME_VALIDATION_REGEX) || test.equals(NOK_NAME_UNDEFINED_DEFAULT);
     }
 
 

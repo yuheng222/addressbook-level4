@@ -36,7 +36,7 @@ public class NokPhone {
      * Returns true if a given string is a valid NOK phone number.
      */
     public static boolean isValidNokPhone(String test) {
-        return test.matches(NOK_PHONE_VALIDATION_REGEX) | test.equals(NOK_PHONE_UNDEFINED_DEFAULT);
+        return test.matches(NOK_PHONE_VALIDATION_REGEX) || test.equals(NOK_PHONE_UNDEFINED_DEFAULT);
     }
 
     @Override

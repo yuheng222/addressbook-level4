@@ -35,7 +35,7 @@ public class Email {
      * Returns if a given string is a valid person email.
      */
     public static boolean isValidEmail(String test) {
-        return test.matches(EMAIL_VALIDATION_REGEX) | test.equals(EMAIL_UNDEFINED_DEFAULT);
+        return test.matches(EMAIL_VALIDATION_REGEX) || test.equals(EMAIL_UNDEFINED_DEFAULT);
     }
 
     @Override
