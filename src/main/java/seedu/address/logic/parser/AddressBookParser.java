@@ -61,15 +61,13 @@ public class AddressBookParser {
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-<<<<<<< v1.4-Feature
 
-        //@@author WangJieee
-=======
         //@@author Ryan Teo
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
         //@@author
->>>>>>> master
+
+        //@@author WangJieee
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
 
