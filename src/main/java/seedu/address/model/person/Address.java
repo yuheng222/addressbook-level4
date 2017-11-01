@@ -16,7 +16,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String ADDRESS_VALIDATION_REGEX = "[^\\s].*";
-    public static final String ADDRESS_UNDEFINED_DEFAULT = "Undefined";
+    public static final String ADDRESS_UNDEFINED_DEFAULT = "NIL";
 
     public final String value;
 

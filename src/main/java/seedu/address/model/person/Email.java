@@ -11,7 +11,7 @@ public class Email {
     public static final String MESSAGE_EMAIL_CONSTRAINTS =
             "Person emails should be 2 alphanumeric/period strings separated by '@'";
     public static final String EMAIL_VALIDATION_REGEX = "[\\w\\.]+@[\\w\\.]+";
-    public static final String EMAIL_UNDEFINED_DEFAULT = "Undefined";
+    public static final String EMAIL_UNDEFINED_DEFAULT = "NIL";
 
     public final String value;
 
