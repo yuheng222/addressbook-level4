@@ -165,8 +165,8 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
 
-        for (Tag tag: tagSet) { 
-            if (tagPersonMap.get(tag) == null) { 
+        for (Tag tag: tagSet) {
+            if (tagPersonMap.get(tag) == null) {
                 tagPersonMap.remove(tag);
             }
         }
