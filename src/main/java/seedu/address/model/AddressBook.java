@@ -144,8 +144,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void updateTagPersonMap(Person updatedPerson) {
         final UniqueTagList personTags = new UniqueTagList(updatedPerson.getTags());
         Set<Tag> tagSet = tagPersonMap.keySet();
-        for(Tag tag: personTags) {
-            if(!tagSet.contains(tag)) {
+        for (Tag tag: personTags) {
+            if (!tagSet.contains(tag)) {
                 //add a new key to the tagPersonMap if a new tag is introduced
                 ArrayList<Person> newPersonList = new ArrayList<>();
                 newPersonList.add(updatedPerson);
@@ -158,17 +158,17 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
 
-        for(Tag tag: tagSet) {
+        for (Tag tag: tagSet) {
             if(tagPersonMap.get(tag).contains(updatedPerson) && !personTags.contains(tag)) {
                 //remove the person from the tagPersonMap for the tag
                 tagPersonMap.get(tag).remove(updatedPerson);
             }
         }
 
-        for(Tag tag: tagSet) {
-           if(tagPersonMap.get(tag) == null) {
-               tagPersonMap.remove(tag);
-           }
+        for (Tag tag: tagSet) { 
+            if (tagPersonMap.get(tag) == null) { 
+                tagPersonMap.remove(tag);
+            }
         }
     }
 
@@ -177,14 +177,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private void updateTagPersonMapRemovePerson(ReadOnlyPerson removedPerson) {
         Set<Tag> tagSet = tagPersonMap.keySet();
-        for(Tag tag: tagSet) {
-            if(tagPersonMap.get(tag).contains(removedPerson)) {
+        for (Tag tag: tagSet) {
+            if (tagPersonMap.get(tag).contains(removedPerson)) {
                 //remove the person from the tagPersonMap for the tag
                 tagPersonMap.get(tag).remove(removedPerson);
             }
         }
-        for(Tag tag: tagSet) {
-            if(tagPersonMap.get(tag) == null) {
+        for (Tag tag: tagSet) {
+            if (tagPersonMap.get(tag) == null) {
                 tagPersonMap.remove(tag);
             }
         }

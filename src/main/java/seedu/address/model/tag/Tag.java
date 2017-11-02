@@ -2,9 +2,9 @@ package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
 import java.util.HashMap;
+
+import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Tag in the address book.
@@ -16,8 +16,8 @@ public class Tag {
     public static final String TAG_VALIDATION_REGEX = "\\p{Alnum}+";
     //@@author WangJieee
     private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
-            "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
-            "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
+                                      "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
+                                      "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static int colourIndex = 0;
     public final String tagName;

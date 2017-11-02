@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.beans.EventHandler;
 import java.util.logging.Logger;
 
 import javafx.beans.property.ObjectProperty;
@@ -31,7 +30,7 @@ public class TagPane extends UiPart<Region> {
         tagList = new SimpleObjectProperty<ObservableList<Tag>>(tagListCopy);
         initTags();
         totalTags.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER) {
+            if (event.getCode() == KeyCode.ENTER) {
                 totalTags.getChildren().clear();
                 initTags();
             }
