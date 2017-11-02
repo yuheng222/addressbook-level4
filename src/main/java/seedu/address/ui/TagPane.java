@@ -42,13 +42,13 @@ public class TagPane extends UiPart<Region> {
     }
 
     /**
-     * Binds the tags 
+     * Binds the tags
      * so that they will be notified of any changes.
      */
     public void bindListener() {
         tagList.addListener((v, oldValue, newValue) -> {
             totalTags.getChildren().clear();
-            initTags();        
+            initTags();
         });
     }
 }
