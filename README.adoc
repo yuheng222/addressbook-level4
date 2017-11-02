@@ -18,7 +18,7 @@ endif::[]
 * This is a desktop Address Book application for users to manage their personal contacts. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
 * This application is suitable for users who can type fast.
 * With a Next-of-kin field introduced, this application can also be used for administrative purposes e.g by school teachers or employers.
-* It is *written in OOP fashion*. 
+* It is *written in OOP fashion*.
 * What's good about this project:
 ** It has a sophisticated GUI that includes a list panel and an in-built Browser.
 ** Contains many test cases, including automated GUI testing.
