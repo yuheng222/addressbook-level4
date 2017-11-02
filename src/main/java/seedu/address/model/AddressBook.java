@@ -159,7 +159,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         for (Tag tag: tagSet) {
-            if(tagPersonMap.get(tag).contains(updatedPerson) && !personTags.contains(tag)) {
+            if (tagPersonMap.get(tag).contains(updatedPerson) && !personTags.contains(tag)) {
                 //remove the person from the tagPersonMap for the tag
                 tagPersonMap.get(tag).remove(updatedPerson);
             }
