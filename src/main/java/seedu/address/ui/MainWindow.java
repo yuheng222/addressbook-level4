@@ -230,6 +230,10 @@ public class MainWindow extends UiPart<Region> {
         return this.personListPanel;
     }
 
+    public TagPane getTagPane() {
+        return this.tagPane;
+    }
+
     void releaseResources() {
         browserPanel.freeResources();
     }

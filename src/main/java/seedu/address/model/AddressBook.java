@@ -5,11 +5,14 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
@@ -29,6 +32,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniqueTagList tags;
     private final ArrayList<String> themes;
     private HashMap<Tag, ArrayList<Person>> tagPersonMap;
+    private final ObjectProperty<UniqueTagList> realTags;
 
     /*
      * The 'unusual' code block below is an non-static initialization block, sometimes used to avoid duplication
@@ -42,6 +46,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tags = new UniqueTagList();
         themes = new ArrayList<>();
         tagPersonMap = new HashMap<>();
+        realTags = new SimpleObjectProperty<>(new UniqueTagList());
     }
 
     public AddressBook() {
@@ -131,6 +136,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         Person editedPerson = new Person(editedReadOnlyPerson);
         syncMasterTagListWith(editedPerson);
+        System.out.println(tagPersonMap.size());
         // TODO: the tags master list will be updated even though the below line fails.
         // This can cause the tags master list to have additional tags that are not tagged to any person
         // in the person list.
@@ -165,9 +171,10 @@ public class AddressBook implements ReadOnlyAddressBook {
             }
         }
 
-        for (Tag tag: tagSet) {
-            if (tagPersonMap.get(tag) == null) {
-                tagPersonMap.remove(tag);
+        for (Iterator<Map.Entry<Tag, ArrayList<Person>>> itr = tagPersonMap.entrySet().iterator(); itr.hasNext();) {
+            Map.Entry<Tag, ArrayList<Person>> entry = itr.next();
+            if (entry.getValue().isEmpty()) {
+                itr.remove();
             }
         }
     }
@@ -183,9 +190,11 @@ public class AddressBook implements ReadOnlyAddressBook {
                 tagPersonMap.get(tag).remove(removedPerson);
             }
         }
-        for (Tag tag: tagSet) {
-            if (tagPersonMap.get(tag) == null) {
-                tagPersonMap.remove(tag);
+
+        for (Iterator<Map.Entry<Tag, ArrayList<Person>>> itr = tagPersonMap.entrySet().iterator(); itr.hasNext();) {
+            Map.Entry<Tag, ArrayList<Person>> entry = itr.next();
+            if (entry.getValue().isEmpty()) {
+                itr.remove();
             }
         }
     }
@@ -200,6 +209,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         final UniqueTagList personTags = new UniqueTagList(person.getTags());
         tags.mergeFrom(personTags);
         updateTagPersonMap(person);
+        realTags.set(new UniqueTagList(tagPersonMap.keySet()));
 
         // Create map with values = tag object references in the master list
         // used for checking person tag references
@@ -231,6 +241,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean removePerson(ReadOnlyPerson key) throws PersonNotFoundException {
         if (persons.remove(key)) {
             updateTagPersonMapRemovePerson(key);
+            realTags.set(new UniqueTagList(tagPersonMap.keySet()));
             return true;
         } else {
             throw new PersonNotFoundException();
@@ -272,9 +283,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns a tag list containing the existing tags
      */
-    public ObservableList<Tag> getRealTagList() {
-        UniqueTagList tagList = new UniqueTagList(tagPersonMap.keySet());
-        return tagList.asObservableList();
+    public ObjectProperty<UniqueTagList> getRealTagList() {
+        return realTags;
     }
     //@@author
 

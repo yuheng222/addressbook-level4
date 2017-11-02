@@ -1,11 +1,13 @@
 package seedu.address.logic;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * API of the Logic component
@@ -28,7 +30,7 @@ public interface Logic {
 
     //@@ WangJieee
     /** Returns an unmodifiable view of the existing tag list */
-    ObservableList<Tag> getRealTagList();
+    ObjectProperty<UniqueTagList> getRealTagList();
     //@@ WangJieee
 
     /** Returns the list of input entered by the user, encapsulated in a {@code ListElementPointer} object */

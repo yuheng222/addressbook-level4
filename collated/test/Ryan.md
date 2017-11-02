@@ -1,5 +1,5 @@
 # Ryan
-###### \java\seedu\address\logic\commands\DeleteByNameCommandTest.java
+###### /java/seedu/address/logic/commands/DeleteByNameCommandTest.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -205,7 +205,7 @@ public class DeleteByNameCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\ExportCommandTest.java
+###### /java/seedu/address/logic/commands/ExportCommandTest.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -260,7 +260,7 @@ public class ExportCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\DeleteByNameCommandParserTest.java
+###### /java/seedu/address/logic/parser/DeleteByNameCommandParserTest.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -359,14 +359,14 @@ public class DeleteByNameCommandParserTest {
     }
 }
 ```
-###### \java\systemtests\ClearCommandSystemTest.java
+###### /java/systemtests/ClearCommandSystemTest.java
 ``` java
         /* Case: mixed case command word -> cleared */
         assertCommandSuccess("ClEaR");
     }
 
 ```
-###### \java\systemtests\DeleteByNameCommandSystemTest.java
+###### /java/systemtests/DeleteByNameCommandSystemTest.java
 ``` java
 
 package systemtests;
@@ -654,7 +654,7 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
 
 }
 ```
-###### \java\systemtests\DeleteCommandSystemTest.java
+###### /java/systemtests/DeleteCommandSystemTest.java
 ``` java
         /* Case: mixed case command word -> deleted */
         expectedModel = getModel();
@@ -665,7 +665,7 @@ public class DeleteByNameCommandSystemTest extends AddressBookSystemTest {
     }
 
 ```
-###### \java\systemtests\ExportCommandSystemTest.java
+###### /java/systemtests/ExportCommandSystemTest.java
 ``` java
 
 package systemtests;

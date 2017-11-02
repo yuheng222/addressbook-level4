@@ -1,4 +1,63 @@
 # WangJieee
+###### /java/seedu/address/logic/commands/AddCommandTest.java
+``` java
+        @Override
+        public ObjectProperty<UniqueTagList> getRealTagList() {
+            fail("This method should not be called.");
+            return null;
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<ReadOnlyPerson> predicate) {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public void sort() {
+            fail("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<String> getThemesList() {
+            fail("This method should not be called");
+            return null;
+        }
+    }
+
+    /**
+     * A Model stub that always throw a DuplicatePersonException when trying to add a person.
+     */
+    private class ModelStubThrowingDuplicatePersonException extends ModelStub {
+        @Override
+        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
+            throw new DuplicatePersonException();
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPersonAdded extends ModelStub {
+        final ArrayList<Person> personsAdded = new ArrayList<>();
+
+        @Override
+        public void addPerson(ReadOnlyPerson person) throws DuplicatePersonException {
+            personsAdded.add(new Person(person));
+        }
+
+        @Override
+        public ReadOnlyAddressBook getAddressBook() {
+            return new AddressBook();
+        }
+    }
+
+}
+```
 ###### /java/seedu/address/logic/parser/AddressBookParserTest.java
 ``` java
     @Test

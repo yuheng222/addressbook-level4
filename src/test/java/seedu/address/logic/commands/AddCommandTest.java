@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import javafx.beans.property.ObjectProperty;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -25,6 +26,7 @@ import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -136,8 +138,9 @@ public class AddCommandTest {
             return null;
         }
 
+        //@@author WangJieee
         @Override
-        public ObservableList<Tag> getRealTagList() {
+        public ObjectProperty<UniqueTagList> getRealTagList() {
             fail("This method should not be called.");
             return null;
         }

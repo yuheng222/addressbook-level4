@@ -15,6 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DuplicateDataException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokName;
@@ -94,6 +95,7 @@ public class AddTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Avatar updatedAvatar = personToEdit.getAvatar();
         NokName updatedNokName = personToEdit.getNokName();
         NokPhone updatedNokPhone = personToEdit.getNokPhone();
 
@@ -104,8 +106,7 @@ public class AddTagCommand extends UndoableCommand {
         } catch (DuplicateTagException dte) {
             throw new CommandException(dte.getMessage());
         }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar,
                           updatedNokName, updatedNokPhone, updatedTags);
     }
 
@@ -211,6 +212,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Avatar;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NokName;
@@ -290,6 +292,7 @@ public class RemoveTagCommand extends UndoableCommand {
         Phone updatedPhone = personToEdit.getPhone();
         Email updatedEmail = personToEdit.getEmail();
         Address updatedAddress = personToEdit.getAddress();
+        Avatar updatedAvatar = personToEdit.getAvatar();
         NokName updatedNokName = personToEdit.getNokName();
         NokPhone updatedNokPhone = personToEdit.getNokPhone();
 
@@ -301,7 +304,7 @@ public class RemoveTagCommand extends UndoableCommand {
             throw new CommandException(tnfe.getMessage());
         }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedAvatar,
                           updatedNokName, updatedNokPhone, updatedTags);
     }
 
@@ -356,7 +359,7 @@ public class RemoveTagCommand extends UndoableCommand {
 ###### /java/seedu/address/logic/LogicManager.java
 ``` java
     @Override
-    public ObservableList<Tag> getRealTagList() {
+    public ObjectProperty<UniqueTagList> getRealTagList() {
         return model.getRealTagList();
     }
 ```
@@ -556,8 +559,8 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
     private void updateTagPersonMap(Person updatedPerson) {
         final UniqueTagList personTags = new UniqueTagList(updatedPerson.getTags());
         Set<Tag> tagSet = tagPersonMap.keySet();
-        for(Tag tag: personTags) {
-            if(!tagSet.contains(tag)) {
+        for (Tag tag: personTags) {
+            if (!tagSet.contains(tag)) {
                 //add a new key to the tagPersonMap if a new tag is introduced
                 ArrayList<Person> newPersonList = new ArrayList<>();
                 newPersonList.add(updatedPerson);
@@ -570,17 +573,18 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
             }
         }
 
-        for(Tag tag: tagSet) {
-            if(tagPersonMap.get(tag).contains(updatedPerson) && !personTags.contains(tag)) {
+        for (Tag tag: tagSet) {
+            if (tagPersonMap.get(tag).contains(updatedPerson) && !personTags.contains(tag)) {
                 //remove the person from the tagPersonMap for the tag
                 tagPersonMap.get(tag).remove(updatedPerson);
             }
         }
 
-        for(Tag tag: tagSet) {
-           if(tagPersonMap.get(tag) == null) {
-               tagPersonMap.remove(tag);
-           }
+        for (Iterator<Map.Entry<Tag, ArrayList<Person>>> itr = tagPersonMap.entrySet().iterator(); itr.hasNext();) {
+            Map.Entry<Tag, ArrayList<Person>> entry = itr.next();
+            if (entry.getValue().isEmpty()) {
+                itr.remove();
+            }
         }
     }
 
@@ -589,15 +593,17 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
      */
     private void updateTagPersonMapRemovePerson(ReadOnlyPerson removedPerson) {
         Set<Tag> tagSet = tagPersonMap.keySet();
-        for(Tag tag: tagSet) {
-            if(tagPersonMap.get(tag).contains(removedPerson)) {
+        for (Tag tag: tagSet) {
+            if (tagPersonMap.get(tag).contains(removedPerson)) {
                 //remove the person from the tagPersonMap for the tag
                 tagPersonMap.get(tag).remove(removedPerson);
             }
         }
-        for(Tag tag: tagSet) {
-            if(tagPersonMap.get(tag) == null) {
-                tagPersonMap.remove(tag);
+
+        for (Iterator<Map.Entry<Tag, ArrayList<Person>>> itr = tagPersonMap.entrySet().iterator(); itr.hasNext();) {
+            Map.Entry<Tag, ArrayList<Person>> entry = itr.next();
+            if (entry.getValue().isEmpty()) {
+                itr.remove();
             }
         }
     }
@@ -612,6 +618,7 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
     public boolean removePerson(ReadOnlyPerson key) throws PersonNotFoundException {
         if (persons.remove(key)) {
             updateTagPersonMapRemovePerson(key);
+            realTags.set(new UniqueTagList(tagPersonMap.keySet()));
             return true;
         } else {
             throw new PersonNotFoundException();
@@ -623,20 +630,19 @@ public class RemoveTagCommandParser implements Parser<RemoveTagCommand> {
     /**
      * Returns a tag list containing the existing tags
      */
-    public ObservableList<Tag> getRealTagList() {
-        UniqueTagList tagList = new UniqueTagList(tagPersonMap.keySet());
-        return tagList.asObservableList();
+    public ObjectProperty<UniqueTagList> getRealTagList() {
+        return realTags;
     }
 ```
 ###### /java/seedu/address/model/Model.java
 ``` java
     /** Returns an unmodifiable view of the list containing existing tags */
-    ObservableList<Tag> getRealTagList();
+    ObjectProperty<UniqueTagList> getRealTagList();
 ```
 ###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
-    public ObservableList<Tag> getRealTagList() {
+    public ObjectProperty<UniqueTagList> getRealTagList() {
         return addressBook.getRealTagList();
     }
 ```
@@ -683,8 +689,8 @@ public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
 ###### /java/seedu/address/model/tag/Tag.java
 ``` java
     private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
-            "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
-            "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
+                                      "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
+                                      "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static int colourIndex = 0;
     public final String tagName;
