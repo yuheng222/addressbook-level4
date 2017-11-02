@@ -22,7 +22,7 @@ public class Tag {
     private static int colourIndex = 0;
     public final String tagName;
     public final String tagColour;
-    //@@author  
+    //@@author
 
     /**
      * Validates given tag name.

@@ -43,7 +43,7 @@ public class TagPane extends UiPart<Region> {
      * Creates a tag label for every unique {@code Tag} and sets a color for each tag label.
      */
     private void initTags() {
-        for (Tag tag: tagList.get()) { 
+        for (Tag tag: tagList.get()) {
             Label tagLabel = new Label(tag.tagName);
             tagLabel.setStyle("-fx-background-color: " + tag.tagColour + ";");
             totalTags.getChildren().add(tagLabel);

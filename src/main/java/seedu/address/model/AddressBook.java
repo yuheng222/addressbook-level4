@@ -236,7 +236,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             throw new PersonNotFoundException();
         }
     }
-    //@@author  
+    //@@author
 
     /** Sorts the persons in this {@code AddressBook} lexicographically */
 
@@ -276,7 +276,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         UniqueTagList tagList = new UniqueTagList(tagPersonMap.keySet());
         return tagList.asObservableList();
     }
-    //@@author   
+    //@@author
 
     @Override
     public boolean equals(Object other) {

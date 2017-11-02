@@ -66,7 +66,7 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + tags.stream().collect(Collectors.joining(" ")));
         assertEquals(new AddTagCommand(INDEX_FIRST_PERSON, tagsToAdd), command);
     }
-    //@@author    
+    //@@author
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -111,7 +111,7 @@ public class AddressBookParserTest {
                 FilterCommand.COMMAND_WORD + " " + tags.stream().collect(Collectors.joining(" ")));
         assertEquals(new FilterCommand(new PersonHasTagPredicate(tags)), command);
     }
-    //@@author   
+    //@@author
 
     @Test
     public void parseCommand_find() throws Exception {
@@ -174,7 +174,7 @@ public class AddressBookParserTest {
                 + INDEX_FIRST_PERSON.getOneBased() + " " + tags.stream().collect(Collectors.joining(" ")));
         assertEquals(new RemoveTagCommand(INDEX_FIRST_PERSON, tagsToRemove), command);
     }
-    //@@author   
+    //@@author
 
     @Test
     public void parseCommand_undoCommandWord_returnsUndoCommand() throws Exception {

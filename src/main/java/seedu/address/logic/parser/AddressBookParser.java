@@ -96,10 +96,10 @@ public class AddressBookParser {
         case SelectThemeCommand.COMMAND_WORD: case SelectThemeCommand.COMMAND_ALIAS:
             return new SelectThemeCommandParser().parse(arguments);
 
-        //@@author WangJieee    
+        //@@author WangJieee
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
-        //@@author 
+        //@@author
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

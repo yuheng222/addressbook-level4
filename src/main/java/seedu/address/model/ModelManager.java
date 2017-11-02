@@ -112,7 +112,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ObservableList<Tag> getRealTagList() {
         return addressBook.getRealTagList();
     }
-    //@@author   
+    //@@author
 
     @Override
     public ObservableList<Tag> getTagList() {
