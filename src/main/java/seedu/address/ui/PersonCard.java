@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.awt.image.BufferedImage;
-
 import javafx.beans.binding.Bindings;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
