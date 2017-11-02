@@ -86,6 +86,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author yuheng222
     @Override
     public synchronized void sort() {
         addressBook.sort();
@@ -97,6 +98,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ArrayList<String> getThemesList() {
         return this.addressBook.getThemesList();
     }
+    //@@author
 
     //=========== Filtered Person List Accessors =============================================================
 

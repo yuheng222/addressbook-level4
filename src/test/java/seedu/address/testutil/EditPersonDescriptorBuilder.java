@@ -87,6 +87,7 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    //@@author yuheng222
     /**
      * Sets the {@code Avatar} of the {@code EditPersonDescriptor} that we are building.
      */
@@ -98,6 +99,7 @@ public class EditPersonDescriptorBuilder {
         }
         return this;
     }
+    //@@author
 
     /**
      * Sets the {@code NokName} of the {@code EditPersonDescriptor} that we are building.

@@ -95,6 +95,7 @@ public class Person implements ReadOnlyPerson {
         return email.get();
     }
 
+    //@@author yuheng222
     public void setAvatar(Avatar avatar) {
         this.avatar.set(requireNonNull(avatar));
     }
@@ -108,6 +109,7 @@ public class Person implements ReadOnlyPerson {
     public Avatar getAvatar() {
         return avatar.get();
     }
+    //@@author
 
     public void setAddress(Address address) {
         this.address.set(requireNonNull(address));
