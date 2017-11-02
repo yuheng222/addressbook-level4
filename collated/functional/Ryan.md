@@ -1,5 +1,5 @@
 # Ryan
-###### \java\seedu\address\logic\commands\DeleteByNameCommand.java
+###### /java/seedu/address/logic/commands/DeleteByNameCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -94,7 +94,7 @@ public class DeleteByNameCommand extends UndoableCommand {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\ExportCommand.java
+###### /java/seedu/address/logic/commands/ExportCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -250,21 +250,21 @@ public class ExportCommand extends Command {
 
 }
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         final String commandWord = matcher.group("commandWord").toLowerCase();
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
 ```
-###### \java\seedu\address\logic\parser\AddressBookParser.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
         case DeleteByNameCommand.COMMAND_WORD:
             return new DeleteByNameCommandParser().parse(arguments);
 ```
-###### \java\seedu\address\logic\parser\DeleteByNameCommandParser.java
+###### /java/seedu/address/logic/parser/DeleteByNameCommandParser.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -298,7 +298,7 @@ public class DeleteByNameCommandParser implements Parser<DeleteByNameCommand> {
 
 }
 ```
-###### \java\seedu\address\model\person\CaseInsensitiveExactNamePredicate.java
+###### /java/seedu/address/model/person/CaseInsensitiveExactNamePredicate.java
 ``` java
 
 package seedu.address.model.person;
@@ -332,7 +332,7 @@ public class CaseInsensitiveExactNamePredicate implements Predicate<ReadOnlyPers
     }
 }
 ```
-###### \java\seedu\address\model\person\ReadOnlyPerson.java
+###### /java/seedu/address/model/person/ReadOnlyPerson.java
 ``` java
     /**
      * Returns a List containing all the property names of a Person.

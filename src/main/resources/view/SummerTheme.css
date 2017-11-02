@@ -140,7 +140,7 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#fffdbc, 20%);
+     -fx-background-color: #fffdbc;
      -fx-border-color: derive(#fffdbc, 10%);
      -fx-border-top-width: 1px;
 }
@@ -183,7 +183,7 @@
 }
 
 .grid-pane .anchor-pane {
-    -fx-background-color: derive(#fffdbc, 30%);
+    -fx-background-color: #fffdbc;
 }
 
 .context-menu {

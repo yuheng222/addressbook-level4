@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.ComponentManager;
 import seedu.address.commons.core.LogsCenter;
@@ -13,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * The main LogicManager of the app.
@@ -55,7 +57,14 @@ public class LogicManager extends ComponentManager implements Logic {
     public ObservableList<Tag> getTagList() {
         return model.getTagList();
     }
-    
+
+    //@@author WangJieee
+    @Override
+    public ObjectProperty<UniqueTagList> getRealTagList() {
+        return model.getRealTagList();
+    }
+    //@@author
+
     @Override
     public ListElementPointer getHistorySnapshot() {
         return new ListElementPointer(history.getHistory());

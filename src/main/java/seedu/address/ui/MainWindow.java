@@ -148,8 +148,10 @@ public class MainWindow extends UiPart<Region> {
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        tagPane = new TagPane(logic.getTagList());
+        //@@author WangJieee
+        tagPane = new TagPane(logic.getRealTagList());
         tagPanePlaceholder.getChildren().add(tagPane.getRoot());
+        //@@author
     }
 
     void hide() {
@@ -226,6 +228,10 @@ public class MainWindow extends UiPart<Region> {
 
     public PersonListPanel getPersonListPanel() {
         return this.personListPanel;
+    }
+
+    public TagPane getTagPane() {
+        return this.tagPane;
     }
 
     void releaseResources() {
