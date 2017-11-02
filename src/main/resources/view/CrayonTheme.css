@@ -105,7 +105,7 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: #f5f5f5;
 }
 
 .list-view {
