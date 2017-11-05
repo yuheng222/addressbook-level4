@@ -530,7 +530,7 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
 
 === Export
 
-The `ExportCommand` extends the `Command` class. It allows users to export the current Address Book data
+The `ExportCommand` extends the `Command` class. It allows users to export the current AB&B data
 into a CSV file.
 
 The class diagram of the command is shown below:
@@ -541,12 +541,32 @@ _Figure 3.6A - Class Diagram of ExportCommand_
 From _Figure 3.6A_, the ExportCommand depends on `java.io` to carry out the file IO operations to create the CSV file.
 It also depends on the `Model` class and `Person` package in order to extract the required information to export.
 
+The self calls of `ExportCommand` in the `execute()` method are illustrated in the code fragment below:
+```
+@Override
+    public CommandResult execute() throws CommandException {
+        this.currentData = model.getAddressBook().getPersonList();
+
+        if (currentData.isEmpty()) {
+            throw new CommandException(MESSAGE_EMPTY_ADDRESS_BOOK);
+        }
+
+        if (fileExists()) {
+            deleteFile();
+        }
+
+        createFile();
+        writeData();
+        return new CommandResult(MESSAGE_EXPORT_SUCCESS);
+    }
+```
+
 The sequence diagram of the command is shown below:
 
 image::ExportCommandSequenceDiagram.png[width="800"]
 _Figure 3.6B - Sequence Diagram of ExportCommand_
 
-Explanation of _Figure 3.6B_:
+The sequence of operations carried out in _Figure 3.6B_ are detailed below:
 
 1. The `execute("export")` command is called on the `LogicManager`.
 
@@ -568,25 +588,25 @@ all the way back to `LogicManager`.
 ==== Design Considerations
 **Aspect:** Construction of Strings
 
-*Alternative 1 (current choice):* Using `StringBuilder`
+*Alternative 1 (current choice):* Use `StringBuilder`
 
 *Pros:*
 
-* Able to easily construct the `String` due to the mutability of `StringBuilder`.
+* Can easily construct the `String` due to the mutability of `StringBuilder`.
 
 *Cons:*
 
-* Dependency on the `StringBuilder` class.
+* Increasing dependency on external classes, specifically the `StringBuilder` class.
 
-*Alternative 2:* Using `String` only.
+*Alternative 2:* Use `String` only.
 
 *Pros:*
 
-* Reduced dependency on additional classes.
+* Reducing dependency on additional classes.
 
 *Cons:*
 
-* Constant re-assignment of resultant `String` is required as it is not mutable.
+* Increasing number of re-assignments of resultant `String` is required as it is not mutable.
 
 **Aspect:** Generating Person Data
 
@@ -594,25 +614,25 @@ all the way back to `LogicManager`.
 
 *Pros:*
 
-* Code is executed at a faster rate.
+* Accelerates code execution.
 
 *Cons:*
 
-* Coupling is increased with `ReadOnlyPerson`.
+* Increasing coupling with `ReadOnlyPerson`.
 
-* Code is not adaptable should new fields be added to `ReadOnlyPerson`.
+* Reducing code adaptability should new fields be added to `ReadOnlyPerson`.
 
 *Alternative 2:* Generate person data according to the fields present in `ReadOnlyPerson`.
 
 *Pros:*
 
-* Code is adaptable should new fields be added to `ReadOnlyPerson`.
+* Increasing code adaptability should new fields be added to `ReadOnlyPerson`.
 
 *Cons:*
 
-* Additional processing overhead.
+* Decelerates code execution.
 
-* Difficult and time-consuming to implement.
+* Increasing difficulty and time required to properly implement.
 
 
 === Logging
