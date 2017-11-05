@@ -472,7 +472,7 @@ The sort mechanism mainly relies on the logic component. The primary sorting alg
 
 The sequence diagram below illustrates how the sort mechanism works:
 
-image::SortSequenceDiagram.png[width="800"]
+image::SortSequenceDiagram.PNG[width="800"]
 
 
     1. User executes the `sort` command which is then parsed through `AddressBookParser`.
@@ -498,7 +498,7 @@ The `Logic` component mainly handles the parsing of command and posting of the `
 
 The sequence diagram below illustrates how the select theme mechanism works:
 
-image::SelectThemeSequenceDiagram.png[width="800"]
+image::SelectThemeSequenceDiagram.PNG[width="800"]
 
     1. User executes the `theme` command which is then parsed through `AddressBookParser`.
     2. The index `1` is extracted and parsed into `SelectThemeCommandParser` and an `index` instance is created together with a `SelectThemeCommand` object.
