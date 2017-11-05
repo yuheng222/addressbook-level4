@@ -234,7 +234,8 @@ dependent on the `Person` package as well as the `Model` of AB&B.
 This dependency allows it to carry out its delete operation. The `Model` of AB&B
 will be directly updated within the command.
 
-The self calls of `DeleteByNameCommand` are illustrated in the code fragment below:
+The self calls of `DeleteByNameCommand` in the `executeUndoableCommand()` method
+are illustrated in the code fragment below:
 ```
 @Override
 public CommandResult executeUndoableCommand() throws CommandException {
@@ -288,7 +289,7 @@ also suggests possible persons with similar names for deletion. The `Model` is a
 similar to `FindCommand`.
 
 `DeleteByNameCommand` also updates the `Model` to list all persons with matching names if
-there is more than 1 person with the exact same name as the person to be deleted. This is an
+there is more than one person with the exact same name as the person to be deleted. This is an
 enhancement over the traditional `FindCommand` as it will not list any other persons whose names
 match part of the query. It will then prompt users to utilise the `DeleteCommand`.
 
