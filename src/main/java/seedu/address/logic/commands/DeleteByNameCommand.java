@@ -46,7 +46,6 @@ public class DeleteByNameCommand extends UndoableCommand {
         this.nameToBeDeleted = nameToBeDeleted;
     }
 
-
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
         this.personList = model.getAddressBook().getPersonList();
