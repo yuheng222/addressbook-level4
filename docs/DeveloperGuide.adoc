@@ -222,7 +222,7 @@ This section describes some noteworthy details on how certain features are imple
 === DeleteByName Command
 
 The `DeleteByNameCommand` extends the `UndoableCommand` class. It enables the deletion of
-a person from the Address Book when given an input `Name` parsed by `DeleteByNameCommandParser`.
+a person from AB&B when given an input `Name` parsed by `DeleteByNameCommandParser`.
 
 The class diagram of the command is shown below:
 
@@ -230,8 +230,8 @@ image::DeleteByNameCommandClassDiagram.PNG[width="800"]
 _Figure 3.1A - Class Diagram of DeleteByNameCommand_
 
 In _Figure 3.1A_ the `DeleteByNameCommand` class is highly
-dependent on the `Person` package as well as the `Model` of the AB&B.
-This dependency allows it to carry out its delete operation. The `Model` of the AB&B
+dependent on the `Person` package as well as the `Model` of AB&B.
+This dependency allows it to carry out its delete operation. The `Model` of AB&B
 will be directly updated within the command.
 
 The self calls of `DeleteByNameCommand` are illustrated in the code fragment below:
