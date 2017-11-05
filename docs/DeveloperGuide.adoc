@@ -177,7 +177,7 @@ _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Comma
 ==== Model component
 The `Model` component holds the data of the App in-memory. The following diagram illustrates the structure of Model component.
 
-image::ModelClassDiagram.png[width="800"]
+image::ModelClassDiagram.PNG[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
