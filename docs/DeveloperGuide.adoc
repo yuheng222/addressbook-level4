@@ -229,17 +229,31 @@ The class diagram of the command is shown below:
 image::DeleteByNameCommandClassDiagram.PNG[width="800"]
 _Figure 3.1A - Class Diagram of DeleteByNameCommand_
 
-From _Figure 3.1A_ the `DeleteByNameCommand` class is highly
-dependent on the `Person` package as well as the `Model` of the Address Book.
-This dependency allows it to carry out its delete operation. The `Model` of the Address Book
+In _Figure 3.1A_ the `DeleteByNameCommand` class is highly
+dependent on the `Person` package as well as the `Model` of the AB&B.
+This dependency allows it to carry out its delete operation. The `Model` of the AB&B
 will be directly updated within the command.
 
-The sequence diagram of the command is shown below:
+The self calls of `DeleteByNameCommand` are illustrated in the code fragment below:
+```
+@Override
+public CommandResult executeUndoableCommand() throws CommandException {
+    this.personList = model.getAddressBook().getPersonList();
+    ReadOnlyPerson personToDelete = obtainPersonToDelete();
+
+    if (personToDelete == null) { // No matching name found
+        provideSuggestions();
+    }
+    //...deletion logic...
+}
+```
+
+The sequence diagram of the Main Success Scenario of the command is shown below:
 
 image::DeleteByNameCommandSequenceDiagram.png[width="1417"]
 _Figure 3.1B - Sequence Diagram of DeleteByNameCommand_
 
-Explanation of _Figure 3.1B_:
+The sequence of operations carried out in _Figure 3.1B_ are detailed below:
 
 1. The `execute("deletebyname John Doe")` command is called on the `LogicManager`.
 
@@ -251,12 +265,14 @@ Explanation of _Figure 3.1B_:
 4. `DeleteByNameCommandParser` creates a new `DeleteByNameCommand`, `d`,
 and returns it all the way back to `LogicManager`.
 
-5. `LogicManager` calls the `execute()` method on `d`, a `DeleteByNameCommand`
+5. `LogicManager` calls the `execute()` method on `d`, a `DeleteByNameCommand`.
 
-6. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
+6. `DeleteByNameCommand` calls itself to obtain `p`, the person to delete.
+
+7. `DeleteByNameCommand` deletes the person, `p`, from the `Model`, and generates a new
 `CommandResult`, `result`.
 
-7. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
+8. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
 
 **Advantage(s)** versus `DeleteCommand`:
 
@@ -264,13 +280,11 @@ and returns it all the way back to `LogicManager`.
 
 **Disadvantage(s)** versus `DeleteCommand`:
 
-
 * Requires the exact name of the person to be deleted in order to perform a successful deletion.
-* Inability to delete a person if there is another person with the exact name present in the Address Book.
+* Cannot delete a person if there is another person with the exact name present in the AB&B.
 
 In order to mitigate the disadvantages when compared to `DeleteCommand`, `DeleteByNameCommand`
-also suggests possible persons for deletion with similar names when no matching
-name is found in the Address Book. The `Model` is also updated to display the list of suggested persons,
+also suggests possible persons with similar names for deletion. The `Model` is also updated to display the list of suggested persons,
 similar to `FindCommand`.
 
 `DeleteByNameCommand` also updates the `Model` to list all persons with matching names if
@@ -281,12 +295,12 @@ match part of the query. It will then prompt users to utilise the `DeleteCommand
 ==== Design Considerations
 **Aspect:** Implementation of `DeleteByNameCommand`
 
-**Current choice:** Filtering the list of persons present in the Address Book and creating a
+**Current choice:** Filter the list of persons present in the Address Book and creating a
 helper `Predicate`, `CaseInsensitiveExactNamePredicate`.
 
 **Pros:**
 
-* Filtering from entire list of persons present in the Address Book facilitates a complete search.
+* Filtering from entire list of persons present in the AB&B facilitates a complete search.
 
 * Creating a helper class `CaseInsensitiveExactNamePredicate` allows for better exception
 handling of `DeleteByNameCommand` to show a list of persons with matching names. It also
@@ -294,9 +308,9 @@ improves abstraction, allowing it to be maintained and updated easily.
 
 **Cons:**
 
-* Filtering from entire list of persons present in Address Book can be time consuming.
+* Filtering from entire list of persons present in AB&B can be time consuming.
 
-* Additional class `CaseInsensitiveExactNamePredicate` present within the `Person` package which
+* Creating an additional class `CaseInsensitiveExactNamePredicate` present within the `Person` package which
 is currently unused by any other function.
 
 ---
@@ -307,11 +321,11 @@ is currently unused by any other function.
 
 **Pros:**
 
-* The `delete` command word is not overloaded, providing clear distinctions for the user.
+* Not overloading the `delete` command word, providing clear distinctions for the user.
 
 **Cons:**
 
-* An additional and lengthier command word for the user to enter.
+* Creating an additional and lengthier command word for the user to enter.
 
 * Creating an additional class within the `Parser` package.
 
@@ -319,9 +333,9 @@ is currently unused by any other function.
 
 **Pros:**
 
-* Users are able to achieve different results with the same command word.
+* Achieving different results with the same command word.
 
-* Eliminates need for extra classes within the `Parser` package.
+* Removing the need for extra classes within the `Parser` package.
 
 **Cons:**
 
