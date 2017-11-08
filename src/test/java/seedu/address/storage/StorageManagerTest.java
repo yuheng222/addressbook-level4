@@ -83,11 +83,11 @@ public class StorageManagerTest {
 
     @Test
     public void handleBackupAddressBook() throws Exception {
-         AddressBook original = getTypicalAddressBook();
-         storageManager.saveAddressBook(original);
-         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        AddressBook original = getTypicalAddressBook();
+        storageManager.saveAddressBook(original);
+        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
 
-                storageManager.backupAddressBook(retrieved);
+        storageManager.backupAddressBook(retrieved);
         ReadOnlyAddressBook backup = storageManager.readBackupAddressBook().get();
         assertEquals(new AddressBook(retrieved), new AddressBook(backup));
     }
