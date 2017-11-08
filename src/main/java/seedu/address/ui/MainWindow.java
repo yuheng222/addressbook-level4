@@ -44,6 +44,7 @@ public class MainWindow extends UiPart<Region> {
     // Independent Ui parts residing in this Ui container
     private BrowserPanel browserPanel;
     private PersonListPanel personListPanel;
+    private TagPane tagPane;
     private Config config;
     private UserPrefs prefs;
 
@@ -64,6 +65,9 @@ public class MainWindow extends UiPart<Region> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane tagPanePlaceholder;
 
     public MainWindow(Stage primaryStage, Config config, UserPrefs prefs, Logic logic) {
         super(FXML);
@@ -137,12 +141,16 @@ public class MainWindow extends UiPart<Region> {
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getAddressBookFilePath(),
-                logic.getFilteredPersonList().size());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        //@@author WangJieee
+        tagPane = new TagPane(logic.getRealTagList());
+        tagPanePlaceholder.getChildren().add(tagPane.getRoot());
+        //@@author
     }
 
     void hide() {
@@ -199,8 +207,9 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.show();
     }
 
+    //@@author yuheng222
     /**
-     * Selects the theme given by user input
+     * Selects the theme given by user input.
      */
     public void handleSelectTheme(String theme) {
         if (getRoot().getStylesheets().size() > 1) {
@@ -208,6 +217,7 @@ public class MainWindow extends UiPart<Region> {
         }
         getRoot().getStylesheets().add("/view/" + theme);
     }
+    //@@author
 
     /**
      * Closes the application.
@@ -221,6 +231,10 @@ public class MainWindow extends UiPart<Region> {
         return this.personListPanel;
     }
 
+    public TagPane getTagPane() {
+        return this.tagPane;
+    }
+
     void releaseResources() {
         browserPanel.freeResources();
     }
@@ -231,9 +245,11 @@ public class MainWindow extends UiPart<Region> {
         handleHelp();
     }
 
+    //@@author yuheng222
     @Subscribe
     private void handleSelectThemeEvent(SelectThemeRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleSelectTheme(event.theme);
     }
+    //@@author
 }

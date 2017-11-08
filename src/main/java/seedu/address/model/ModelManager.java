@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,6 +17,8 @@ import seedu.address.commons.events.model.AddressBookChangedEvent;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -35,6 +38,7 @@ public class ModelManager extends ComponentManager implements Model {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+
 
         this.addressBook = new AddressBook(addressBook);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -82,6 +86,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    //@@author yuheng222
     @Override
     public synchronized void sort() {
         addressBook.sort();
@@ -93,6 +98,7 @@ public class ModelManager extends ComponentManager implements Model {
     public ArrayList<String> getThemesList() {
         return this.addressBook.getThemesList();
     }
+    //@@author
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -103,6 +109,18 @@ public class ModelManager extends ComponentManager implements Model {
     @Override
     public ObservableList<ReadOnlyPerson> getFilteredPersonList() {
         return FXCollections.unmodifiableObservableList(filteredPersons);
+    }
+
+    //@@author WangJieee
+    @Override
+    public ObjectProperty<UniqueTagList> getRealTagList() {
+        return addressBook.getRealTagList();
+    }
+    //@@author
+
+    @Override
+    public ObservableList<Tag> getTagList() {
+        return addressBook.getTagList();
     }
 
     @Override

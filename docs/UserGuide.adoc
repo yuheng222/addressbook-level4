@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T10-B3`      Since: `Oct 2017`      Licence: `MIT`
 
 == Quick Start
 
@@ -57,14 +57,14 @@ Format: `help`
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/FILE_PATH] nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...`
 
-[TIP]
-A person can have any number of tags (including 0)
+* A person can either have an avatar or not. If a file path for an avatar is not specified, a default placeholder avatar will be added for the person.
+* A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nokn/Peter Doe nokp/87654321`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/C:/images/john.jpg nokn/Peter Doe nokp/87654321`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 nokn/Harley Crowe nokp/23546789 t/criminal`
 
 === Listing all persons : `list`
@@ -75,7 +75,7 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/FILE_PATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -201,7 +201,7 @@ Examples:
 * `deletebyname John Doe` +
 Deletes John Doe in the address book, if the person exists.
 
-If there is no person with a matching name can be found, it will update the displayed
+If no person with a matching name can be found, it will update the displayed
 person list to provide suggestions on possible persons to delete.
 
 If there is more than 1 person with the exact same name, it will update the displayed
@@ -230,7 +230,7 @@ Selects the 1st person in the results of the `find` command.
 
 === Selecting a theme : `theme`
 
-Switches current theme to the specified one. +
+Switches current theme to the specified one. Refer to section 5 for the list of available themes. +
 Format: `theme INDEX`
 
 ****
@@ -366,6 +366,8 @@ e.g. `filter friends`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
+* *Theme* : `theme INDEX` +
+e.g.`theme 2`
 * *Sort* : `sort`
 * *History* : `history`
 * *Undo* : `undo`

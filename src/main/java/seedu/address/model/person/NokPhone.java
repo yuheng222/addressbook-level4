@@ -1,7 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
@@ -14,6 +12,8 @@ public class NokPhone {
     public static final String MESSAGE_NOK_PHONE_CONSTRAINTS =
             "NOK Phone numbers can only contain numbers, and should be at least 3 digits long";
     public static final String NOK_PHONE_VALIDATION_REGEX = "\\d{3,}";
+    public static final String NOK_PHONE_UNDEFINED_DEFAULT = "NIL";
+
     public final String value;
 
     /**
@@ -22,19 +22,21 @@ public class NokPhone {
      * @throws IllegalValueException if given NOK phone string is invalid.
      */
     public NokPhone(String nokPhone) throws IllegalValueException {
-        requireNonNull(nokPhone);
-        String trimmedPhone = nokPhone.trim();
-        if (!isValidNokPhone(trimmedPhone)) {
-            throw new IllegalValueException(MESSAGE_NOK_PHONE_CONSTRAINTS);
+        if (nokPhone == null) {
+            this.value = NOK_PHONE_UNDEFINED_DEFAULT;
+        } else {
+            if (!isValidNokPhone(nokPhone)) {
+                throw new IllegalValueException(MESSAGE_NOK_PHONE_CONSTRAINTS);
+            }
+            this.value = nokPhone;
         }
-        this.value = trimmedPhone;
     }
 
     /**
      * Returns true if a given string is a valid NOK phone number.
      */
     public static boolean isValidNokPhone(String test) {
-        return test.matches(NOK_PHONE_VALIDATION_REGEX);
+        return test.matches(NOK_PHONE_VALIDATION_REGEX) || test.equals(NOK_PHONE_UNDEFINED_DEFAULT);
     }
 
     @Override
@@ -53,5 +55,4 @@ public class NokPhone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

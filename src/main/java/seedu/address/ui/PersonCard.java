@@ -1,11 +1,13 @@
 package seedu.address.ui;
 
-import java.util.HashMap;
-import java.util.Random;
+import java.awt.image.BufferedImage;
 
 import javafx.beans.binding.Bindings;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -17,9 +19,6 @@ import seedu.address.model.person.ReadOnlyPerson;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static String[] colors = {"red", "green", "blue", "black", "brown", "grey"};
-    private static HashMap<String, String> tagColors = new HashMap<String, String>();
-    private static Random randomColor = new Random();
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -48,6 +47,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private ImageView avatarDisplay;
+    @FXML
     private FlowPane tags;
 
     public PersonCard(ReadOnlyPerson person, int displayedIndex) {
@@ -56,18 +57,7 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         initTags(person);
         bindListeners(person);
-    }
-
-    /**
-     * Assign a random color to a tag if it does not have an existing color.
-     * @return the color assigned to that tag
-     */
-    private static String getColorForTag(String tagValue) {
-        if (!tagColors.containsKey(tagValue)) {
-            tagColors.put(tagValue, colors[randomColor.nextInt(colors.length)]);
-        }
-
-        return tagColors.get(tagValue);
+        setAvatar(person);
     }
 
     /**
@@ -88,16 +78,32 @@ public class PersonCard extends UiPart<Region> {
         });
     }
 
+    //@@author yuheng222
+    /**
+     *  Sets the chosen Avatar for the specified person.
+     */
+    private void setAvatar(ReadOnlyPerson person) {
+
+        BufferedImage avatar = person.getAvatar().getAvatar();
+        Image image = SwingFXUtils.toFXImage(avatar, null);
+        avatarDisplay.setImage(image);
+    }
+    //@@author
+
     /**
      * Creates a tag label for every {@code Person} and sets a color for each tag label.
      */
     private void initTags(ReadOnlyPerson person) {
         person.getTags().forEach(tag -> {
             Label tagLabel = new Label(tag.tagName);
-            tagLabel.setStyle("-fx-background-color: " + getColorForTag(tag.tagName));
+            tagLabel.setStyle("-fx-background-color: " + tag.tagColour + ";");
             tags.getChildren().add(tagLabel);
         });
     }
+
+    /*public static String getColour(String tag) {
+        return tagColors.get(tag);
+    }*/
 
     @Override
     public boolean equals(Object other) {

@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,7 +29,10 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags">
+            <VBox.margin>
+               <Insets bottom="4.0" />
+            </VBox.margin></FlowPane>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
       <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
       <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
@@ -35,4 +40,12 @@
       <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" />
     </VBox>
   </GridPane>
+  <ImageView fx:id="avatarDisplay" fitHeight="105.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
+    <HBox.margin>
+      <Insets right="10.0" left="10.0" top="5.0" />
+    </HBox.margin>
+    <image>
+      <Image url="@../images/default.png" />
+    </image>
+  </ImageView>
 </HBox>
