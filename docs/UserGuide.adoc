@@ -228,6 +228,7 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
+// tag::theme[]
 === Selecting a theme : `theme`
 
 Switches current theme to the specified one. Refer to section 5 for the list of available themes. +
@@ -243,11 +244,14 @@ Examples:
 
 `theme 2` +
 Selects the 2nd theme in the themes list.
+// end::theme[]
 
+// tag::sort[]
 === Sorting all persons : `sort`
 
 Sorts all persons in the address book by name. +
 Format: `sort`
+// end::sort[]
 
 === Listing entered commands : `history`
 
