@@ -296,7 +296,7 @@ match part of the query. It will then prompt users to utilise the `DeleteCommand
 ==== Design Considerations
 **Aspect:** Implementation of `DeleteByNameCommand`
 
-**Current choice:** Filter the list of persons present in the Address Book and creating a
+**Current choice:** Filter the list of persons present in AB&B and creating a
 helper `Predicate`, `CaseInsensitiveExactNamePredicate`.
 
 **Pros:**
