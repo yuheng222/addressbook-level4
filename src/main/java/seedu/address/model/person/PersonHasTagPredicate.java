@@ -1,25 +1,28 @@
+//@@author WangJieee
 package seedu.address.model.person;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code ReadOnlyPerson}'s {@code UniqueTagList} contains the specific tag.
  */
 public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
-    private final String tagKeyword;
+    private final List<String> tags;
 
-    public PersonHasTagPredicate(String tagKeyword) {
-        this.tagKeyword = tagKeyword.toLowerCase();
+    public PersonHasTagPredicate(List<String> tags) {
+        this.tags = tags;
     }
 
     @Override
     public boolean test(ReadOnlyPerson person) {
         Set<Tag> tagSet = person.getTags();
         for (Tag t: tagSet) {
-            if (t.tagName.toLowerCase().equals(tagKeyword)) {
+            if (tags.stream().anyMatch(tag -> StringUtil.containsWordIgnoreCase(t.tagName, tag))) {
                 return true;
             }
         }
@@ -30,6 +33,6 @@ public class PersonHasTagPredicate implements Predicate<ReadOnlyPerson> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PersonHasTagPredicate // instanceof handles nulls
-                && this.tagKeyword.equals(((PersonHasTagPredicate) other).tagKeyword)); // state check
+                && this.tags.equals(((PersonHasTagPredicate) other).tags)); // state check
     }
 }
