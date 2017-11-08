@@ -70,7 +70,6 @@ public class ParserUtil {
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
     public static Optional<Address> parseAddress(Optional<String> address) throws IllegalValueException {
-        requireNonNull(address);
         return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
     }
 
@@ -79,10 +78,10 @@ public class ParserUtil {
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
     public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        requireNonNull(email);
         return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
     }
 
+    //@@author yuheng222
     /**
      * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
@@ -91,13 +90,13 @@ public class ParserUtil {
         requireNonNull(avatar);
         return new Avatar(avatar);
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> nokName} into an {@code Optional<NokName>} if {@code nokName} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
     public static Optional<NokName> parseNokName(Optional<String> nokName) throws IllegalValueException {
-        requireNonNull(nokName);
         return nokName.isPresent() ? Optional.of(new NokName(nokName.get())) : Optional.empty();
     }
 
@@ -106,7 +105,6 @@ public class ParserUtil {
      * See header comment of this class regarding the use of {@code Optional} parameters.
      */
     public static Optional<NokPhone> parseNokPhone(Optional<String> nokPhone) throws IllegalValueException {
-        requireNonNull(nokPhone);
         return nokPhone.isPresent() ? Optional.of(new NokPhone(nokPhone.get())) : Optional.empty();
     }
 

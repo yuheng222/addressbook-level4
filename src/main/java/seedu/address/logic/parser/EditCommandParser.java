@@ -70,6 +70,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editPersonDescriptor);
     }
 
+    //@@author yuheng222
     /**
      * Parses {@code String avatar} into a {@code String<Avatar>} if {@code avatar} is non-empty.
      * If {@code tags} contain only one element which is an empty string, it will be parsed into a
@@ -83,6 +84,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         return Optional.of(ParserUtil.parseAvatar(avatar));
     }
+    //@@author
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
