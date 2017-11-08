@@ -19,7 +19,7 @@ public class Avatar {
     public static final String DEFAULT_PATH = "default.png";
     public final String value;
     private BufferedImage avatar;
-    File defaultImageRoot = null;
+    private File defaultImageRoot = null;
 
     /**
      * Sets avatar based on the given filepath.
