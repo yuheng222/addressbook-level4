@@ -121,10 +121,10 @@ The section below gives detailed explanation for each component.
 
 === Components
 ==== Main
-`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
+`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for:
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup method where necessary.
+* At app launch: Initialising the components in the correct sequence, and connects them up with each other.
+* At shut down: Shutting down the components and invokes cleanup method where necessary.
 
 ==== Commons
 `Commons` represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
@@ -540,6 +540,7 @@ image::SelectThemeSequenceDiagram.PNG[width="800"]
 **Pros:** More convenient for the user since he can easily find out which themes are available by typing a command. +
 **Cons:** It is a trivial command which may never be used since the user can simply refer to the user guide for the list of themes.
 
+// tag::filter[]
 === Filter by tag mechanism
 
 The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
@@ -559,7 +560,9 @@ As shown in the diagram, to obtain a filtered person list based on the tags ente
 `PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. Its `test` method loops through the person's tags and returns **true** when it finds a match with the predicates' tags.
 
 *Alternatively*, in step 3 above, the tag names entered can be store as a `HashSet<Tag>` to construct a `PersonHasTagPredicate` object. Therefore under the `test` method, `Tag` objects of a `Person` and a `PersonHasTagPredicate` can be directly compared instead of comparing `String` tag names.
+// end::filter[]
 
+// tag::addtag[]
 === Add tag mechanism
 
 The add tag command inherits from `UndoableCommand`. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the person based on the inputs.
@@ -580,11 +583,13 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
 
 **Aspect:** Implementation of `createUpdatedPerson` in `AddCommand` +
 **Alternative 1 (current choice):** The execution is unsuccessful once any of the tags entered is found in the person's existing tags. +
-**Pros:** Easy to implement and alerts the user about duplicate tags. +
+**Pros:** It is easy to implement and it alerts the user about duplicate tags. +
 **Cons:** The user will have to enter the tags again. +
 **Alternative 2:** The person is updated successfully with non-duplicate tags. +
-**Pros:** Might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
+**Pros:** It might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
 **Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
+
+// end::addtag[]
 
 === Export
 
