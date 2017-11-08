@@ -12,7 +12,7 @@ ifdef::env-github[]
 endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level4
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T10-B3`      Since: `Oct 2017`      Licence: `MIT`
 
 == Quick Start
 
@@ -26,14 +26,14 @@ This app will not work with earlier versions of Java 8.
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+image::MidnightTheme.JPG[width="790"]
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
 * *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
+* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 nokn/Peter Doe nokp/87654321`: adds a contact named `John Doe` to the Address Book.
 * **`delete`**`3` : deletes the 3rd contact shown in the current list
 * *`exit`* : exits the app
 
@@ -57,15 +57,15 @@ Format: `help`
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/FILE_PATH] nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...`
 
-[TIP]
-A person can have any number of tags (including 0)
+* A person can either have an avatar or not. If a file path for an avatar is not specified, a default placeholder avatar will be added for the person.
+* A person can have any number of tags (including 0)
 
 Examples:
 
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/C:/images/john.jpg nokn/Peter Doe nokp/87654321`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 nokn/Harley Crowe nokp/23546789 t/criminal`
 
 === Listing all persons : `list`
 
@@ -75,7 +75,7 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/FILE_PATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -91,6 +91,40 @@ Examples:
 Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+=== Adding tags to a person : `addtag`
+
+Adds one or more tags to an existing person in the address book. +
+Format: `addtag INDEX [TAG] [MORE_TAGS]`
+
+****
+* Adds tags to the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
+* At least one tag must be provided.
+* You cannot add duplicate tags to the same person.
+* The tag names are case sensitive. e.g `FRiends` is a different tag from `friends`
+****
+
+Examples:
+
+* `addtag 1 neighbours friends` +
+Adds the two tags `neighbours` and `friends` to the 1st person, provided that the person did not have any of the two tag before.
+
+=== Removing tags from a person: `removetag`
+
+Removes one or more tags from an existing person in the address book. +
+Format: `removetag INDEX [TAG] [MORE_TAGS]`
+
+****
+* Removes tags from the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
+* At least one tag must be provided.
+* You cannot remove a tag that is not found in the person.
+* The tag names are case sensitive. e.g `FRiends` is a different tag from `friends`
+****
+
+Examples:
+
+* `removetag 1 neighbours friends` +
+Removes the two tags `neighbours` and `friends` from the 1st person, provided that the person had both tags before.
 
 === Locating persons by name: `find`
 
@@ -114,14 +148,15 @@ Returns any person having names `Betsy`, `Tim`, or `John`
 
 === Locating persons by tag: `filter`
 
-Filters persons who have the given tag. +
-Format: `filter TAG`
+Filters persons who have the any of the given tags. +
+Format: `filter TAG [MORE_TAGS]`
 
 ****
 * The search is case insensitive. e.g `friends` will match `FriEnds`
-* Only one tag name is allowed.
+* The order of the tag names does not matter. e.g. `friends families` will match `families friends`
 * Only the tag field is searched.
 * Only the exact words will be matched. e.g `friends` will not match `friend`
+* Persons matching at least one tag name will be returned (i.e. `OR` search). e.g. `friends colleagues` will return all persons with either tag `friends` or `colleagues` or both
 ****
 
 Examples:
@@ -193,6 +228,27 @@ Selects the 2nd person in the address book.
 `select 1` +
 Selects the 1st person in the results of the `find` command.
 
+=== Selecting a theme : `theme`
+
+Switches current theme to the specified one. Refer to section 5 for the list of available themes. +
+Format: `theme INDEX`
+
+****
+* Switches current theme to the one given by a specified `INDEX`.
+* The index refers to the index number given in the themes list.
+* The index *must be a positive integer* `1, 2, 3, ...`
+****
+
+Examples:
+
+`theme 2` +
+Selects the 2nd theme in the themes list.
+
+=== Sorting all persons : `sort`
+
+Sorts all persons in the address book by name. +
+Format: `sort`
+
 === Listing entered commands : `history`
 
 Lists all the commands that you have entered in reverse chronological order. +
@@ -263,27 +319,45 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
+
+=== Exporting the data : `export`
+Saves the current data in the address book into a CSV (Comma-Separated Values) file.
+The file will be saved in the same location where you stored the application.
+
+Format: `export`
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
+
 
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
 
+*Q*: How do I transfer my data to another application? +
+*A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
+
 == Command Summary
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Note:** All command words are case-insensitive.
+e.g. `ADD`, `aDd`, `aDD`, `Add` all work the same as `add`.
+
+* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...` +
+e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nokn/Peter Ho nokp/33335555 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
 * *Delete By Name* : `deletebyname NAME` +
 e.g. `deletebyname John Doe`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
+* *Add Tag* : `addtag INDEX [TAG] [MORE_TAGS]` +
+e.g. `addtag 2 friends classmates`
+* *Remove Tag* : `removetag INDEX [TAG] [MORE_TAGS]` +
+e.g. `removetag 2 neighbours`
 * *Find* : `find KEYWORD [MORE_KEYWORDS]` +
 e.g. `find James Jake`
 * *Filter* : `filter TAG` +
@@ -292,6 +366,38 @@ e.g. `filter friends`
 * *Help* : `help`
 * *Select* : `select INDEX` +
 e.g.`select 2`
+* *Theme* : `theme INDEX` +
+e.g.`theme 2`
+* *Sort* : `sort`
 * *History* : `history`
 * *Undo* : `undo`
 * *Redo* : `redo`
+* *Export* : `export`
+
+== Themes List
+
+Below is the list of themes which are available for selection.
+
+=== Midnight Theme
+
+Format: `theme 1`
+
+image::MidnightTheme.JPG[align="left"]
+
+=== Summer Theme
+
+Format: `theme 2`
+
+image::SummerTheme.JPG[align="left"]
+
+=== Coffee Theme
+
+Format: `theme 3`
+
+image::CoffeeTheme.JPG[align="left"]
+
+=== Crayon Theme
+
+Format: `theme 4`
+
+image::CrayonTheme.JPG[align="left"]

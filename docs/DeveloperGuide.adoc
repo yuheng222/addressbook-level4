@@ -1,4 +1,4 @@
-= AddressBook Level 4 - Developer Guide
+= Address Book and Booklets (AB&B) - Developer Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,9 +10,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 endif::[]
 ifdef::env-github,env-browser[:outfilesuffix: .adoc]
-:repoURL: https://github.com/se-edu/addressbook-level4/tree/master
+:repoURL: https://github.com/CS2103AUG2017-T10-B3/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `Team T10-B3`      Since: `October 2017`      Licence: `MIT`
 
 == Setting up
 
@@ -21,21 +21,23 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 . *JDK `1.8.0_60`* or later
 +
 [NOTE]
-Having any Java 8 version is not enough. +
-This app will not work with earlier versions of Java 8.
+This app will not work with earlier versions of Java 8. +
+Make sure you have installed Java JDK 1.8.0_60 or later.
 +
 
 . *IntelliJ* IDE
 +
 [NOTE]
-IntelliJ by default has Gradle and JavaFx plugins installed. +
-Do not disable them. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
+IntelliJ has Gradle and JavaFx plugins installed by default. +
+Do not disable these plugins. If you have disabled them, go to `File` > `Settings` > `Plugins` to re-enable them.
 
 
 === Setting up the project in your computer
 
-. Fork this repo, and clone the fork to your computer
-. Open IntelliJ (if you are not in the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
+If this is your first time working on the project, you have to set it up by following the steps as shown below:
+
+. Fork this repo and clone it to your computer
+. Open IntelliJ (if you are not on the welcome screen, click `File` > `Close Project` to close the existing project dialog first)
 . Set up the correct JDK version for Gradle
 .. Click `Configure` > `Project Defaults` > `Project Structure`
 .. Click `New...` and find the directory of the JDK
@@ -48,14 +50,14 @@ This will generate all resources required by the application and tests.
 
 === Verifying the setup
 
-. Run the `seedu.address.MainApp` and try a few commands
+. Run `seedu.address.MainApp` and try a few commands.
 . link:#testing[Run the tests] to ensure they all pass.
 
 === Configurations to do before writing code
 
 ==== Configuring the coding style
 
-This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order from ours. To rectify,
+This project follows https://github.com/oss-generic/process/blob/master/docs/CodingStandards.md[oss-generic coding standards]. IntelliJ's default style is mostly compliant with ours but it uses a different import order. To rectify,
 
 . Go to `File` > `Settings...` (Windows/Linux), or `IntelliJ IDEA` > `Preferences...` (macOS)
 . Select `Editor` > `Code Style` > `Java`
@@ -64,7 +66,7 @@ This project follows https://github.com/oss-generic/process/blob/master/docs/Cod
 * For `Class count to use import with '\*'` and `Names count to use static import with '*'`: Set to `999` to prevent IntelliJ from contracting the import statements
 * For `Import Layout`: The order is `import static all other imports`, `import java.\*`, `import javax.*`, `import org.\*`, `import com.*`, `import all other imports`. Add a `<blank line>` between each `import`
 
-Optionally, you can follow the <<UsingCheckstyle#, UsingCheckstyle.adoc>> document to configure Intellij to check style-compliance as you write code.
+Optionally, you can follow <<UsingCheckstyle#, UsingCheckstyle.adoc>> in configuring Intellij to ensure style-compliance as you write code.
 
 ==== Updating documentation to match your fork
 
@@ -81,9 +83,9 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 
 ==== Getting started with coding
 
-When you are ready to start coding,
+Before you get started, take a short while to complete the following:
 
-1. Get some sense of the overall design by reading the link:#architecture[Architecture] section.
+1. Understand the overall design by reading the link:#architecture[Architecture] section.
 2. Take a look at the section link:#suggested-programming-tasks-to-get-started[Suggested Programming Tasks to Get Started].
 
 == Design
@@ -93,29 +95,19 @@ When you are ready to start coding,
 image::Architecture.png[width="600"]
 _Figure 2.1.1 : Architecture Diagram_
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
+The *_Architecture Diagram_* given above explains the high-level design of the App. It consists of the following 6 components:
+
+* link:#main[*`Main`*]
+* link:#commons[*`Commons`*]
+* link:#ui-component[*`UI`*]
+* link:#logic-component[*`Logic`*]
+* link:#model-component[*`Model`*]
+* link:#storage-component[*`Storage`*]
 
 [TIP]
 The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
-`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
-
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup method where necessary.
-
-link:#common-classes[*`Commons`*] represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
-
-* `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
-* `LogsCenter` : Used by many classes to write log messages to the App's log file.
-
-The rest of the App consists of four components.
-
-* link:#ui-component[*`UI`*] : The UI of the App.
-* link:#logic-component[*`Logic`*] : The command executor.
-* link:#model-component[*`Model`*] : Holds the data of the App in-memory.
-* link:#storage-component[*`Storage`*] : Reads data from, and writes data to, the hard disk.
-
-Each of the four components
+Each of the four components, `UI`, `Logic`, `Model` and `Storage`:
 
 * Defines its _API_ in an `interface` with the same name as the Component.
 * Exposes its functionality using a `{Component Name}Manager` class.
@@ -125,28 +117,25 @@ For example, the `Logic` component (see the class diagram given below) defines i
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.1.2 : Class Diagram of the Logic Component_
 
-[discrete]
-==== Events-Driven nature of the design
+The section below gives detailed explanation for each component.
 
-The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+=== Components
+==== Main
+`Main` has only one class called link:{repoURL}/src/main/java/seedu/address/MainApp.java[`MainApp`]. It is responsible for,
 
-image::SDforDeletePerson.png[width="800"]
-_Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup method where necessary.
 
-[NOTE]
-Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+==== Commons
+`Commons` represents a collection of classes used by multiple other components. Two of those classes play important roles at the architecture level.
 
-The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
+* `EventsCenter` : This class (written using https://github.com/google/guava/wiki/EventBusExplained[Google's Event Bus library]) is used by components to communicate with other components using events (i.e. a form of _Event Driven_ design)
+* `LogsCenter` : Used by many classes to write log messages to the App's log file.
 
-image::SDforDeletePersonEventHandling.png[width="800"]
-_Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
-[NOTE]
-Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
-
-The sections below give more details of each component.
-
-=== UI component
+==== UI component
+The `UI` component is the User Interface of the App. The following diagram illustrates the structure of UI component.
 
 image::UiClassDiagram.png[width="800"]
 _Figure 2.2.1 : Structure of the UI Component_
@@ -163,7 +152,8 @@ The `UI` component,
 * Binds itself to some data in the `Model` so that the UI can auto-update when data in the `Model` change.
 * Responds to events raised from various parts of the App and updates the UI accordingly.
 
-=== Logic component
+==== Logic component
+The `Logic` component is the command executor. The following diagram illustrates the structure of Logic component.
 
 image::LogicClassDiagram.png[width="800"]
 _Figure 2.3.1 : Structure of the Logic Component_
@@ -179,14 +169,15 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 .  The command execution can affect the `Model` (e.g. adding a person) and/or raise events.
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+For example, given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 image::DeletePersonSdForLogic.png[width="800"]
 _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Command_
 
-=== Model component
+==== Model component
+The `Model` component holds the data of the App in-memory. The following diagram illustrates the structure of Model component.
 
-image::ModelClassDiagram.png[width="800"]
+image::ModelClassDiagram.PNG[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
@@ -198,7 +189,8 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<ReadOnlyPerson>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
-=== Storage component
+==== Storage component
+The `Storage` component reads data from, and writes data to, the hard disk. The following diagram illustrates the structure of Storage component.
 
 image::StorageClassDiagram.png[width="800"]
 _Figure 2.5.1 : Structure of the Storage Component_
@@ -210,9 +202,23 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the Address Book data in xml format and read it back.
 
-=== Common classes
+=== Events-Driven nature of the design
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+The _Sequence Diagram_ below shows how the components interact for the scenario where the user issues the command `delete 1`.
+
+image::SDforDeletePerson.png[width="800"]
+_Figure 2.1.3a : Component interactions for `delete 1` command (part 1)_
+
+[NOTE]
+Note how the `Model` simply raises a `AddressBookChangedEvent` when the Address Book data are changed, instead of asking the `Storage` to save the updates to the hard disk.
+
+The diagram below shows how the `EventsCenter` reacts to that event, which eventually results in the updates being saved to the hard disk and the status bar of the UI being updated to reflect the 'Last Updated' time.
+
+image::SDforDeletePersonEventHandling.png[width="800"]
+_Figure 2.1.3b : Component interactions for `delete 1` command (part 2)_
+
+[NOTE]
+Note how the event is propagated through the `EventsCenter` to the `Storage` and `UI` without `Model` having to be coupled to either of them. This is an example of how this Event Driven approach helps us reduce direct coupling between components.
 
 == Implementation
 
@@ -471,6 +477,202 @@ image::UndoRedoActivityDiagram.png[width="200"]
 **Cons:** Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things. +
 // end::undoredo[]
 
+=== Sort mechanism
+
+The sort mechanism mainly relies on the logic component. The primary sorting algorithm resides in `UniquePersonList` class and it is implemented very simply by using a 'Person' comparator.
+
+`IndicateAddressBookChanged` event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
+
+'SortCommand"' inherits from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+
+The sequence diagram below illustrates how the sort mechanism works:
+
+image::SortSequenceDiagram.PNG[width="800"]
+
+
+    1. User executes the `sort` command which is then parsed through `AddressBookParser`.
+    2. A new `sort` command is created and it executes the `sort` method in `ModelManager`.
+    3. `ModelManager` calls the internal sorting function in the `UniquePersonList` class and the person list is sorted.
+    4. Lastly, the `updateFilteredPersonList()` method in `ModelManager` is invoked and it returns the result.
+
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SortCommand` +
+**Alternative 1 (current choice):** Only sorts by names of persons in the Address Book. +
+**Pros:** Easy to implement and more intuitive for the user. +
+**Cons:** Functionality is limited and may not satisfy the requirements of the user. +
+**Alternative 2:** Sorts persons in the Address Book by any field (sorting by email or tag for example), which is given as an input by the user. +
+**Pros:** More flexibility for users since they have the option to sort by any field that they want. +
+**Cons:** Harder to implement and constant updating of code is required every time a new field in the 'Person' class is introduced.
+
+=== Select Theme mechanism
+
+The select theme mechanism inherits from `Command` class and it cannot be undone. It relies on the `Logic` and `UI` components.
+The `Logic` component mainly handles the parsing of command and posting of the `SelectThemeRequestEvent`, while the `UI` component subscribes to the event and updates the GUI accordingly.
+
+The sequence diagram below illustrates how the select theme mechanism works:
+
+image::SelectThemeSequenceDiagram.PNG[width="800"]
+
+    1. User executes the `theme` command which is then parsed through `AddressBookParser`.
+    2. The index `1` is extracted and parsed into `SelectThemeCommandParser` and an `index` instance is created together with a `SelectThemeCommand` object.
+    3. `SelectThemeCommand` then posts a `SelectThemeRequestEvent` which is picked up and handled by `EventsCenter`.
+    4. The `Main Window` of the `UI` component is then updates with the theme at the given index provided by the user.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `SelectThemeCommand` +
+**Alternative 1 (current choice):** User can only select themes that are provided in the themes list. +
+**Pros:** Easy to implement and less prone to UI and design bugs. +
+**Cons:** No flexibility since the user is unable to change to a specific colour scheme that is not given in the themes list. +
+**Alternative 2:** Allows user to customise and choose their own colour scheme using a colour palette. +
+**Pros:** More flexibility for the user. +
+**Cons:** Much harder to implement and many UI related bugs may occur.
+
+---
+
+**Aspect:** Addition of `ThemesList` +
+**Alternative 1 (current choice):** User can refer to the user guide if they wish to view the list of themes that are available for selection. +
+**Pros:** Saves the hassle of implementing a new command, and the user can figure out how each theme looks like since screenshots are provided. +
+**Cons:** It is tedious for the user to keep referring to the user guide if he is unable to remember the index of each theme. +
+**Alternative 2:** Implement a new `ThemesList` command. +
+**Pros:** More convenient for the user since he can easily find out which themes are available by typing a command. +
+**Cons:** It is a trivial command which may never be used since the user can simply refer to the user guide for the list of themes.
+
+=== Filter by tag mechanism
+
+The filter command inherits from `Command` class as it is not an undoable command. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the filtered person list based on the inputs.
+
+The following sequence diagram illustrates how the mechanism works:
+
+image::FilterSequenceDiagram.png[width="800"]
+
+As shown in the diagram, to obtain a filtered person list based on the tags entered involves the following steps:
+
+    1. `LogicManager` calls `parseCommand` method in `AddressBookParser` with user inputs as parameters.
+    2. `parseCommand` method detects *command word* `filter` and calls `parse` method in `FilterCommandParser` with the rest of inputs as parameters.
+    3. `parse` method stores the tag names entered as a `List<String>`, which is used to construct a `PersonHasTagPredicate` object.
+    4. `parse` then creates a `FilterCommand` object with the `PersonHasTagPredicate` object as the parameter.
+    5. `execute` method in `FilterCommand` calls `updateFilteredPersonList` method in `ModelManager` by passing its predicate as the parameter and returns the result.
+
+`PersonHasTagPredicate` determines whether a person is eligible to appear in the filtered person list. Its `test` method loops through the person's tags and returns **true** when it finds a match with the predicates' tags.
+
+*Alternatively*, in step 3 above, the tag names entered can be store as a `HashSet<Tag>` to construct a `PersonHasTagPredicate` object. Therefore under the `test` method, `Tag` objects of a `Person` and a `PersonHasTagPredicate` can be directly compared instead of comparing `String` tag names.
+
+=== Add tag mechanism
+
+The add tag command inherits from `UndoableCommand`. The mechanism involves two components: `Logic` and `Model`. The `Logic` component is in charge of parsing user inputs while `Model` updates the person based on the inputs.
+
+The following sequence diagram illustrates how the mechanism works:
+
+image::AddTagSequenceDiagram.png[width="800"]
+
+As shown in the diagram, to add a new tag or tags to a person involves the following steps:
+
+    1. `LogicManager` calls `parseCommand` method in `AddressBookParser` with user inputs as parameters.
+    2. `parseCommand` method detects *command word* `addtag` and calls `parse` method in `AddTagCommandParser` with the rest of inputs as parameters.
+    3. `parse` method creates an `Index` instance and a `Set<Tag>` instance through `ParserUtil` and then construct an `AddTagCommand` object.
+    4. `executeUndoableCommand` method in `AddTagCommand` constructs a new Person with the tags added by calling its `createUpdatedPerson` method.
+    5. It then invokes `updatePerson` in `ModelManager` to replace the person with the updated one.
+
+==== Design Considerations
+
+**Aspect:** Implementation of `createUpdatedPerson` in `AddCommand` +
+**Alternative 1 (current choice):** The execution is unsuccessful once any of the tags entered is found in the person's existing tags. +
+**Pros:** Easy to implement and alerts the user about duplicate tags. +
+**Cons:** The user will have to enter the tags again. +
+**Alternative 2:** The person is updated successfully with non-duplicate tags. +
+**Pros:** Might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
+**Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
+
+=== Export
+
+The `ExportCommand` extends the `Command` class. It allows users to export the current Address Book data
+into a CSV file.
+
+The class diagram of the command is shown below:
+
+image::ExportCommandClassDiagram.png[width="800"]
+_Figure 3.6A - Class Diagram of ExportCommand_
+
+From _Figure 3.6A_, the ExportCommand depends on `java.io` to carry out the file IO operations to create the CSV file.
+It also depends on the `Model` class and `Person` package in order to extract the required information to export.
+
+The sequence diagram of the command is shown below:
+
+image::ExportCommandSequenceDiagram.png[width="800"]
+_Figure 3.6B - Sequence Diagram of ExportCommand_
+
+Explanation of _Figure 3.6B_:
+
+1. The `execute("export")` command is called on the `LogicManager`.
+
+2. `LogicManager` calls the `parse` method on `AddressBookParser`.
+
+3. The `parse` method creates a new `ExportCommand` which returns an `ExportCommand`, `e`,
+all the way back to `LogicManager`.
+
+4. `LogicManager` calls the `execute()` method on `e`, an `ExportCommand`.
+
+5. `ExportCommand` obtains the `PersonList` from the `Model`.
+
+6. `ExportCommand` checks if an exported file exists. If the file exists, it will delete the file.
+
+7. `ExportCommand` generates the exported file through a series of self calls and generates a new `CommandResult`, `result`.
+
+8. The `result` is returned to the `LogicManager` which returns it back to the `UI`.
+
+==== Design Considerations
+**Aspect:** Construction of Strings
+
+*Alternative 1 (current choice):* Using `StringBuilder`
+
+*Pros:*
+
+* Able to easily construct the `String` due to the mutability of `StringBuilder`.
+
+*Cons:*
+
+* Dependency on the `StringBuilder` class.
+
+*Alternative 2:* Using `String` only.
+
+*Pros:*
+
+* Reduced dependency on additional classes.
+
+*Cons:*
+
+* Constant re-assignment of resultant `String` is required as it is not mutable.
+
+**Aspect:** Generating Person Data
+
+*Alternative 1 (current choice):* "Hard-code" the data to obtain from a `ReadOnlyPerson`.
+
+*Pros:*
+
+* Code is executed at a faster rate.
+
+*Cons:*
+
+* Coupling is increased with `ReadOnlyPerson`.
+
+* Code is not adaptable should new fields be added to `ReadOnlyPerson`.
+
+*Alternative 2:* Generate person data according to the fields present in `ReadOnlyPerson`.
+
+*Pros:*
+
+* Code is adaptable should new fields be added to `ReadOnlyPerson`.
+
+*Cons:*
+
+* Additional processing overhead.
+
+* Difficult and time-consuming to implement.
+
+
 === Logging
 
 We are using `java.util.logging` package for logging. The `LogsCenter` class is used to manage the logging levels and logging destinations.
@@ -492,14 +694,14 @@ Certain properties of the application can be controlled (e.g App name, logging l
 
 == Documentation
 
-We use asciidoc for writing documentation.
+We use AsciiDoc to document our project.
 
 [NOTE]
-We chose asciidoc over Markdown because asciidoc, although a bit more complex than Markdown, provides more flexibility in formatting.
+We chose AsciiDoc over Markdown since it provides more flexibility in formatting, even though it is slightly more complex.
 
 === Editing Documentation
 
-See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally to preview the end result of your edits.
+See <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to learn how to render `.adoc` files locally so that you can preview your edits.
 Alternatively, you can download the AsciiDoc plugin for IntelliJ, which allows you to preview the changes you have made to your `.adoc` files in real-time.
 
 === Publishing Documentation
@@ -508,14 +710,14 @@ See <<UsingTravis#deploying-github-pages, UsingTravis.adoc>> to learn how to dep
 
 === Converting Documentation to PDF format
 
-We use https://www.google.com/chrome/browser/desktop/[Google Chrome] for converting documentation to PDF format, as Chrome's PDF engine preserves hyperlinks used in webpages.
+We use https://www.google.com/chrome/browser/desktop/[Google Chrome] to convert our documentation into PDF format since Chrome's PDF engine preserves hyperlinks used in webpages.
 
 Here are the steps to convert the project documentation files to PDF format.
 
 .  Follow the instructions in <<UsingGradle#rendering-asciidoc-files, UsingGradle.adoc>> to convert the AsciiDoc files in the `docs/` directory to HTML format.
 .  Go to your generated HTML files in the `build/docs` folder, right click on them and select `Open with` -> `Google Chrome`.
 .  Within Chrome, click on the `Print` option in Chrome's menu.
-.  Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. For best results, use the settings indicated in the screenshot below.
+.  Set the destination to `Save as PDF`, then click `Save` to save a copy of the file in PDF format. For best results, use the settings shown in the screenshot below.
 
 image::chrome_save_as_pdf.png[width="300"]
 _Figure 5.6.1 : Saving documentation as PDF files in Chrome_
@@ -591,8 +793,9 @@ Here are the steps to create a new release.
 === Managing Dependencies
 
 A project often depends on third-party libraries. For example, Address Book depends on the http://wiki.fasterxml.com/JacksonHome[Jackson library] for XML parsing. Managing these _dependencies_ can be automated using Gradle. For example, Gradle can download the dependencies automatically, which is better than these alternatives. +
-a. Include those libraries in the repo (this bloats the repo size) +
-b. Require developers to download those libraries manually (this creates extra work for developers)
+
+* Include those libraries in the repo (this bloats the repo size) +
+* Require developers to download those libraries manually (this creates extra work for developers)
 
 [appendix]
 == Suggested Programming Tasks to Get Started
@@ -1008,6 +1211,26 @@ Use case ends.
 Use case ends.
 
 [discrete]
+=== Use case: Select theme
+
+*MSS*
+
+1.  User enters command to select theme
+2.  AddressBook GUI is updated with the selected theme
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The entered index is invalid.
++
+[none]
+** 1a1. AddressBook shows an error message.
++
+Use case resumes at step 1.
+
+[discrete]
 === Use case: Add person
 
 *MSS*
@@ -1034,7 +1257,6 @@ Use case resumes at step 1.
 ** 2a1. AddressBook shows an error message.
 +
 Use case resumes at step 1.
-
 
 [discrete]
 === Use case: Find phone number of a person
@@ -1147,6 +1369,26 @@ Use case ends
 Use case ends.
 
 * 2a. The list is empty.
++
+Use case ends.
+
+[discrete]
+=== Use case: Exporting data
+
+*MSS*
+
+1.  User requests to export data.
+2.  AddressBook exports the data into a CSV file.
++
+Use case ends
+
+*Extensions*
+
+[none]
+* 1a. The AddressBook is empty.
++
+[none]
+** 1a1. AddressBook shows an error message
 +
 Use case ends.
 
