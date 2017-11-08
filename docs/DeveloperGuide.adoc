@@ -224,7 +224,7 @@ Note how the event is propagated through the `EventsCenter` to the `Storage` and
 
 This section describes some noteworthy details on how certain features are implemented.
 
-// tag::DeleteByNameCommand
+// tag::DeleteByNameCommand[]
 === DeleteByName Command
 
 The `DeleteByNameCommand` extends the `UndoableCommand` class. It enables the deletion of
@@ -348,7 +348,7 @@ is currently unused by any other function.
 
 * Parsing logic for `DeleteCommandParser` becomes more complicated.
 
-// end::DeleteByNameCommand
+// end::DeleteByNameCommand[]
 
 // tag::undoredo[]
 === Undo/Redo mechanism
@@ -595,6 +595,7 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
 
 // end::addtag[]
 
+// tag::export[]
 === Export
 
 The `ExportCommand` extends the `Command` class. It allows users to export the current AB&B data
@@ -700,7 +701,7 @@ all the way back to `LogicManager`.
 * Decelerates code execution.
 
 * Increasing difficulty and time required to properly implement.
-
+// end::export[]
 
 === Logging
 

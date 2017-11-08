@@ -1,5 +1,5 @@
-# Ryan
-###### /java/seedu/address/logic/commands/DeleteByNameCommand.java
+# AceCentury
+###### \java\seedu\address\logic\commands\DeleteByNameCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -42,22 +42,58 @@ public class DeleteByNameCommand extends UndoableCommand {
 
     private final Name nameToBeDeleted;
 
+    private List<ReadOnlyPerson> personList;
+
+    private List<ReadOnlyPerson> filteredPersonList;
+
     public DeleteByNameCommand(Name nameToBeDeleted) {
         this.nameToBeDeleted = nameToBeDeleted;
     }
 
     @Override
     public CommandResult executeUndoableCommand() throws CommandException {
-        List<ReadOnlyPerson> personList = model.getAddressBook().getPersonList();
+        this.personList = model.getAddressBook().getPersonList();
+        ReadOnlyPerson personToDelete = obtainPersonToDelete();
 
+        if (personToDelete == null) { // No matching name found
+            provideSuggestions();
+        }
+
+        try {
+            model.deletePerson(personToDelete);
+        } catch (PersonNotFoundException pnfe) {
+            assert false : "The target person cannot be missing";
+        }
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+    }
+
+    /**
+     * Helper function to obtain the person with the matching name to delete.
+     */
+    private ReadOnlyPerson obtainPersonToDelete() {
         Stream<ReadOnlyPerson> filteredPersonStream = personList.stream()
                 .filter(person -> person.getName().toString().toLowerCase()
                         .equals(nameToBeDeleted.toString().toLowerCase()));
 
-        List<ReadOnlyPerson> filteredPersonList = filteredPersonStream.collect(Collectors.toList());
+        this.filteredPersonList = filteredPersonStream.collect(Collectors.toList());
 
-        if (filteredPersonList.isEmpty()) { // No matching name found
-            // Do a generic name search
+        if (filteredPersonList.isEmpty() || filteredPersonList.size() > 1) { // If no match or similar names exist.
+            return null;
+        }
+
+        ReadOnlyPerson personToDelete = filteredPersonList.get(0);
+        return personToDelete;
+    }
+
+    /**
+     * Helper function to show suggestions (where possible) if no person with a matching name exists.
+     */
+    private void provideSuggestions() throws CommandException {
+        if (filteredPersonList.size() > 1) { // More than 1 person with exact name
+            model.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(nameToBeDeleted));
+            throw new CommandException(MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
+        } else {
             List<String> keywords = Arrays.asList(nameToBeDeleted.toString().split(" "));
             NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(keywords);
             Stream<ReadOnlyPerson> suggestedPersonStream = personList.stream().filter(predicate);
@@ -69,21 +105,7 @@ public class DeleteByNameCommand extends UndoableCommand {
             } else { // No such person found
                 throw new CommandException(Messages.MESSAGE_PERSON_NOT_IN_ADDRESSBOOK);
             }
-
-        } else if (filteredPersonList.size() > 1) { // More than 1 person with exact name
-            model.updateFilteredPersonList(new CaseInsensitiveExactNamePredicate(nameToBeDeleted));
-            throw new CommandException(MESSAGE_MULTIPLE_PERSON_WITH_SAME_NAME);
         }
-
-        ReadOnlyPerson personToDelete = filteredPersonList.get(0); // Get the person to delete
-
-        try {
-            model.deletePerson(personToDelete);
-        } catch (PersonNotFoundException pnfe) {
-            assert false : "The target person cannot be missing";
-        }
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
@@ -94,7 +116,7 @@ public class DeleteByNameCommand extends UndoableCommand {
     }
 }
 ```
-###### /java/seedu/address/logic/commands/ExportCommand.java
+###### \java\seedu\address\logic\commands\ExportCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -250,21 +272,21 @@ public class ExportCommand extends Command {
 
 }
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         final String commandWord = matcher.group("commandWord").toLowerCase();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
 ```
-###### /java/seedu/address/logic/parser/AddressBookParser.java
+###### \java\seedu\address\logic\parser\AddressBookParser.java
 ``` java
         case DeleteByNameCommand.COMMAND_WORD:
             return new DeleteByNameCommandParser().parse(arguments);
 ```
-###### /java/seedu/address/logic/parser/DeleteByNameCommandParser.java
+###### \java\seedu\address\logic\parser\DeleteByNameCommandParser.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -298,7 +320,7 @@ public class DeleteByNameCommandParser implements Parser<DeleteByNameCommand> {
 
 }
 ```
-###### /java/seedu/address/model/person/CaseInsensitiveExactNamePredicate.java
+###### \java\seedu\address\model\person\CaseInsensitiveExactNamePredicate.java
 ``` java
 
 package seedu.address.model.person;
@@ -332,10 +354,10 @@ public class CaseInsensitiveExactNamePredicate implements Predicate<ReadOnlyPers
     }
 }
 ```
-###### /java/seedu/address/model/person/ReadOnlyPerson.java
+###### \java\seedu\address\model\person\ReadOnlyPerson.java
 ``` java
     /**
-     * Returns a List containing all the property names of a Person.
+     * Returns a List of Strings containing all the property names of a Person.
      */
     default List<String> getPropertyNamesAsList() {
         List<String> propertyNames = new ArrayList<String>();

@@ -50,7 +50,7 @@ public class AddressBookParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        //@@author Ryan Teo
+        //@@author AceCentury
         final String commandWord = matcher.group("commandWord").toLowerCase();
         //@@author
 
@@ -63,7 +63,7 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        //@@author Ryan Teo
+        //@@author AceCentury
         case ExportCommand.COMMAND_WORD:
             return new ExportCommand();
         //@@author
@@ -79,7 +79,7 @@ public class AddressBookParser {
         case SelectCommand.COMMAND_WORD:
             return new SelectCommandParser().parse(arguments);
 
-        //@@author Ryan Teo
+        //@@author AceCentury
         case DeleteByNameCommand.COMMAND_WORD:
             return new DeleteByNameCommandParser().parse(arguments);
         //@@author
