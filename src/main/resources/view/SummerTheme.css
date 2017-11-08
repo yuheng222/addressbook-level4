@@ -26,6 +26,8 @@
     -fx-opacity: 1;
 }
 
+/* @@author */
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -78,6 +80,8 @@
     -fx-background-color: -fx-focus-color;
 }
 
+/* @@author yuheng222 */
+
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#d3d3d3, 20%);
     -fx-border-color: transparent transparent transparent transparent;
@@ -125,6 +129,8 @@
     -fx-text-fill: black;
 }
 
+/* @@author */
+
 .cell_big_label {
     -fx-font-family: "Georgia";
     -fx-font-size: 25px;
@@ -136,6 +142,8 @@
     -fx-font-size: 20px;
     -fx-text-fill: #010504;
 }
+
+/* @@author yuheng222 */
 
 .anchor-pane {
     -fx-background-color: derive(#f2f1f1, 20%);
@@ -187,6 +195,8 @@
 .grid-pane .anchor-pane {
     -fx-background-color: #fffdbc;
 }
+
+/* @@author */
 
 .context-menu {
     -fx-background-color: derive(#1d1d1d, 50%);
@@ -336,10 +346,14 @@
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
+/* @@author yuheng222 */
+
 #resultDisplay .content {
     -fx-background-color: transparent, transparent, #f2f1f1, transparent;
     -fx-background-radius: 0;
 }
+
+/* @@author */
 
 #tags {
     -fx-hgap: 7;
