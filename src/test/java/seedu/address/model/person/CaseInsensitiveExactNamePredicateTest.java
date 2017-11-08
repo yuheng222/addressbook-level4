@@ -1,3 +1,5 @@
+//@@author AceCentury
+
 package seedu.address.model.person;
 
 import static org.junit.Assert.assertFalse;
@@ -43,9 +45,7 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         assertTrue(predicate.test(new PersonBuilder().withName("john").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("JOhn").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("johN").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("JOHN").build()));
 
         // 2 words lower case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("john doe"));
@@ -53,13 +53,7 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         assertTrue(predicate.test(new PersonBuilder().withName("john doe").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("John doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john Doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("JOHN doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john DOE").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("JOHN DOE").build()));
 
         // 1 word upper case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JOHN"));
@@ -67,9 +61,7 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         assertTrue(predicate.test(new PersonBuilder().withName("john").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("JOhn").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("johN").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("JOHN").build()));
 
         // 2 words upper case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JOHN DOE"));
@@ -77,13 +69,7 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         assertTrue(predicate.test(new PersonBuilder().withName("john doe").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("John doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john Doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("JOHN doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john DOE").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("JOHN DOE").build()));
 
         // 1 word mixed case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JohN"));
@@ -93,21 +79,13 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         assertTrue(predicate.test(new PersonBuilder().withName("JOhn").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("johN").build()));
-
         // 2 words upper case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JOhN Doe"));
         assertTrue(predicate.test(new PersonBuilder().withName("John Doe").build()));
 
         assertTrue(predicate.test(new PersonBuilder().withName("john doe").build()));
 
-        assertTrue(predicate.test(new PersonBuilder().withName("John doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john Doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("JOHN doe").build()));
-
-        assertTrue(predicate.test(new PersonBuilder().withName("john DOE").build()));
+        assertTrue(predicate.test(new PersonBuilder().withName("JOHN DOE").build()));
     }
 
     @Test
@@ -116,15 +94,11 @@ public class CaseInsensitiveExactNamePredicateTest {
         CaseInsensitiveExactNamePredicate predicate = new CaseInsensitiveExactNamePredicate(new Name("john"));
         assertFalse(predicate.test(new PersonBuilder().withName("johnn").build()));
 
-        assertFalse(predicate.test(new PersonBuilder().withName("Johnn").build()));
-
         assertFalse(predicate.test(new PersonBuilder().withName("john doe").build()));
 
         // 2 words lower case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("john doe"));
         assertFalse(predicate.test(new PersonBuilder().withName("john").build()));
-
-        assertFalse(predicate.test(new PersonBuilder().withName("John").build()));
 
         assertFalse(predicate.test(new PersonBuilder().withName("doe").build()));
 
@@ -132,25 +106,22 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         // 1 word upper case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JOHN"));
-        assertFalse(predicate.test(new PersonBuilder().withName("johnn").build()));
 
-        assertFalse(predicate.test(new PersonBuilder().withName("Johnn").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("JOHNN").build()));
 
-        assertFalse(predicate.test(new PersonBuilder().withName("john doe").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("JOHN DOE").build()));
 
         // 2 words upper case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("JOHN DOE"));
-        assertFalse(predicate.test(new PersonBuilder().withName("john").build()));
 
-        assertFalse(predicate.test(new PersonBuilder().withName("John").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("JOHN").build()));
 
-        assertFalse(predicate.test(new PersonBuilder().withName("doe").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("DOE").build()));
 
         assertFalse(predicate.test(new PersonBuilder().withName("johnn doe").build()));
 
         // 1 word mixed case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("John"));
-        assertFalse(predicate.test(new PersonBuilder().withName("johnn").build()));
 
         assertFalse(predicate.test(new PersonBuilder().withName("Johnn").build()));
 
@@ -158,7 +129,6 @@ public class CaseInsensitiveExactNamePredicateTest {
 
         // 2 words mixed case input
         predicate = new CaseInsensitiveExactNamePredicate(new Name("John Doe"));
-        assertFalse(predicate.test(new PersonBuilder().withName("john").build()));
 
         assertFalse(predicate.test(new PersonBuilder().withName("John").build()));
 
