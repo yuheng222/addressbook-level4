@@ -61,7 +61,7 @@ public interface ReadOnlyPerson {
     }
 
 
-
+    //@@author
     /**
      * Formats the person as text, showing all contact details.
      */
