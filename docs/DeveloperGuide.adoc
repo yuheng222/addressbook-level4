@@ -981,12 +981,12 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The list is empty.
+* 1a. The AddressBook is empty.
 +
 [none]
 ** 1a1. AddressBook shows an error message.
 +
-Use case resumes at step 1.
+Use case ends.
 
 * 2a. The given name is not found in AddressBook.
 +
@@ -994,6 +994,10 @@ Use case resumes at step 1.
 ** 2a1. AddressBook suggests possible persons for deletion.
 +
 Use case resumes at step 1.
+
+** 2b1. AddressBook shows an error message.
++
+Use case ends.
 
 [none]
 * 3a. Multiple persons have the same name.
