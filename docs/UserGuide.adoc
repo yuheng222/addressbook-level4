@@ -190,6 +190,7 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
+// tag::deletebyname[]
 === Deleting a person by name : `deletebyname`
 
 Deletes the specified person from the address book. Case insensitive.
@@ -213,6 +214,8 @@ person list to provide suggestions on possible persons to delete.
 If there is more than 1 person with the exact same name, it will update the displayed
 person list to show all the persons with the same name. You will then be prompted to use
 the `delete` command.
+
+// end::deletebyname[]
 
 === Selecting a person : `select`
 
@@ -329,12 +332,14 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
-
+// tag::export[]
 === Exporting the data : `export`
 Saves the current data in the address book into a CSV (Comma-Separated Values) file.
-The file will be saved in the same location where you stored the application.
+The file will be saved in the same location where you stored the application. The file
+will be named `AddressBookData.csv`.
 
 Format: `export`
+// end::export[]
 
 === Saving the data
 
