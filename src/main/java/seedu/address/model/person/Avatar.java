@@ -17,10 +17,9 @@ public class Avatar {
     public static final String MESSAGE_AVATAR_CONSTRAINTS =
             "The file path must be valid and the avatar should be of correct image file format";
     public static final String DEFAULT_PATH = "default.png";
-    private static final String AVATAR_VALIDATION_REGEX =
-            "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
     public final String value;
     private BufferedImage avatar;
+    private File defaultImageRoot = null;
 
     /**
      * Sets avatar based on the given filepath.
@@ -30,9 +29,9 @@ public class Avatar {
     public Avatar(String path) throws IllegalValueException, IOException {
         if (path == null || (path.length()) == 0) {
             this.avatar = ImageIO.read(getClass().getClassLoader().getResource(DEFAULT_PATH));
+            defaultImageRoot = new File(DEFAULT_PATH);
+            ImageIO.write(avatar, "png", defaultImageRoot);
             this.value = DEFAULT_PATH;
-        } else if (!isValidAvatar(path)) {
-            throw new IllegalValueException(MESSAGE_AVATAR_CONSTRAINTS);
         } else {
             try {
                 File source = new File(path);
@@ -46,13 +45,6 @@ public class Avatar {
 
     public BufferedImage getAvatar() {
         return avatar;
-    }
-
-    /**
-     * Returns if a given string is a valid image file.
-     */
-    public static boolean isValidAvatar(String test) {
-        return test.matches(AVATAR_VALIDATION_REGEX);
     }
 
     @Override

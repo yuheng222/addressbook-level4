@@ -177,7 +177,7 @@ _Figure 2.3.1 : Interactions Inside the Logic Component for the `delete 1` Comma
 ==== Model component
 The `Model` component holds the data of the App in-memory. The following diagram illustrates the structure of Model component.
 
-image::ModelClassDiagram.png[width="800"]
+image::ModelClassDiagram.PNG[width="800"]
 _Figure 2.4.1 : Structure of the Model Component_
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
@@ -472,7 +472,7 @@ The sort mechanism mainly relies on the logic component. The primary sorting alg
 
 The sequence diagram below illustrates how the sort mechanism works:
 
-image::SortSequenceDiagram.png[width="800"]
+image::SortSequenceDiagram.PNG[width="800"]
 
 
     1. User executes the `sort` command which is then parsed through `AddressBookParser`.
@@ -498,7 +498,7 @@ The `Logic` component mainly handles the parsing of command and posting of the `
 
 The sequence diagram below illustrates how the select theme mechanism works:
 
-image::SelectThemeSequenceDiagram.png[width="800"]
+image::SelectThemeSequenceDiagram.PNG[width="800"]
 
     1. User executes the `theme` command which is then parsed through `AddressBookParser`.
     2. The index `1` is extracted and parsed into `SelectThemeCommandParser` and an `index` instance is created together with a `SelectThemeCommand` object.
