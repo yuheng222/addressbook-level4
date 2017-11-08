@@ -37,7 +37,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_AVATAR + "src/main/resources/images/app_icon.png "
+            + PREFIX_AVATAR + "D:/xavier.jpg "
             + PREFIX_NOK_NAME + "Peter Doe "
             + PREFIX_NOK_PHONE + "87654321 "
             + PREFIX_TAG + "friends "
