@@ -17,7 +17,8 @@ public class Tag {
     //@@author WangJieee
     private static String[] colors = {"CornflowerBlue", "Tomato", "DarkSlateGray", "Crimson", "DarkBlue", "DarkGreen",
                                       "FireBrick", "OrangeRed", "Orchid", "blue", "Gold", "red", "MediumSeaGreen",
-                                      "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral"};
+                                      "PaleVioletRed", "Peru", "RebeccaPurple", "RoyalBlue", "SeaGreen", "Coral",
+                                      "DarkOrange", "DarkOliveGreen", "DarkRed", "DarkSalmon", "DarkSeaGreen", "Teal"};
     private static HashMap<String, String> tagColors = new HashMap<String, String>();
     private static int colourIndex = 0;
     public final String tagName;
