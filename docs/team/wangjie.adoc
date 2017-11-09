@@ -98,7 +98,7 @@ This feature facilitates typing of commands and helps users who are not able to 
 
 * Added welcome page and enhanced GUI (Pull requests https://github.com/CS2103AUG2017-T10-B3/main/pull/25[#25], https://github.com/CS2103AUG2017-T10-B3/main/pull/25[#44])
 
-== Contribution to other team's project 
+== Contribution to other team's project
 
 * Submitted bug report and suggestion during Acceptance Testing session (Issues https://github.com/CS2103AUG2017-W09-B1/main/issues/116[#116], https://github.com/CS2103AUG2017-W09-B1/main/issues/125[#125])
 

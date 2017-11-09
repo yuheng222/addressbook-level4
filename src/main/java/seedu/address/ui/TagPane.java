@@ -22,7 +22,7 @@ public class TagPane extends UiPart<Region> {
 
     @FXML
     private FlowPane totalTags;
-    
+
     public TagPane(ObjectProperty<UniqueTagList> tagListCopy) {
         super(FXML);
         tagList = tagListCopy;
