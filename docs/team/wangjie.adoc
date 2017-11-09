@@ -6,7 +6,7 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 == Project: AB&B
 AB&B is a desktop address book application for users to manage their personal contacts. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 6 kLoC.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/WangJieee.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/WangJieee.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/main/WangJieee.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/WangJieee.md[Test code]]
 
 === Enhancement Added: Filter by Tag
 
