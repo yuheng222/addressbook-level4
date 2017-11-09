@@ -97,7 +97,7 @@ public class Person implements ReadOnlyPerson {
 
     //@@author yuheng222
     public void setAvatar(Avatar avatar) {
-        this.avatar.set(requireNonNull(avatar));
+        this.avatar.set(avatar);
     }
 
     @Override
