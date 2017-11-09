@@ -78,11 +78,12 @@ it would save them time and effort if AB&B were able to suggest or prioritise fr
 accessed contacts in the displayed person list.
 
 === Other contributions
-* Made the `COMMAND WORD` case-insensitive. (Pull request https://github.com/CS2103AUG2017-T10-B3/main/pull/42[#42])
+* Made the `command word` case-insensitive. (Pull request https://github.com/CS2103AUG2017-T10-B3/main/pull/42[#42])
+* Offered `DeleteByNameCommand` for re-use (https://github.com/nus-cs2103-AY1718S1/forum/issues/121[Re-Use Offer])
 
 === Contribution to other teams' projects
-*`Export` function shared with `Tourist Book`. (https://github.com/CS2103AUG2017-F09-B2/main/pull/78[Implementation]) (https://github.com/nus-cs2103-AY1718S1/forum/issues/158[Re-Use Offer])
+* `Export` function re-used by `Tourist Book`. (https://github.com/CS2103AUG2017-F09-B2/main/pull/78[Implementation]) (https://github.com/nus-cs2103-AY1718S1/forum/issues/158[Re-Use Offer])
 
-*Bug reports for `Contact Pro` (Issues https://github.com/CS2103AUG2017-T12-B1/main/issues/62[#62], https://github.com/CS2103AUG2017-T12-B1/main/issues/63[#63], https://github.com/CS2103AUG2017-T12-B1/main/issues/71[#71])
+* Bug reports for `ContactPro` (Issues https://github.com/CS2103AUG2017-T12-B1/main/issues/62[#62], https://github.com/CS2103AUG2017-T12-B1/main/issues/63[#63], https://github.com/CS2103AUG2017-T12-B1/main/issues/71[#71])
 
-*Bug report for `AcquaiNote` (Issue https://github.com/CS2103AUG2017-T10-B1/main/issues/80[#80])
+* Bug report for `AcquaiNote` (Issue https://github.com/CS2103AUG2017-T10-B1/main/issues/80[#80])
