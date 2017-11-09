@@ -90,10 +90,13 @@ public class MainApp extends Application {
         ReadOnlyAddressBook initialData;
         try {
             addressBookOptional = storage.readAddressBook();
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
+            } else {
+                logger.info("AddressBook data from previous session is now backed up");
+                storage.backupAddressBook(initialData);
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
