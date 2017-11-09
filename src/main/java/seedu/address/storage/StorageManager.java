@@ -96,7 +96,8 @@ public class StorageManager extends ComponentManager implements Storage {
     }
 
     public Optional<ReadOnlyAddressBook> readBackupAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath() + "-backup.xml");
+        return readAddressBook(addressBookStorage.getAddressBookFilePath()
+                .substring(0, addressBookStorage.getAddressBookFilePath().length() - 4) + "-backup.xml");
     }
 
 }

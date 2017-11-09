@@ -326,6 +326,13 @@ The file will be saved in the same location where you stored the application.
 
 Format: `export`
 
+// tag::backup[]
+=== Backing up the data : `backup`
+Address book's data can be stored in a backup file in the same directory as the original data file.
+
+Format: 'backup'
+// end::backup[]
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
@@ -339,6 +346,9 @@ There is no need to save manually.
 
 *Q*: How do I transfer my data to another application? +
 *A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
+
+*Q*: How do I backup my data locally on my computer? +
+*A*: You may use the `backup` command to generate a backup file with the same format as the original data file.
 
 == Command Summary
 

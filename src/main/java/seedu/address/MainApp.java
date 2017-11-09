@@ -44,6 +44,7 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static Storage backup;
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -63,6 +64,7 @@ public class MainApp extends Application {
         userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new XmlAddressBookStorage(userPrefs.getAddressBookFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        backup = storage;
 
         initLogging(config);
 
@@ -93,9 +95,6 @@ public class MainApp extends Application {
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
-            } else {
-                logger.info("AddressBook data from previous session is now backed up");
-                storage.backupAddressBook(initialData);
             }
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
@@ -207,6 +206,10 @@ public class MainApp extends Application {
     public void handleExitAppRequestEvent(ExitAppRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         this.stop();
+    }
+
+    public static Storage getBackup() {
+        return backup;
     }
 
     public static void main(String[] args) {
