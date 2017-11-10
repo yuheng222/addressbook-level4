@@ -398,6 +398,7 @@ e.g.`theme 2`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Export* : `export`
+* *Backup* : `backup`
 
 == Themes List
 
