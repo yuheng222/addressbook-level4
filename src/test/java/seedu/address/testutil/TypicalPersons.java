@@ -42,11 +42,13 @@ public class TypicalPersons {
     public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAvatar("default.png")
-            .withNokName("Carter Kurz").withNokPhone("81526415").build();
+            .withNokName("Carter Kurz").withNokPhone("81526415")
+            .withTags("colleagues", "nicePerson").build();
     public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withAvatar("default.png")
-            .withNokName("Ethan Meier").withNokPhone("91564164").build();
+            .withNokName("Ethan Meier").withNokPhone("91564164")
+            .withTags("boss", "nicePerson").build();
     public static final ReadOnlyPerson ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withAvatar("default.png")

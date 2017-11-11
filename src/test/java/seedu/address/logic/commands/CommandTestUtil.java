@@ -44,6 +44,7 @@ public class CommandTestUtil {
     public static final String VALID_NOK_PHONE_AMY = "12121212";
     public static final String VALID_NOK_PHONE_BOB = "21212121";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FRIENDS = "friends";
     public static final String VALID_TAG_HUSBAND = "husband";
 
     public static final String ADDRESS_DEFAULT_UNDEFINED = " " + PREFIX_ADDRESS + DEFAULT_UNDEFINED;
