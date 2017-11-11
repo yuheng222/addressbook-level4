@@ -64,7 +64,7 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
         editedPerson = new PersonBuilder(personToEdit).withTags(VALID_TAG_OWESMONEY, VALID_TAG_FRIENDS,
                 VALID_TAG_CLASSMATES, VALID_TAG_ONE).build();
         assertCommandSuccess(command, index, editedPerson);
-        
+
         /* --------------------------------- Performing invalid addtag operation -------------------------------------- */
 
         /* Case: add a tag that the person already has -> rejected */

@@ -40,7 +40,7 @@ public class TypicalPersons {
     public static final String VALID_TAG_NICEPERSON = "nicePerson";
     public static final String VALID_TAG_BOSS = "boss";
     public static final String VALID_TAG_CLASSMATES = "classmates";
-    
+
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("85355255").withAvatar("default.png")
