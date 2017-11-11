@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 
@@ -51,12 +52,13 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Tag // instanceof handles nulls
-                && this.tagName.equals(((Tag) other).tagName)); // state check
+                && this.tagName.equals(((Tag) other).tagName))
+                && this.tagColour.equals(((Tag) other).tagColour); // state check
     }
 
     @Override
     public int hashCode() {
-        return tagName.hashCode();
+        return Objects.hash(tagName, tagColour);
     }
 
     /**
