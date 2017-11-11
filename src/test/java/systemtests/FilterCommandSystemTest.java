@@ -1,3 +1,5 @@
+//@@author WangJieee
+
 package systemtests;
 
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
@@ -7,16 +9,12 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_FRIENDS;
-import static seedu.address.testutil.TypicalPersons.VALID_TAG_NEIGHBOURS;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 
 public class FilterCommandSystemTest extends AddressBookSystemTest {
@@ -28,13 +26,6 @@ public class FilterCommandSystemTest extends AddressBookSystemTest {
         String command = "   " + FilterCommand.COMMAND_WORD + " " + "  neighbours  ";
         Model expectedModel = getModel();
         ModelHelper.setFilteredList(expectedModel, ALICE, GEORGE); // They all have tag "friends"
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: repeat previous filter command where person list is displaying the persons we are filtering
-         * -> 2 persons found
-         */
-        command = FilterCommand.COMMAND_WORD + " " + VALID_TAG_NEIGHBOURS;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
@@ -52,11 +43,6 @@ public class FilterCommandSystemTest extends AddressBookSystemTest {
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 
-        /* Case: filter multiple tags in address book, 2 keywords in reversed order -> 2 persons found */
-        command = FilterCommand.COMMAND_WORD + " boss colleagues";
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
         /* Case: filter multiple tags in address book, 2 keywords with 1 repeat -> 2 persons found */
         command = FilterCommand.COMMAND_WORD + " colleagues boss colleagues";
         assertCommandSuccess(command, expectedModel);
@@ -68,16 +54,6 @@ public class FilterCommandSystemTest extends AddressBookSystemTest {
         command = FilterCommand.COMMAND_WORD + " colleagues boss NonMatchingKeyWord";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
-        /* Case: undo previous find command -> rejected */
-        command = UndoCommand.COMMAND_WORD;
-        String expectedResultMessage = UndoCommand.MESSAGE_FAILURE;
-        assertCommandFailure(command, expectedResultMessage);
-
-        /* Case: redo previous find command -> rejected */
-        command = RedoCommand.COMMAND_WORD;
-        expectedResultMessage = RedoCommand.MESSAGE_FAILURE;
-        assertCommandFailure(command, expectedResultMessage);
 
         /* Case: filter persons with same tags in address book after deleting 1 of them -> 1 person found */
         executeCommand(DeleteCommand.COMMAND_WORD + " 1");
@@ -109,36 +85,6 @@ public class FilterCommandSystemTest extends AddressBookSystemTest {
         command = FilterCommand.COMMAND_WORD + " Girlfriend";
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
-
-        /* Case: filter by phone number of person in address book -> 0 persons found */
-        command = FilterCommand.COMMAND_WORD + " " + DANIEL.getPhone().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: filter by address of person in address book -> 0 persons found */
-        command = FilterCommand.COMMAND_WORD + " " + DANIEL.getAddress().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: filter by email of person in address book -> 0 persons found */
-        command = FilterCommand.COMMAND_WORD + " " + DANIEL.getEmail().value;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: filter by name of person in address book -> 0 persons found */
-        String name = DANIEL.getName().fullName;
-        command = FilterCommand.COMMAND_WORD + " " + name;
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardUnchanged();
-
-        /* Case: filter while a person is selected -> selected card deselected */
-        showAllPersons();
-        selectPerson(Index.fromOneBased(1));
-        assert !getPersonListPanel().getHandleToSelectedCard().getName().equals(DANIEL.getName().fullName);
-        command = FilterCommand.COMMAND_WORD + " boss";
-        ModelHelper.setFilteredList(expectedModel, DANIEL);
-        assertCommandSuccess(command, expectedModel);
-        assertSelectedCardDeselected();
 
         /* Case: filter person in empty address book -> 0 persons found */
         executeCommand(ClearCommand.COMMAND_WORD);

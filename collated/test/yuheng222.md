@@ -1,5 +1,5 @@
 # yuheng222
-###### \java\seedu\address\logic\commands\AddCommandTest.java
+###### /java/seedu/address/logic/commands/AddCommandTest.java
 ``` java
         @Override
         public void sort() {
@@ -12,7 +12,7 @@
             return null;
         }
 ```
-###### \java\seedu\address\logic\commands\SelectThemeCommandTest.java
+###### /java/seedu/address/logic/commands/SelectThemeCommandTest.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -145,7 +145,7 @@ public class SelectThemeCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\SortCommandTest.java
+###### /java/seedu/address/logic/commands/SortCommandTest.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -198,7 +198,7 @@ public class SortCommandTest {
     }
 }
 ```
-###### \java\seedu\address\logic\LogicManagerTest.java
+###### /java/seedu/address/logic/LogicManagerTest.java
 ``` java
     @Test
     public void execute_selectThemeCommandExecutionError_throwsCommandException() {
@@ -207,7 +207,7 @@ public class SortCommandTest {
         assertHistoryCorrect(selectThemeCommand);
     }
 ```
-###### \java\seedu\address\logic\parser\SelectThemeCommandParserTest.java
+###### /java/seedu/address/logic/parser/SelectThemeCommandParserTest.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -241,7 +241,7 @@ public class SelectThemeCommandParserTest {
     }
 }
 ```
-###### \java\seedu\address\testutil\EditPersonDescriptorBuilder.java
+###### /java/seedu/address/testutil/EditPersonDescriptorBuilder.java
 ``` java
     /**
      * Sets the {@code Avatar} of the {@code EditPersonDescriptor} that we are building.
@@ -255,7 +255,7 @@ public class SelectThemeCommandParserTest {
         return this;
     }
 ```
-###### \java\seedu\address\testutil\PersonBuilder.java
+###### /java/seedu/address/testutil/PersonBuilder.java
 ``` java
     /**
      * Sets the {@code Avatar} of the {@code Person} that we are building.
@@ -271,7 +271,7 @@ public class SelectThemeCommandParserTest {
         return this;
     }
 ```
-###### \java\seedu\address\testutil\TypicalThemes.java
+###### /java/seedu/address/testutil/TypicalThemes.java
 ``` java
 
 package seedu.address.testutil;
@@ -285,7 +285,7 @@ public class TypicalThemes {
     public static final String NAME_THIRD_THEME = "CoffeeTheme.css";
 }
 ```
-###### \java\systemtests\SelectThemeCommandSystemTest.java
+###### /java/systemtests/SelectThemeCommandSystemTest.java
 ``` java
 
 package systemtests;
@@ -392,7 +392,7 @@ public class SelectThemeCommandSystemTest extends AddressBookSystemTest {
     }
 }
 ```
-###### \java\systemtests\SortCommandSystemTest.java
+###### /java/systemtests/SortCommandSystemTest.java
 ``` java
 
 package systemtests;

@@ -1,30 +1,26 @@
+//@@author WangJieee
+
 package systemtests;
 
 import static org.junit.Assert.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.INVALID_TAG;
 import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_CLASSMATES;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_FRIENDS;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_NEIGHBOURS;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_ONE;
 import static seedu.address.testutil.TypicalPersons.VALID_TAG_OWESMONEY;
-import static seedu.address.testutil.TypicalPersons.VALID_TAG_TWO;
 
 import org.junit.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTagCommand;
-import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyPerson;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddTagCommandSystemTest extends AddressBookSystemTest {
@@ -47,18 +43,6 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
                 .withTags(VALID_TAG_FRIENDS, VALID_TAG_NEIGHBOURS, "CS2101", "CS2103").build();
         assertCommandSuccess(command, index, editedPerson);
 
-        /* Case: undo editing the last person in the list -> last person restored */
-        command = UndoCommand.COMMAND_WORD;
-        String expectedResultMessage = UndoCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(command, model, expectedResultMessage);
-
-        /* Case: redo editing the last person in the list -> last person edited again */
-        command = RedoCommand.COMMAND_WORD;
-        expectedResultMessage = RedoCommand.MESSAGE_SUCCESS;
-        model.updatePerson(
-                getModel().getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedPerson);
-        assertCommandSuccess(command, model, expectedResultMessage);
-
         /* Case: add tag with same name, but with a different case
          * -> tags updated
          */
@@ -80,51 +64,14 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
         editedPerson = new PersonBuilder(personToEdit).withTags(VALID_TAG_OWESMONEY, VALID_TAG_FRIENDS,
                 VALID_TAG_CLASSMATES, VALID_TAG_ONE).build();
         assertCommandSuccess(command, index, editedPerson);
-
-        /* Case: filtered person list, edit index within bounds of address book but out of bounds of person list
-         * -> rejected
-         */
-        showPersonsWithName(KEYWORD_MATCHING_MEIER);
-        int invalidIndex = getModel().getAddressBook().getPersonList().size();
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " " + invalidIndex + " " + VALID_TAG_ONE,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-
+        
         /* --------------------------------- Performing invalid addtag operation -------------------------------------- */
-
-        /* Case: invalid index (0) -> rejected */
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " 0" + " " + VALID_TAG_ONE,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
-
-        /* Case: invalid index (-1) -> rejected */
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " -1" + " " + VALID_TAG_ONE,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
-
-        /* Case: invalid index (size + 1) -> rejected */
-        invalidIndex = getModel().getFilteredPersonList().size() + 1;
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " " + invalidIndex + " " + VALID_TAG_ONE,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-
-        /* Case: missing index -> rejected */
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " " + VALID_TAG_ONE,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
-
-        /* Case: missing tags -> rejected */
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(),
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
-
-        /* Case: invalid tag -> rejected */
-        assertCommandFailure(AddTagCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased()
-                + " " + INVALID_TAG, Tag.MESSAGE_TAG_CONSTRAINTS);
 
         /* Case: add a tag that the person already has -> rejected */
         index = INDEX_FIRST_PERSON;
-        command = AddTagCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_TAG_FRIENDS
-                + " " + VALID_TAG_NEIGHBOURS;
-        assertCommandFailure(command, AddTagCommand.MESSAGE_DUPLICATE_TAG +VALID_TAG_FRIENDS);
-        
-        /* Case: add multiple tags, one of them already exists in the person -> rejected */
-        command = AddTagCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_TAG_TWO + " " + VALID_TAG_FRIENDS;
-        assertCommandFailure(command, AddTagCommand.MESSAGE_DUPLICATE_TAG + VALID_TAG_FRIENDS); 
+        command = AddTagCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_TAG_NEIGHBOURS
+                + " " + VALID_TAG_FRIENDS;
+        assertCommandFailure(command, AddTagCommand.MESSAGE_DUPLICATE_TAG +VALID_TAG_NEIGHBOURS);
     }
 
     /**
