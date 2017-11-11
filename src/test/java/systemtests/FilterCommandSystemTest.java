@@ -1,25 +1,28 @@
 package systemtests;
 
-import org.junit.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.*;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.*;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.KEYWORD_MATCHING_MEIER;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIENDS;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.VALID_TAG_FRIENDS;
+import static seedu.address.testutil.TypicalPersons.VALID_TAG_NEIGHBOURS;
+
+import org.junit.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.FilterCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.model.Model;
 
 public class FilterCommandSystemTest extends AddressBookSystemTest {
     @Test
     public void filter() {
-        /* Case: filter one tag in address book to display multiple persons, command with leading spaces and trailing spaces
+        /* Case: filter one tag in address book, command with leading spaces and trailing spaces
          * -> 2 persons found
          */
         String command = "   " + FilterCommand.COMMAND_WORD + " " + "  neighbours  ";
@@ -31,7 +34,7 @@ public class FilterCommandSystemTest extends AddressBookSystemTest {
         /* Case: repeat previous filter command where person list is displaying the persons we are filtering
          * -> 2 persons found
          */
-        command = FilterCommand.COMMAND_WORD + " " + "neighbours";
+        command = FilterCommand.COMMAND_WORD + " " + VALID_TAG_NEIGHBOURS;
         assertCommandSuccess(command, expectedModel);
         assertSelectedCardUnchanged();
 

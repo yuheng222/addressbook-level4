@@ -30,25 +30,36 @@ import seedu.address.model.person.exceptions.DuplicatePersonException;
  */
 public class TypicalPersons {
 
+    public static final String VALID_TAG_ONE = "one";
+    public static final String VALID_TAG_TWO = "two";
+    public static final String INVALID_TAG = "$%5";
+    public static final String VALID_TAG_FRIENDS = "friends";
+    public static final String VALID_TAG_NEIGHBOURS = "neighbours";
+    public static final String VALID_TAG_OWESMONEY = "owesMoney";
+    public static final String VALID_TAG_COLLEAGUES = "colleagues";
+    public static final String VALID_TAG_NICEPERSON = "nicePerson";
+    public static final String VALID_TAG_BOSS = "boss";
+    public static final String VALID_TAG_CLASSMATES = "classmates";
+    
     public static final ReadOnlyPerson ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("85355255").withAvatar("default.png")
-            .withTags("friends", "neighbours").build();
+            .withTags(VALID_TAG_FRIENDS, VALID_TAG_NEIGHBOURS).build();
     public static final ReadOnlyPerson BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withAvatar("default.png")
             .withNokName("Aleena Meier").withNokPhone("87654321")
-            .withTags("owesMoney", "friends").build();
+            .withTags(VALID_TAG_OWESMONEY, VALID_TAG_FRIENDS).build();
     public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAvatar("default.png")
             .withNokName("Carter Kurz").withNokPhone("81526415")
-            .withTags("colleagues", "nicePerson").build();
+            .withTags(VALID_TAG_COLLEAGUES, VALID_TAG_NICEPERSON).build();
     public static final ReadOnlyPerson DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withAvatar("default.png")
             .withNokName("Ethan Meier").withNokPhone("91564164")
-            .withTags("boss", "nicePerson").build();
+            .withTags(VALID_TAG_BOSS, VALID_TAG_NICEPERSON).build();
     public static final ReadOnlyPerson ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withAvatar("default.png")
@@ -60,7 +71,7 @@ public class TypicalPersons {
     public static final ReadOnlyPerson GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withAvatar("default.png")
             .withNokName("Gregory Best").withNokPhone("94518515")
-            .withTags("friends", "classmates", "neighbours").build();
+            .withTags(VALID_TAG_FRIENDS, VALID_TAG_CLASSMATES, VALID_TAG_NEIGHBOURS).build();
 
     // Manually added
     public static final ReadOnlyPerson HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
