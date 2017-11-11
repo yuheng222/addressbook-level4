@@ -239,7 +239,7 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
     public void addTag() throws Exception {
         Model model = getModel();
 
-        /* ----------------- Performing addtag operation while an unfiltered list is being shown ---------------------- */
+        /* ----------------- Performing addtag operation while an unfiltered list is being shown ------------------ */
 
         /* Case: add multiple tags, command with leading spaces,
          * trailing spaces and multiple spaces between each keywords
@@ -263,7 +263,7 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
                 .build();
         assertCommandSuccess(command, index, editedPerson);
 
-        /* ------------------ Performing addtag operation while a filtered list is being shown ------------------------ */
+        /* ------------------ Performing addtag operation while a filtered list is being shown -------------------- */
 
         /* Case: filtered person list, addtag index within bounds of address book and person list -> tags updated */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
@@ -275,13 +275,13 @@ public class AddTagCommandSystemTest extends AddressBookSystemTest {
                 VALID_TAG_CLASSMATES, VALID_TAG_ONE).build();
         assertCommandSuccess(command, index, editedPerson);
 
-        /* --------------------------------- Performing invalid addtag operation -------------------------------------- */
+        /* --------------------------------- Performing invalid addtag operation ---------------------------------- */
 
         /* Case: add a tag that the person already has -> rejected */
         index = INDEX_FIRST_PERSON;
         command = AddTagCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_TAG_NEIGHBOURS
                 + " " + VALID_TAG_FRIENDS;
-        assertCommandFailure(command, AddTagCommand.MESSAGE_DUPLICATE_TAG +VALID_TAG_NEIGHBOURS);
+        assertCommandFailure(command, AddTagCommand.MESSAGE_DUPLICATE_TAG + VALID_TAG_NEIGHBOURS);
     }
 
     /**
@@ -552,7 +552,7 @@ public class RemoveTagCommandSystemTest extends AddressBookSystemTest {
     public void removeTag() throws Exception {
         Model model = getModel();
 
-        /* ----------------- Performing removetag operation while an unfiltered list is being shown ---------------------- */
+        /* ----------------- Performing removetag operation while an unfiltered list is being shown ---------------- */
 
         /* Case: remove multiple tags, command with leading spaces,
          * trailing spaces and multiple spaces between each keywords
@@ -566,7 +566,7 @@ public class RemoveTagCommandSystemTest extends AddressBookSystemTest {
                 .withTags(VALID_TAG_CLASSMATES).build();
         assertCommandSuccess(command, index, editedPerson);
 
-        /* ------------------ Performing removetag operation while a filtered list is being shown ------------------------ */
+        /* ------------------ Performing removetag operation while a filtered list is being shown ----------------- */
 
         /* Case: filtered person list, removetag index within bounds of address book and person list -> tags updated */
         showPersonsWithName(KEYWORD_MATCHING_MEIER);
@@ -578,12 +578,12 @@ public class RemoveTagCommandSystemTest extends AddressBookSystemTest {
                 .build();
         assertCommandSuccess(command, index, editedPerson);
 
-        /* --------------------------------- Performing invalid removetag operation -------------------------------------- */
+        /* --------------------------------- Performing invalid removetag operation ------------------------------- */
 
         /* Case: remove a tag that the person does not have -> rejected */
         index = INDEX_FIRST_PERSON;
         command = RemoveTagCommand.COMMAND_WORD + " " + index.getOneBased() + " " + VALID_TAG_BOSS;
-        assertCommandFailure(command, RemoveTagCommand.MESSAGE_TAG_NOT_FOUND +VALID_TAG_BOSS);
+        assertCommandFailure(command, RemoveTagCommand.MESSAGE_TAG_NOT_FOUND + VALID_TAG_BOSS);
     }
 
     /**
