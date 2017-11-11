@@ -53,6 +53,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
+[NOTE]
+Mac users may encounter problems in reading the headings in the help window because the system does not recognise the font. Please use this User Guide instead for help.
+
 
 === Adding a person: `add`
 
@@ -341,6 +344,13 @@ will be named `AddressBookData.csv`.
 Format: `export`
 // end::export[]
 
+// tag::backup[]
+=== Backing up the data : `backup`
+Address book's data can be stored in a backup file in the same directory as the original data file.
+
+Format: 'backup'
+// end::backup[]
+
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
@@ -354,6 +364,9 @@ There is no need to save manually.
 
 *Q*: How do I transfer my data to another application? +
 *A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
+
+*Q*: How do I backup my data locally on my computer? +
+*A*: You may use the `backup` command to generate a backup file with the same format as the original data file.
 
 == Command Summary
 
@@ -388,6 +401,7 @@ e.g.`theme 2`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Export* : `export`
+* *Backup* : `backup`
 
 == Themes List
 

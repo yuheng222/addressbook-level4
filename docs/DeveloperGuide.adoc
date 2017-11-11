@@ -583,13 +583,33 @@ As shown in the diagram, to add a new tag or tags to a person involves the follo
     4. `executeUndoableCommand` method in `AddTagCommand` constructs a new Person with the tags added by calling its `createUpdatedPerson` method.
     5. It then invokes `updatePerson` in `ModelManager` to replace the person with the updated one.
 
+In step 4 above, the updated tags of the person is obtained through the following algorithm:
+[source,java]
+----
+public static HashSet<Tag> getUpdatedTags(Set<Tag> oldTags, Set<Tag> tagsToAdd) throws DuplicateTagException {
+
+    HashSet<Tag> updatedTags = new HashSet<>(oldTags);
+    for (Tag toAdd : tagsToAdd) {
+        requireNonNull(toAdd);
+
+        if (oldTags.contains(toAdd)) {
+            throw new DuplicateTagException(toAdd.tagName);
+        }
+
+        updatedTags.add(toAdd);
+}
+
+    return updatedTags;
+}
+----
+
 ==== Design Considerations
 
 **Aspect:** Implementation of `createUpdatedPerson` in `AddCommand` +
-**Alternative 1 (current choice):** The execution is unsuccessful once any of the tags entered is found in the person's existing tags. +
+**Alternative 1 (current choice):** Make the execution unsuccessful once any of the tags entered is found in the person's existing tags. +
 **Pros:** It is easy to implement and it alerts the user about duplicate tags. +
 **Cons:** The user will have to enter the tags again. +
-**Alternative 2:** The person is updated successfully with non-duplicate tags. +
+**Alternative 2:** Allow the person to be updated successfully with non-duplicate tags. +
 **Pros:** It might be more user friendly if a long list of new tags is entered with only a few occurrence of duplicate tags. +
 **Cons:** The duplicate tag is totally ignored and not handled. Therefore, we must inform the user through the message displayed.
 
@@ -1289,12 +1309,14 @@ Use case resumes at step 1.
 Use case resumes at step 1.
 
 [discrete]
-=== Use case: Find phone number of a person
+=== Use case: Add a tag to a person
 
 *MSS*
 
-1.  User requests to find phone number of a person
-2.  AddressBook shows the phone number of the person
+1.  User requests to add a tag to a person
+2.  AddressBook prompts user to input new details
+3.  User inputs new details
+4.  AddressBook updates the the old tags to the new one
 +
 Use case ends.
 
@@ -1308,10 +1330,10 @@ Use case ends.
 +
 Use case ends.
 
-* 2a. There are multiple persons with the name entered.
+* 2a. The tag already exist in the person.
 +
 [none]
-** 2a1. AddressBook shows a list of phone numbers which belong to the matched persons.
+** 2a1. AddressBook shows an error message
 +
 Use case ends.
 
@@ -1379,7 +1401,7 @@ Use case ends.
 Use case resumes at step 2.
 
 [discrete]
-=== Use case: List persons by tag
+=== Use case: Filter persons by tag
 
 *MSS*
 

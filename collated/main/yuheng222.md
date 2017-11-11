@@ -1,5 +1,5 @@
 # yuheng222
-###### \java\seedu\address\logic\commands\SelectThemeCommand.java
+###### /java/seedu/address/logic/commands/SelectThemeCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -58,7 +58,7 @@ public class SelectThemeCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\SortCommand.java
+###### /java/seedu/address/logic/commands/SortCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -83,7 +83,17 @@ public class SortCommand extends UndoableCommand {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\ArgumentMultimap.java
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
+```
+###### /java/seedu/address/logic/parser/AddressBookParser.java
+``` java
+        case SelectThemeCommand.COMMAND_WORD: case SelectThemeCommand.COMMAND_ALIAS:
+            return new SelectThemeCommandParser().parse(arguments);
+```
+###### /java/seedu/address/logic/parser/ArgumentMultimap.java
 ``` java
     /**
      * Returns the last value of {@code prefix}.
@@ -97,7 +107,7 @@ public class SortCommand extends UndoableCommand {
         }
     }
 ```
-###### \java\seedu\address\logic\parser\EditCommandParser.java
+###### /java/seedu/address/logic/parser/EditCommandParser.java
 ``` java
     /**
      * Parses {@code String avatar} into a {@code String<Avatar>} if {@code avatar} is non-empty.
@@ -113,7 +123,7 @@ public class SortCommand extends UndoableCommand {
         return Optional.of(ParserUtil.parseAvatar(avatar));
     }
 ```
-###### \java\seedu\address\logic\parser\ParserUtil.java
+###### /java/seedu/address/logic/parser/ParserUtil.java
 ``` java
     /**
      * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
@@ -124,7 +134,7 @@ public class SortCommand extends UndoableCommand {
         return new Avatar(avatar);
     }
 ```
-###### \java\seedu\address\logic\parser\SelectThemeCommandParser.java
+###### /java/seedu/address/logic/parser/SelectThemeCommandParser.java
 ``` java
 
 package seedu.address.logic.parser;
@@ -158,7 +168,7 @@ public class SelectThemeCommandParser implements Parser<SelectThemeCommand> {
 
 }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /**
      * Initialises the themes in this {@code AddressBook}.
@@ -175,7 +185,7 @@ public class SelectThemeCommandParser implements Parser<SelectThemeCommand> {
         return themes;
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /** Sorts the persons in this {@code AddressBook} lexicographically */
 
@@ -183,7 +193,7 @@ public class SelectThemeCommandParser implements Parser<SelectThemeCommand> {
         persons.sort();
     }
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Sorts the persons in the AddressBook lexicographically */
     void sort();
@@ -191,7 +201,7 @@ public class SelectThemeCommandParser implements Parser<SelectThemeCommand> {
     /** Returns the themes list */
     ArrayList<String> getThemesList();
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void sort() {
@@ -205,7 +215,7 @@ public class SelectThemeCommandParser implements Parser<SelectThemeCommand> {
         return this.addressBook.getThemesList();
     }
 ```
-###### \java\seedu\address\model\person\Avatar.java
+###### /java/seedu/address/model/person/Avatar.java
 ``` java
 
 package seedu.address.model.person;
@@ -273,7 +283,7 @@ public class Avatar {
     }
 }
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     public void setAvatar(Avatar avatar) {
         this.avatar.set(avatar);
@@ -289,7 +299,7 @@ public class Avatar {
         return avatar.get();
     }
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
     /**
      * Selects the theme given by user input.
@@ -301,7 +311,7 @@ public class Avatar {
         getRoot().getStylesheets().add("/view/" + theme);
     }
 ```
-###### \java\seedu\address\ui\MainWindow.java
+###### /java/seedu/address/ui/MainWindow.java
 ``` java
     @Subscribe
     private void handleSelectThemeEvent(SelectThemeRequestEvent event) {
@@ -309,7 +319,7 @@ public class Avatar {
         handleSelectTheme(event.theme);
     }
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
     /**
      *  Sets the chosen Avatar for the specified person.
@@ -321,7 +331,7 @@ public class Avatar {
         avatarDisplay.setImage(image);
     }
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .list-cell {
@@ -352,7 +362,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .pane-with-border {
@@ -362,7 +372,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .grid-pane .anchor-pane {
@@ -370,7 +380,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .background {
@@ -400,7 +410,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .split-pane:horizontal .split-pane-divider {
@@ -451,7 +461,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .anchor-pane {
@@ -506,7 +516,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 #resultDisplay .content {
