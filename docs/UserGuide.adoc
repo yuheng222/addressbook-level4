@@ -53,6 +53,9 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
+[NOTE]
+Mac users may encounter problems in reading the headings in the help window because the system does not recognise the font. Please use this User Guide instead for help.
+
 
 === Adding a person: `add`
 
