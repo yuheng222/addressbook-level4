@@ -49,7 +49,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withAvatar("default.png")
             .withNokName("Aleena Meier").withNokPhone("87654321")
-            .withTags(VALID_TAG_OWESMONEY, VALID_TAG_FRIENDS).build();
+            .withTags(VALID_TAG_OWESMONEY, VALID_TAG_FRIENDS, VALID_TAG_CLASSMATES).build();
     public static final ReadOnlyPerson CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withAvatar("default.png")
