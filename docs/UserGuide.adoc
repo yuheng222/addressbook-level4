@@ -60,7 +60,7 @@ Mac users may encounter problems in reading the headings in the help window beca
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/FILE_PATH] nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/FILE_PATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 * A person can either have an avatar or not. If a file path for an avatar is not specified, a default placeholder avatar will be added for the person.
 * A person can have any number of tags (including 0)
@@ -325,6 +325,17 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
+// tag::backup[]
+=== Backing up the data : `backup`
+Backs up your data into the same location as the current data.
+Format: 'backup'
+
+****
+* Your backup file’s name will be appended with “-backup” compared with the original file.
+* Both the original and backup files are located in the data folder inside AB&B’s installation folder. E.g. C:\AB&B\data, assuming AB&B is installed in the location C:\AB&B.
+****
+// end::backup[]
+
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
@@ -344,13 +355,6 @@ will be named `AddressBookData.csv`.
 Format: `export`
 // end::export[]
 
-// tag::backup[]
-=== Backing up the data : `backup`
-Address book's data can be stored in a backup file in the same directory as the original data file.
-
-Format: 'backup'
-// end::backup[]
-
 === Saving the data
 
 Address book data are saved in the hard disk automatically after any command that changes the data. +
@@ -366,7 +370,7 @@ There is no need to save manually.
 *A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
 
 *Q*: How do I backup my data locally on my computer? +
-*A*: You may use the `backup` command to generate a backup file with the same format as the original data file.
+*A*: You may use the `backup` command to generate a backup file which is the same file format as the original data file.
 
 == Command Summary
 
