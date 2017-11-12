@@ -77,7 +77,38 @@ it is independent of the displayed person list.
 . This demonstrates the case-insensitivity of the `deletebyname` command and how it will update the displayed persons
 list to show all matching persons. Deletion will then have to be done using the `delete` command.
 
-=== Xavier add your sort,select, theme functions here
+=== Sort persons by name - `sort`
+Sorts all persons in the address book by name in alphabetical order.
+
+==== Test commands
+. `sort`
+. Verify that the contact list on the left is sorted by name in alphabetical order.
+. Proceed to modify the existing contacts list by adding a new person or editing a current person's name such that it is no longer in alphabetical order.
+. `sort`
+. Verify that the contact list is sorted in alphabetical order once again.
+
+=== Google Maps search by address
+Selecting a person's card on the contact list panel will have his / her address location displayed on Google Maps in the browser panel on the right hand side.
+
+==== Test commands
+*Important*: Mac users will face a bug such that invalid characters will be displayed instead of the person's address in the Google Maps search interface due to font incompatibility.
+
+. Add a new person with a valid address. If you want the Google Maps search result location to be accurate, make sure you key in an address that exists in reality.
+. Click on the person card that you have just added into the contact list.
+. Verify that the person's address location is shown on Google Maps in the browser panel.
+
+=== Selecting a theme - `theme INDEX`
+Switches current theme to the one given by a specific `INDEX`. There are 4 available themes: Midnight, Summer, Coffee, Crayon. The default theme is the Midnight Theme. You may refer to our user guide for screenshots of the themes to see how they should look like.
+
+==== Test commands
+. `theme 2`
+. Verify that the theme is switched to the Summer Theme.
+. `theme 3`
+. Verify that the theme is switched to the Coffee Theme.
+. `theme 4`
+. Verify that the theme is switched to the Crayon Theme.
+. `theme 1`
+. Verify that the theme is switched to the Midnight Theme.
 
 === Exporting data to CSV - `export`
 Exports the current data in AB&B to a CSV file in the same folder as the AB&B executable. The file will be named
@@ -99,7 +130,3 @@ replaced with a semi-colon (;). This is to preserve the structure of the CSV fil
 . The export command should fail as it will not allow empty data to be exported.
 
 === Zechariah add your backup function here
-
-
-
-

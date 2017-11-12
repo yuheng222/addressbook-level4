@@ -480,11 +480,11 @@ image::UndoRedoActivityDiagram.png[width="200"]
 // tag::sort[]
 === Sort mechanism
 
-The sort mechanism mainly relies on the logic component. The primary sorting algorithm resides in `UniquePersonList` class and it is implemented very simply by using a 'Person' comparator.
+The sort mechanism mainly relies on the logic component. The primary sorting algorithm resides in `UniquePersonList` class and it is implemented very simply using a `Person` comparator.
 
-`IndicateAddressBookChanged` event is raised by 'Model' after the sorting is done to indicate that the Address Book has been modified.
+`IndicateAddressBookChanged` event is raised by `Model` after the sorting is done to indicate that the Address Book has been modified.
 
-'SortCommand"' inherits from 'UndoableCommand' and thus it can be undone or redone using the 'Undo' or 'Redo' commands.
+`SortCommand` inherits from `UndoableCommand` and thus it can be undone or redone using the `Undo` or `Redo` commands.
 
 The sequence diagram below illustrates how the sort mechanism works:
 
@@ -503,9 +503,9 @@ image::SortSequenceDiagram.PNG[width="800"]
 **Alternative 1 (current choice):** Only sorts by names of persons in the Address Book. +
 **Pros:** Easy to implement and more intuitive for the user. +
 **Cons:** Functionality is limited and may not satisfy the requirements of the user. +
-**Alternative 2:** Sorts persons in the Address Book by any field (sorting by email or tag for example), which is given as an input by the user. +
-**Pros:** More flexibility for users since they have the option to sort by any field that they want. +
-**Cons:** Harder to implement and constant updating of code is required every time a new field in the 'Person' class is introduced.
+**Alternative 2:** Sorts persons in the Address Book by any field (e.g. sorting by email or tag), which is given as an input by the user. +
+**Pros:** More flexibility for the user since he has the option to sort contacts using more fields. +
+**Cons:** Harder to implement and constant updating of code is required every time a new field in the `Person` class is introduced.
 // end::sort[]
 
 // tag::theme[]
@@ -518,10 +518,10 @@ The sequence diagram below illustrates how the select theme mechanism works:
 
 image::SelectThemeSequenceDiagram.PNG[width="800"]
 
-    1. User executes the `theme` command which is then parsed through `AddressBookParser`.
-    2. The index `1` is extracted and parsed into `SelectThemeCommandParser` and an `index` instance is created together with a `SelectThemeCommand` object.
+    1. User executes the `theme` command which is then parsed into `AddressBookParser`.
+    2. The index `1` is extracted and parsed into `SelectThemeCommandParser`, and an `index` instance is created together with a `SelectThemeCommand` object.
     3. `SelectThemeCommand` then posts a `SelectThemeRequestEvent` which is picked up and handled by `EventsCenter`.
-    4. The `Main Window` of the `UI` component is then updates with the theme at the given index provided by the user.
+    4. The `Main Window` of the `UI` component is then updated with the theme at the given index provided by the user.
 
 ==== Design Considerations
 
@@ -529,19 +529,19 @@ image::SelectThemeSequenceDiagram.PNG[width="800"]
 **Alternative 1 (current choice):** User can only select themes that are provided in the themes list. +
 **Pros:** Easy to implement and less prone to UI and design bugs. +
 **Cons:** No flexibility since the user is unable to change to a specific colour scheme that is not given in the themes list. +
-**Alternative 2:** Allows user to customise and choose their own colour scheme using a colour palette. +
+**Alternative 2:** Allow user to customise the colour scheme of the GUI using a colour palette. +
 **Pros:** More flexibility for the user. +
-**Cons:** Much harder to implement and many UI related bugs may occur.
+**Cons:** Much harder to implement and UI related bugs may occur.
 
 ---
 
 **Aspect:** Addition of `ThemesList` +
-**Alternative 1 (current choice):** User can refer to the user guide if they wish to view the list of themes that are available for selection. +
-**Pros:** Saves the hassle of implementing a new command, and the user can figure out how each theme looks like since screenshots are provided. +
+**Alternative 1 (current choice):** User may refer to the user guide if they wish to view the list of themes that are available for selection. +
+**Pros:** Saves the hassle of implementing a new command, and the user can find out how each theme looks like by referring to the screenshots provided in the user guide. +
 **Cons:** It is tedious for the user to keep referring to the user guide if he is unable to remember the index of each theme. +
 **Alternative 2:** Implement a new `ThemesList` command. +
 **Pros:** More convenient for the user since he can easily find out which themes are available by typing a command. +
-**Cons:** It is a trivial command which may never be used since the user can simply refer to the user guide for the list of themes.
+**Cons:** It is a trivial command which may never be used since the user can simply refer to the user guide to view the list of themes.
 // end::theme[]
 
 // tag::filter[]
