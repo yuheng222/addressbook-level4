@@ -33,7 +33,45 @@ This app will not work with earlier versions of Java 8.
 
 === Zechariah add your add function with NOK here, and also the find function.
 
-=== Wang Jie add your functions, filter and add/remove tag, alongside the edit command.
+
+=== Find contacts by tag - `filter [TAG] [MORE_TAG]...`
+Filters persons who have the any of the given tags.
+
+===== Test commands
+. `filter Year1`
+. Verify that all persons with tags `Year1` are displayed.
+. `filter year1`
+. Verify that all persons with tags `Year1` are displayed. (This is to demonstrate the case-insensitivity of the tag keyword)
+. `filter Tutor Professor`
+. Verify that all persons with tags `Tutor` or `Professor` are displayed.
+. `list` (reset displayed person list)
+
+=== Modify a contact's tag list
+
+==== Edit - `edit INDEX t/[TAG]...`
+Overwrites all the existing tags the contact has.
+
+===== Test commands
+. `edit 1 t/Year2`
+. Verify that the person at the first index is updated to `Year2`.
+
+==== Add tag - `addtag INDEX [TAG] [MORE_TAGS]...`
+Adds one or more tags to an existing person in the address book.
+
+===== Test commands
+. `addtag 2 group1 leader`
+. Verify that tags `group1` and `leader` are added to the tag list of the person at the second index.
+. `addtag 2 leader`
+. Verify that an error message about duplicate tags found is displayed.
+
+==== Remove tag - `removetag INDEX [TAG] [MORE_TAGS]...`
+Removes one or more tags from an existing person in the address book.
+
+===== Test commands
+. `removetag 2 neighbour`
+. Verify that tag `neighbour` is removed from the tag list of the person at the second index.
+. `removetag 2 group2`
+. Verify that an error message about tag-not-found is displayed.
 
 === Deletion
 
