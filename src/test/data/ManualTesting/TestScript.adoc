@@ -77,7 +77,6 @@ it is independent of the displayed person list.
 . This demonstrates the case-insensitivity of the `deletebyname` command and how it will update the displayed persons
 list to show all matching persons. Deletion will then have to be done using the `delete` command.
 
-
 === Sort persons by name - `sort`
 Sorts all persons in the address book by name in alphabetical order.
 
@@ -101,6 +100,7 @@ Selecting a person's card on the contact list panel will have his / her address 
 === Selecting a theme - `theme INDEX`
 Switches current theme to the one given by a specific `INDEX`. There are 4 available themes: Midnight, Summer, Coffee, Crayon. The default theme is the Midnight Theme. You may refer to our user guide for screenshots of the themes to see how they should look like.
 
+==== Test commands
 . `theme 2`
 . Verify that the theme is switched to the Summer Theme.
 . `theme 3`
