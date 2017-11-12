@@ -514,7 +514,7 @@ image::SelectThemeSequenceDiagram.PNG[width="800"]
 **Alternative 1 (current choice):** User can only select themes that are provided in the themes list. +
 **Pros:** Easy to implement and less prone to UI and design bugs. +
 **Cons:** No flexibility since the user is unable to change to a specific colour scheme that is not given in the themes list. +
-**Alternative 2:** Allow user to customise his own GUI colour scheme using a colour palette. +
+**Alternative 2:** Allow user to customise the colour scheme of the GUI using a colour palette. +
 **Pros:** More flexibility for the user. +
 **Cons:** Much harder to implement and UI related bugs may occur.
 
@@ -522,7 +522,7 @@ image::SelectThemeSequenceDiagram.PNG[width="800"]
 
 **Aspect:** Addition of `ThemesList` +
 **Alternative 1 (current choice):** User may refer to the user guide if they wish to view the list of themes that are available for selection. +
-**Pros:** Saves the hassle of implementing a new command, and the user can find out how each theme looks like by referring to the user guide since screenshots are provided. +
+**Pros:** Saves the hassle of implementing a new command, and the user can find out how each theme looks like by referring to the screenshots provided in the user guide. +
 **Cons:** It is tedious for the user to keep referring to the user guide if he is unable to remember the index of each theme. +
 **Alternative 2:** Implement a new `ThemesList` command. +
 **Pros:** More convenient for the user since he can easily find out which themes are available by typing a command. +
