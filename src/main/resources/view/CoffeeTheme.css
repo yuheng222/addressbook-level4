@@ -82,7 +82,7 @@
 }
 
 .split-pane {
-    -fx-border-radius: 1;
+    -fx-border-radius: 7;
     -fx-border-width: 1;
     -fx-background-color: derive(#fafafa, 20%);
 }
@@ -90,7 +90,10 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-background-color: derive(#f2f2f2, 20%);
 }
+
+/* @@author yuheng222 */
 
 .list-cell {
     -fx-background-color: #724706 ;
@@ -119,6 +122,8 @@
     -fx-border-width: 1;
 }
 
+/* @@author */
+
 .list-cell .label {
     -fx-text-fill: white;
 }
@@ -139,11 +144,15 @@
     -fx-background-color: derive(#f2f1f1, 20%);
 }
 
+/* @@author yuheng222 */
+
 .pane-with-border {
      -fx-background-color: derive(#8c6125, 20%);
      -fx-border-color: derive(#8c6125, 10%);
      -fx-border-top-width: 1px;
 }
+
+/* @@author */
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 20%);
@@ -182,9 +191,13 @@
     -fx-border-width: 1px;
 }
 
+/* @@author yuheng222 */
+
 .grid-pane .anchor-pane {
     -fx-background-color: derive(#8c6125, 30%);
 }
+
+/* @@author */
 
 .context-menu {
     -fx-background-color: derive(#1d1d1d, 50%);

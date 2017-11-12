@@ -81,6 +81,7 @@ public class ParserUtil {
         return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
     }
 
+    //@@author yuheng222
     /**
      * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
      * See header comment of this class regarding the use of {@code Optional} parameters.
@@ -89,6 +90,7 @@ public class ParserUtil {
         requireNonNull(avatar);
         return new Avatar(avatar);
     }
+    //@@author
 
     /**
      * Parses a {@code Optional<String> nokName} into an {@code Optional<NokName>} if {@code nokName} is present.

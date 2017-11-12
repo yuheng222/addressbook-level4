@@ -32,8 +32,6 @@ This app will not work with earlier versions of Java 8.
 == Testing
 
 === Addition
-
-==== Add by fields
 Adds the person in AB&B as the last index according to the currently displayed person list.
 
 ===== Test commands
@@ -121,6 +119,45 @@ The next few commands are to test the behaviour of `find` command.
 . `find Do`
 . Verify that the new list displayed is empty. This shows that only complete keywords are matched.
 
+=== Find contacts by tag - `filter [TAG] [MORE_TAG]...`
+Filters persons who have the any of the given tags.
+
+===== Test commands
+. `filter Year1`
+. Verify that all persons with tags `Year1` are displayed.
+. `filter year1`
+. Verify that all persons with tags `Year1` are displayed. (This is to demonstrate the case-insensitivity of the tag keyword)
+. `filter Tutor Professor`
+. Verify that all persons with tags `Tutor` or `Professor` are displayed.
+. `list` (reset displayed person list)
+
+=== Modify a contact's tag list
+
+==== Edit - `edit INDEX t/[TAG]...`
+Overwrites all the existing tags the contact has.
+
+===== Test commands
+. `edit 1 t/Year2`
+. Verify that the person at the first index is updated to `Year2`.
+
+==== Add tag - `addtag INDEX [TAG] [MORE_TAGS]...`
+Adds one or more tags to an existing person in the address book.
+
+===== Test commands
+. `addtag 2 group1 leader`
+. Verify that tags `group1` and `leader` are added to the tag list of the person at the second index.
+. `addtag 2 leader`
+. Verify that an error message about duplicate tags found is displayed.
+
+==== Remove tag - `removetag INDEX [TAG] [MORE_TAGS]...`
+Removes one or more tags from an existing person in the address book.
+
+===== Test commands
+. `removetag 2 neighbour`
+. Verify that tag `neighbour` is removed from the tag list of the person at the second index.
+. `removetag 2 group2`
+. Verify that an error message about tag-not-found is displayed.
+
 === Deletion
 
 ==== Delete by Index - `delete INDEX`
@@ -163,49 +200,20 @@ it is independent of the displayed person list.
 . This demonstrates the case-insensitivity of the `deletebyname` command and how it will update the displayed persons
 list to show all matching persons. Deletion will then have to be done using the `delete` command.
 
-=== Find contacts by tag - `filter [TAG] [MORE_TAG]...`
-Filters persons who have the any of the given tags.
+=== Sort persons by name - `sort`
+Sorts all persons in the address book by name in alphabetical order.
 
 ===== Test commands
-. `filter Year1`
-. Verify that all persons with tags `Year1` are displayed.
-. `filter year1`
-. Verify that all persons with tags `Year1` are displayed. (This is to demonstrate the case-insensitivity of the tag keyword)
-. `filter Tutor Professor`
-. Verify that all persons with tags `Tutor` or `Professor` are displayed.
-. `list` (reset displayed person list)
-
-=== Modify a contact's tag list
-
-==== Edit - `edit INDEX t/[TAG]...`
-Overwrites all the existing tags the contact has.
-
-===== Test commands
-. `edit 1 t/Year2`
-. Verify that the person at the first index is updated to `Year2`.
-
-==== Add tag - `addtag INDEX [TAG] [MORE_TAGS]...`
-Adds one or more tags to an existing person in the address book.
-
-===== Test commands
-. `addtag 2 group1 leader`
-. Verify that tags `group1` and `leader` are added to the tag list of the person at the second index.
-. `addtag 2 leader`
-. Verify that an error message about duplicate tags found is displayed.
-
-==== Remove tag - `removetag INDEX [TAG] [MORE_TAGS]...`
-Removes one or more tags from an existing person in the address book.
-
-===== Test commands
-. `removetag 2 neighbour`
-. Verify that tag `neighbour` is removed from the tag list of the person at the second index.
-. `removetag 2 group2`
-. Verify that an error message about tag-not-found is displayed.
+. `sort`
+. Verify that the contact list on the left is sorted by name in alphabetical order.
+. Proceed to modify the existing contacts list by adding a new person or editing a current person's name such that it is no longer in alphabetical order.
+. `sort`
+. Verify that the contact list is sorted in alphabetical order once again.
 
 === Selecting a person : `select INDEX`
 Selects the person as specified by the index number in the most updated contact listing. Selecting a person will have his / her address location displayed on Google Maps in the browser panel on the right hand side.
 
-==== Test commands
+===== Test commands
 *Important*: Mac users will face a bug such that invalid characters will be displayed instead of the person's address in the Google Maps search interface due to font incompatibility.
 
 . `select 4`
@@ -216,7 +224,7 @@ Selects the person as specified by the index number in the most updated contact 
 === Selecting a theme - `theme INDEX`
 Switches current theme to the one given by a specific `INDEX`. There are 4 available themes: Midnight, Summer, Coffee, Crayon. The default theme is the Midnight Theme. You may refer to our user guide for screenshots of the themes to see how they should look like.
 
-==== Test commands
+===== Test commands
 . `theme 2`
 . Verify that the theme is switched to the Summer Theme.
 . `theme 3`

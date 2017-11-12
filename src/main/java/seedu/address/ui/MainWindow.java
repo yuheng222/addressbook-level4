@@ -141,8 +141,7 @@ public class MainWindow extends UiPart<Region> {
         ResultDisplay resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getAddressBookFilePath(),
-                logic.getFilteredPersonList().size());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(prefs.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(logic);
@@ -208,8 +207,9 @@ public class MainWindow extends UiPart<Region> {
         primaryStage.show();
     }
 
+    //@@author yuheng222
     /**
-     * Selects the theme given by user input
+     * Selects the theme given by user input.
      */
     public void handleSelectTheme(String theme) {
         if (getRoot().getStylesheets().size() > 1) {
@@ -217,6 +217,7 @@ public class MainWindow extends UiPart<Region> {
         }
         getRoot().getStylesheets().add("/view/" + theme);
     }
+    //@@author
 
     /**
      * Closes the application.
@@ -244,9 +245,11 @@ public class MainWindow extends UiPart<Region> {
         handleHelp();
     }
 
+    //@@author yuheng222
     @Subscribe
     private void handleSelectThemeEvent(SelectThemeRequestEvent event) {
         logger.info(LogsCenter.getEventHandlingLogMessage(event));
         handleSelectTheme(event.theme);
     }
+    //@@author
 }

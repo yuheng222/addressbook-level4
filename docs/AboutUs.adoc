@@ -10,12 +10,12 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 
 == Project Team
 
-=== Xie Yuheng Xavier
-image::yuheng222.JPG[width="150", align="left"]
-{empty}[https://github.com/yuheng222[github]] [<<yuheng222#, portfolio>>]
+=== Xie Yu Heng
+image::yuheng222.png[width="150", align="left"]
+{empty}[https://github.com/yuheng222[github]] [<<xieyuheng#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Model
+Responsibilities: UI
 
 '''
 
@@ -30,16 +30,16 @@ Responsibilities: Documentation
 
 === Wang Jie
 image::wangjieee.png[width="150", align="left"]
-{empty}[http://github.com/WangJieee[github]] [<<WangJieee#, portfolio>>]
+{empty}[http://github.com/WangJieee[github]] [<<wangjie#, portfolio>>]
 
 Role: Developer +
 Responsibilities: UI
 
 '''
 
-=== Ryan Teo Meng Shin
+=== Teo Meng Shin, Ryan
 image::acecentury.jpg[width="150", align="left"]
-{empty}[http://github.com/AceCentury[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/AceCentury[github]] [<<ryanteo#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Logic

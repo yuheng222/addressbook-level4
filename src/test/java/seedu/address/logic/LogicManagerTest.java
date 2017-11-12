@@ -60,12 +60,14 @@ public class LogicManagerTest {
         assertHistoryCorrect(deleteCommand);
     }
 
+    //@@author yuheng222
     @Test
     public void execute_selectThemeCommandExecutionError_throwsCommandException() {
         String selectThemeCommand = "theme 9";
         assertCommandException(selectThemeCommand, MESSAGE_INVALID_THEME_DISPLAYED_INDEX);
         assertHistoryCorrect(selectThemeCommand);
     }
+    //@@author
 
     @Test
     public void execute_validCommand_success() {
