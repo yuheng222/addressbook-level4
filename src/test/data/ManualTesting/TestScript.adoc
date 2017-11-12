@@ -88,19 +88,21 @@ Sorts all persons in the address book by name in alphabetical order.
 . `sort`
 . Verify that the contact list is sorted in alphabetical order once again.
 
-=== Google Maps search by address
-Selecting a person's card on the contact list panel will have his / her address location displayed on Google Maps in the browser panel on the right hand side.
+=== Selecting a person : `select INDEX`
+Selects the person as specified by the index number in the most updated contact listing. Selecting a person will have his / her address location displayed on Google Maps in the browser panel on the right hand side.
 
 ==== Test commands
 *Important*: Mac users will face a bug such that invalid characters will be displayed instead of the person's address in the Google Maps search interface due to font incompatibility.
 
-. Add a new person with a valid address. If you want the Google Maps search result location to be accurate, make sure you key in an address that exists in reality.
-. Click on the person card that you have just added into the contact list.
+. `select 4`
+. Verify that the person at index 4 is selected. The selected person's card will be overlaid with a different colour as compared to the rest and can be easily identified.
 . Verify that the person's address location is shown on Google Maps in the browser panel.
+. For further testing, you may repeat step 1 with any index that is within the number of contacts in the address book. Then, go through steps 2 and 3 accordingly.
 
 === Selecting a theme - `theme INDEX`
 Switches current theme to the one given by a specific `INDEX`. There are 4 available themes: Midnight, Summer, Coffee, Crayon. The default theme is the Midnight Theme. You may refer to our user guide for screenshots of the themes to see how they should look like.
 
+==== Test commands
 . `theme 2`
 . Verify that the theme is switched to the Summer Theme.
 . `theme 3`
