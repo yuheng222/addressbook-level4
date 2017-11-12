@@ -11,11 +11,11 @@ We are a team based in the http://www.comp.nus.edu.sg[School of Computing, Natio
 == Project Team
 
 === Xie Yu Heng
-image::yuheng222.JPG[width="150", align="left"]
-{empty}[https://github.com/yuheng222[github]] [<<yuheng222#, portfolio>>]
+image::yuheng222.PNG[width="150", align="left"]
+{empty}[https://github.com/yuheng222[github]] [<<xieyuheng#, portfolio>>]
 
 Role: Developer +
-Responsibilities: Logic + UI
+Responsibilities: UI
 
 '''
 
@@ -39,7 +39,7 @@ Responsibilities: UI
 
 === Ryan Teo Meng Shin
 image::acecentury.jpg[width="150", align="left"]
-{empty}[http://github.com/AceCentury[github]] [<<johndoe#, portfolio>>]
+{empty}[http://github.com/AceCentury[github]] [<<ryanteo#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Logic
