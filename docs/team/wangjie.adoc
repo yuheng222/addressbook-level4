@@ -71,7 +71,7 @@ include::../DeveloperGuide.adoc[tag=addtag]
 
 ==== External behavior
 
-A tag pane is added to the main window to display all the existing tags in the address book.
+A tag pane is added to the main window to display all the existing tags in AB&B. At any time a contact's tag list is edited, the tag pane will be refreshed to show the latest existing tags. 
 
 image::TagPane.png[width="500"]
 
