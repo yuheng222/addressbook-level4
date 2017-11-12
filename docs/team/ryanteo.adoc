@@ -4,9 +4,13 @@ ifdef::env-github,env-browser[:outfilesuffix: .adoc]
 :stylesDir: ../stylesheets
 
 == Project: AB&B
-AB&B is a java-based address book application. Although there is a GUI, main interactions
-from the user are done via CLI. While there are features which would benefit the general population,
-we have included features tailored specifically for administrative personnel.
+AB&B is a java-based address book application. The application allows the user to easily manage his/her
+contacts' information. Although there is a GUI, main interactions from the user are done via CLI.
+While there are features which benefit the generic user, the team has included features tailored specifically
+for administrative personnel.
+
+The objective of this portfolio is to document notable contributions I have made to the application.
+A record of my contributions towards other similar projects can be found towards the end of the document.
 
 *Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/main/AceCentury.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/AceCentury.md[Test code]]
 
