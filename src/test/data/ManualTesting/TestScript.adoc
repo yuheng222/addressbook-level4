@@ -39,15 +39,15 @@ These tests cover the importance of each contact field. The next few examples re
 
 **Image 1**
 
-image::damithc.png[width="300"]
+image::{repoURL}\docs\images\damithc.jpg[width="300"]
 
 **Image 2**
 
-image::lejolly.png[width="300"]
+image::{repoURL}\docs\images\lejolly.png[width="300"]
 
 **Image 3**
 
-image::default.png[width="300"]
+image::{repoURL}\src\main\resources\images\default.png[width="300"]
 
 . `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with the image above should also appear in the newly added PersonCard.
