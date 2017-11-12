@@ -17,7 +17,7 @@ This application has a GUI but most user interactions happen using a CLI (Comman
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc
+include::../UserGuide.adoc[tag=add]
 
 #End of Extract#
 
@@ -45,7 +45,7 @@ include::../DeveloperGuide.adoc
 ---
 #Start of Extract [from: User Guide]#
 
-include::../UserGuide.adoc
+include::../UserGuide.adoc[tag=add]
 
 #End of Extract#
 
