@@ -96,7 +96,7 @@ This feature facilitates typing of commands and helps users who are not able to 
 
 === Other contributions
 
-* Added welcome page and enhanced GUI (Pull requests https://github.com/CS2103AUG2017-T10-B3/main/pull/25[#25], https://github.com/CS2103AUG2017-T10-B3/main/pull/25[#44])
+* Added welcome page and enhanced GUI (Pull requests https://github.com/CS2103AUG2017-T10-B3/main/pull/25[#25], https://github.com/CS2103AUG2017-T10-B3/main/pull/44[#44])
 
 == Contribution to other team's project
 
