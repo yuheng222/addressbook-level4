@@ -39,11 +39,11 @@ These tests cover the importance of each contact field. The next few examples re
 
 **Image 1**
 
-image::{repoURL}/docs/images/damithc.jpg[width="300"]
+image::{repoURL}/blob/master/docs/images/damithc.jpg[width="300"]
 
 **Image 2**
 
-image::{repoURL}/docs/images/lejolly.png[width="300"]
+image::{repoURL}/blob/master/docs/images/lejolly.png[width="300"]
 
 **Image 3**
 
