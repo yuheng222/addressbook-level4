@@ -27,17 +27,6 @@ include::../UserGuide.adoc[tag=add]
 
 For administration such as schools or tuition centres.
 
-==== Implementation
-
----
-#Start of Extract [from: Developer Guide]#
-
-include::../DeveloperGuide.adoc
-
-#End of Extract#
-
----
-
 === Enhancement Added: Optional Fields
 
 ==== External behavior
@@ -55,16 +44,6 @@ include::../UserGuide.adoc[tag=add]
 
 Sometimes it's inappropriate to ask people such as colleagues for their personal details such as Address, Email & NOK details
 
-
-==== Implementation
-
----
-#Start of Extract [from: Developer Guide]#
-
-include::../DeveloperGuide.adoc
-
-#End of Extract#
-
 === Enhancement Added: Address Book Backup
 
 ==== External behavior
@@ -81,7 +60,6 @@ include::../UserGuide.adoc[tag=backup]
 ==== Justification
 
 In the case where any mistake was made and the app was accidentally closed (thus preventing the undo command from working on the next start), the previous backup can be retrieved.
-
 
 ==== Implementation
 
