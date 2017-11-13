@@ -731,29 +731,17 @@ The backup is stored in the same location as the original data file.
 
 ==== Design Considerations
 **Aspect:** When to create the backup
-
 *Alternative 1 (current choice)*: Implement a command to create backup.
-
 *Pros:* The backup is only created when the user desires to.
-
 *Cons:* In an unexpected circumstances, data may be lost and the user may not have backed up the data after many changes.
-
 *Alternative 2:* on startup of the application
-
 *Pros:* The backup is made only of a working version of the address book that the user can easily revert to.
-
 *Cons:* On the next startup, that backup file is overwritten, preventing a backup from some time ago to be used.
-
 *Alternative 3:* Create a backup after a fixed number of UndoableCommands.
-
 *Pros:* This will create backups that are guaranteed to be recent.
-
 *Cons:* More tedious and difficult to implement. User may also be running another process at that point of time. This could cause a bottleneck if there is a lot of data to be saved, and multiple backup calls are queued one after another.
-
 *Alternative 4:* Backup every few minutes
-
 *Pros:* Provides a very recent copy of the data.
-
 *Cons:* More tedious and difficult to implement. With a large amount of data, the next backup will start even before the previous one is done, eventually leading to multiple backup calls queued one after another.
 // end::backup[]
 
