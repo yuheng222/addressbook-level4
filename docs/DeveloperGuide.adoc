@@ -752,7 +752,7 @@ The backup is stored in the same location as the original data file.
 
 *Alternative 4:* Backup every few minutes
 
-*Pros:* Provides a very recent copy of the data on Ark.
+*Pros:* Provides a very recent copy of the data.
 
 *Cons:* More tedious and difficult to implement. With a large amount of data, the next backup will start even before the previous one is done, eventually leading to multiple backup calls queued one after another.
 // end::backup[]
