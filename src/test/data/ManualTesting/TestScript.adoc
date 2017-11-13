@@ -31,8 +31,105 @@ This app will not work with earlier versions of Java 8.
 
 == Testing
 
-=== Zechariah add your add function with NOK here, and also the find function.
+=== Addition
+Adds the person in AB&B as the last index according to the currently displayed person list.
 
+===== Test commands
+These tests cover the importance of each contact field. The next few examples refer to image 1 as the avatar image added, image 2 as an extra avatar image and image 3 as the default avatar image.
+
+**Image 1**
+
+image::{repoURL}/blob/master/docs/images/damithc.jpg[width="105"]
+
+**Image 2**
+
+image::{repoURL}/blob/master/docs/images/lejolly.jpg[width="105"]
+
+**Image 3**
+
+image::{repoURL}/blob/master/src/main/resources/images/default.png[width="105"]
+
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard.
+. `add p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since name is a compulsory field and it is not specified.
+. `add n/John Doe e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since phone is a compulsory field and it is not specified.
+. `add n/John Doe p/12345678 a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, no email, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that the email field is optional.
+. `add n/John Doe p/12345678 e/johndoe@example.com r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, no address, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with the image above should also appear in the newly added PersonCard. This shows that the address field is optional.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 3 should also appear in the newly added PersonCard. This shows that a default avatar image will be used if not specified.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, no Next-of-Kin name, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that the Next-of-Kin name field is optional.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that the Next-of-Kin phone field is optional.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe` and Next-of-Kin phone `23456789`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that it is not compulsory to add tags to a contact.
+
+These tests cover what happens if you try to add multiple fields of the same type.
+
+. `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the name `John Doe` instead of `John Died` has been added together with all the other non-duplicate fields. This shows that only the last name is accepted.
+. `add n/John Doe p/87654321 p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the phone `12345678` instead of `87654321` has been added together with all the other non-duplicate fields. This shows that only the last phone is accepted.
+. `add n/John Doe p/12345678 e/johnsucks@example.com e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the email `johndoe@example.com` instead of `johnsucks@example.com` has been added together with all the other non-duplicate fields. This shows that only the last email is accepted.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk K, Joker Street, #11-2101 a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the address `Blk J, John Street, #10-2103` instead of `Blk K, Joker Street, #11-2101` has been added together with all the other non-duplicate fields. This shows that only the last address is accepted.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/lejolly.png r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with avatar image 1 shown above instead of avatar image 2 shown above has been added together with all the other non-duplicate fields. This shows that only the last avatar is accepted.
+. `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Mary Doe nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that the person with the Next-of-Kin name `Peter Doe` instead of `Mary Doe` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin name is accepted.
+. `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/98765432 nokp/23456789 t/friend`
+. Verify that the person with the Next-of-Kin phone `23456789` instead of `98765432` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin phone is accepted.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/professor t/friend`
+. Verify that the person with both tags `professor` and `friend` have been added together with all the other non-duplicate fields. This shows that all tags are accepted.
+
+These tests cover what happens if you try to add invalid fields.
+
+. `add n/J*h^ D*e p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since the name is invalid as names can only contain alphanumeric characters and spaces.
+. `add n/John Doe p/l234Sb7B e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since the phone is invalid as phones can only contain numbers.
+. `add n/John Doe p/12345678 e/johndoe..example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since the email is invalid as emails must be 2 alphanumeric/period strings separated by '@'.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/ r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since the address is invalid as address cannot be blank.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/invalidfilepath nokn/Peter Doe nokp/23456789 t/friend`
+. Verify that this person cannot be added since the avatar is invalid as the file path of the avatar image must be valid.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Pe!er D*e nokp/23456789 t/friend`
+. Verify that this person cannot be added since the Next-of-Kin name is invalid as Next-of-Kin names can only contain alphanumeric characters and spaces.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/234Sb7Bq t/friend`
+. Verify that this person cannot be added since the Next-of-Kin phone is invalid as Next-of-Kin phones can only contain numbers.
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/fr!e^d`
+. Verify that this person cannot be added since the tag is invalid as tags can only be alphanumeric.
+
+=== Finding
+Finds persons whose names contain any of the given keywords. The keywords are case-insensitive and the order of keywords do not matter. The keyword must be complete. E.g. `Han` will not match `Hans`. Persons matching any of the keywords specified will be returned.
+
+===== Test commands
+The following commands are to add independent test data to demonstrate the `find` command.
+
+. `add n/John Doe p/12345678`
+. `add n/Detective Doe p/23456789`
+. `add n/Digilent Doe p/87654321`
+. `add n/Donald Doe p/98765432`
+. `add n/Hermann Fegelein p/41854148`
+
+The next few commands are to test the behaviour of `find` command.
+
+. `find John`
+. Verify that the new list displayed only shows the name `John Doe`.
+. `find Doe`
+. Verify that the new list displayed only shows the names `John Doe`, `Detective Doe`, `Digilent Doe` & `Donald Doe`.
+. `find Fegelein John`
+. Verify that the new list displayed only shows the names `John Doe` & `Hermann Fegelein`. This shows that so long any of the keywords match a part of a person's name, it will be returned.
+. `find dOe`
+. Verify that the new list displayed only shows the names `John Doe`, `Detective Doe`, `Digilent Doe` & `Donald Doe`. This shows that the keywords are case-insensitive.
+. `find Do`
+. Verify that the new list displayed is empty. This shows that only complete keywords are matched.
 
 === Find contacts by tag - `filter [TAG] [MORE_TAG]...`
 Filters persons who have the any of the given tags.
@@ -118,7 +215,7 @@ list to show all matching persons. Deletion will then have to be done using the 
 === Sort persons by name - `sort`
 Sorts all persons in the address book by name in alphabetical order.
 
-==== Test commands
+===== Test commands
 . `sort`
 . Verify that the contact list on the left is sorted by name in alphabetical order.
 . Proceed to modify the existing contacts list by adding a new person or editing a current person's name such that it is no longer in alphabetical order.
@@ -128,7 +225,7 @@ Sorts all persons in the address book by name in alphabetical order.
 === Selecting a person : `select INDEX`
 Selects the person as specified by the index number in the most updated contact listing. Selecting a person will have his / her address location displayed on Google Maps in the browser panel on the right hand side.
 
-==== Test commands
+===== Test commands
 *Important*: Mac users will face a bug such that invalid characters will be displayed instead of the person's address in the Google Maps search interface due to font incompatibility.
 
 . `select 4`
@@ -139,7 +236,7 @@ Selects the person as specified by the index number in the most updated contact 
 === Selecting a theme - `theme INDEX`
 Switches current theme to the one given by a specific `INDEX`. There are 4 available themes: Midnight, Summer, Coffee, Crayon. The default theme is the Midnight Theme. You may refer to our user guide for screenshots of the themes to see how they should look like.
 
-==== Test commands
+===== Test commands
 . `theme 2`
 . Verify that the theme is switched to the Summer Theme.
 . `theme 3`
@@ -153,7 +250,7 @@ Switches current theme to the one given by a specific `INDEX`. There are 4 avail
 Exports the current data in AB&B to a CSV file in the same folder as the AB&B executable. The file will be named
 `AddressBookData.csv`.
 
-==== Test commands
+===== Test commands
 *Important*: Export function may encounter errors if the appropriate read/write permissions are not granted to AB&B.
 
 . `export`
@@ -168,4 +265,15 @@ replaced with a semi-colon (;). This is to preserve the structure of the CSV fil
 . `export`
 . The export command should fail as it will not allow empty data to be exported.
 
-=== Zechariah add your backup function here
+=== Backup data with the same format as the original data
+Creates a copy of the current data with "-backup" appended to the file name in the same folder as the data file.
+
+===== Test commands
+*Important*: Backup function may encounter errors if the appropriate read/write permissions are not granted to AB&B.
+
+. `backup`
+. Verify that the backup file exists and that the data is correct.
+
+. Proceed to make any change to the existing data. (`add`, `delete`, `edit`, etc).
+. `backup`
+. Verify that the backup file is updated with any change(s) made.

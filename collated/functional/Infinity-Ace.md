@@ -1365,7 +1365,7 @@ logger.info("AddressBook file " + addressBookFile + " not found");
     public static final Version VERSION = new Version(1, 5, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
-    
+
     private static Storage backup;
     protected Ui ui;
     protected Logic logic;

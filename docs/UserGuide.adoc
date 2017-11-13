@@ -57,6 +57,7 @@ Format: `help`
 Mac users may encounter problems in reading the headings in the help window because the system does not recognise the font. Please use this User Guide instead for help.
 
 
+// tag::add[]
 === Adding a person: `add`
 
 Adds a person to the address book +
@@ -69,6 +70,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/C:/images/john.jpg nokn/Peter Doe nokp/87654321`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 nokn/Harley Crowe nokp/23546789 t/criminal`
+// end::add[]
 
 === Listing all persons : `list`
 
