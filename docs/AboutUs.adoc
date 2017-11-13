@@ -30,7 +30,7 @@ Responsibilities: Documentation
 
 === Wang Jie
 image::wangjieee.png[width="150", align="left"]
-{empty}[http://github.com/WangJieee[github]] [<<WangJieee#, portfolio>>]
+{empty}[http://github.com/WangJieee[github]] [<<wangjie#, portfolio>>]
 
 Role: Developer +
 Responsibilities: UI

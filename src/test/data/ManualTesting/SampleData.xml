@@ -20,6 +20,10 @@
         <nokPhone>94894182</nokPhone>
         <tagged>Tutor</tagged>
         <tagged>Year4</tagged>
+        <tagged>CS2103</tagged>
+        <tagged>CS2010</tagged>
+        <tagged>neighbour</tagged>
+        <tagged>sameBirthday</tagged>
     </persons>
     <persons>
         <name>Charlotte Oliveiro</name>
@@ -210,4 +214,8 @@
     <tags>Year4</tags>
     <tags>Employee</tags>
     <tags>Year3</tags>
+    <tags>CS2103</tags>
+    <tags>CS2010</tags>
+    <tags>neighbour</tags>
+    <tags>sameBirthday</tags>
 </addressbook>
