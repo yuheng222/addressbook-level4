@@ -34,6 +34,9 @@ This app will not work with earlier versions of Java 8.
 === Addition
 Adds the person in AB&B as the last index according to the currently displayed person list.
 
+*Important*: To use the test commands for avatar fields as given below, you have to first download the relevant images (damithc.png, lejolly.png) from the Manual Testing link:{repoURL}/tree/master/src/test/data/ManualTesting[folder] and place them in the same folder as the AB&B.jar file.
+You may also use other image files in your local hard disk and provide the file path as the input for the avatar field (e.g. D:/exampleimage.png). Do note that only valid image file formats are supported ( e.g. .jpg, .png).
+
 ===== Test commands
 These tests cover the importance of each contact field. The next few examples refer to image 1 as the avatar image added, image 2 as an extra avatar image and image 3 as the default avatar image.
 
