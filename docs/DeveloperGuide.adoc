@@ -83,10 +83,7 @@ Having both Travis and AppVeyor ensures your App works on both Unix-based platfo
 
 ==== Getting started with coding
 
-Before you get started, take a short while to complete the following:
-
-1. Understand the overall design by reading the link:#architecture[Architecture] section.
-2. Take a look at the section link:#suggested-programming-tasks-to-get-started[Suggested Programming Tasks to Get Started].
+Before you get started, take a short while to understand the overall design by reading the link:#architecture[Architecture] section.
 
 == Design
 
@@ -105,7 +102,7 @@ The *_Architecture Diagram_* given above explains the high-level design of the A
 * link:#storage-component[*`Storage`*]
 
 [TIP]
-The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
+The `.pptx` files used to create diagrams in this document can be found in the link:{repoURL}/tree/master/docs/diagrams/[diagrams] folder. To update a diagram, modify the diagram in the pptx file, select the objects of the diagram, and choose `Save as picture`.
 
 Each of the four components, `UI`, `Logic`, `Model` and `Storage`:
 
