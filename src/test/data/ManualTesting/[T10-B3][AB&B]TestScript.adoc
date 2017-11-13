@@ -81,9 +81,9 @@ These tests cover what happens if you try to add multiple fields of the same typ
 . Verify that the person with the address `Blk J, John Street, #10-2103` instead of `Blk K, Joker Street, #11-2101` has been added together with all the other non-duplicate fields. This shows that only the last address is accepted.
 . `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/lejolly.png r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with avatar image 1 shown above instead of avatar image 2 shown above has been added together with all the other non-duplicate fields. This shows that only the last avatar is accepted.
-. `add n/John Died n/Joanna Doe p/12345678 e/joanna@example.com a/Blk J, Joanna Street, #10-2103 r/damithc.png nokn/Mary Doe nokn/Peter Doe nokp/23456789 t/friend`
+. `add n/Joanna Doe p/12345678 e/joanna@example.com a/Blk J, Joanna Street, #10-2103 r/damithc.png nokn/Mary Doe nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with the Next-of-Kin name `Peter Doe` instead of `Mary Doe` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin name is accepted.
-. `add n/John Died n/Johnathan Du p/12345678 e/john@example.com a/Blk J, Johnathan Street, #10-2103 r/damithc.png nokn/Peter Du nokp/98765432 nokp/23456789 t/friend`
+. `add n/Johnathan Du p/12345678 e/john@example.com a/Blk J, Johnathan Street, #10-2103 r/damithc.png nokn/Peter Du nokp/98765432 nokp/23456789 t/friend`
 . Verify that the person with the Next-of-Kin phone `23456789` instead of `98765432` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin phone is accepted.
 . `add n/Jerome Doe p/12345678 e/jerome@example.com a/Blk J, Jerome Street, #10-2103 r/damithc.png nokn/Nancy Doe nokp/23456789 t/professor t/friend`
 . Verify that the person with both tags `professor` and `friend` have been added together with all the other non-duplicate fields. This shows that all tags are accepted.
