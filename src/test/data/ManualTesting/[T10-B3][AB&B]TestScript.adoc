@@ -27,7 +27,9 @@ This app will not work with earlier versions of Java 8.
 === Loading sample data
 . Create a new folder, named `data`, at the root folder of AB&B.
 . Copy `SampleData.xml` into the `data` folder and *rename* it to `addressbook.xml`.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+
+=== Starting the app
+Double-click the file, AB&B.jar to start the app. The GUI should appear in a few seconds.
 
 == Testing
 
