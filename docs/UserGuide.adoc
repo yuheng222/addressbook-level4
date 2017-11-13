@@ -61,7 +61,7 @@ Mac users may encounter problems in reading the headings in the help window beca
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/FILE_PATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 * A person can either have an avatar or not. If a file path for an avatar is not specified, a default placeholder avatar will be added for the person.
 * A person can have any number of tags (including 0)
@@ -379,14 +379,14 @@ There is no need to save manually.
 **Note:** All command words are case-insensitive.
 e.g. `ADD`, `aDd`, `aDD`, `Add` all work the same as `add`.
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...` +
+* *Add* `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
 e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nokn/Peter Ho nokp/33335555 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
 * *Delete By Name* : `deletebyname NAME` +
 e.g. `deletebyname John Doe`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Add Tag* : `addtag INDEX [TAG] [MORE_TAGS]` +
 e.g. `addtag 2 friends classmates`
