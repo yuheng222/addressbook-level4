@@ -88,7 +88,7 @@ In the case where any mistake was made and the app was accidentally closed (thus
 ---
 #Start of Extract [from: Developer Guide]#
 
-include::../DeveloperGuide.adoc
+include::../DeveloperGuide.adoc[tag=backup]
 
 #End of Extract#
 
