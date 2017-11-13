@@ -8,6 +8,8 @@ AB&B is a desktop Address Book application created by Team T10-B3 in AY2017/8 Se
 
 This application has a GUI but most user interactions happen using a CLI (Command Line Interface), making it ideal for users who can type fast. The current features are selectively implemented to cater to administrative users.
 
+The objective of this portfolio is to document notable contributions I have made to the application.
+
 *Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/main/infinity-ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/infinity-ace.md[Test code]]
 
 === Enhancement Added: New fields NOK Name & NOK Phone
@@ -59,7 +61,7 @@ include::../UserGuide.adoc[tag=backup]
 
 ==== Justification
 
-In the case where any mistake was made and the app was accidentally closed (thus preventing the undo command from working on the next start), the previous backup can be retrieved.
+Allows the user to make a backup before making any major changes to the address book's data.
 
 ==== Implementation
 
