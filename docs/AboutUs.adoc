@@ -21,7 +21,7 @@ Responsibilities: UI
 
 === Zechariah Gerard Tan Jia Le
 image::infinity-ace.jpg[width="150", align="left"]
-{empty}[https://github.com/Infinity-Ace[github]] [<<infinity-ace#, portfolio>>]
+{empty}[https://github.com/Infinity-Ace[github]] [<<zechariahtan#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Documentation
