@@ -21,7 +21,7 @@ Responsibilities: UI
 
 === Zechariah Gerard Tan Jia Le
 image::infinity-ace.jpg[width="150", align="left"]
-{empty}[https://github.com/Infinity-Ace[github]] [<<infinity-ace#, portfolio>>]
+{empty}[https://github.com/Infinity-Ace[github]] [<<zechariahtan#, portfolio>>]
 
 Role: Developer +
 Responsibilities: Documentation
@@ -30,14 +30,14 @@ Responsibilities: Documentation
 
 === Wang Jie
 image::wangjieee.png[width="150", align="left"]
-{empty}[http://github.com/WangJieee[github]] [<<WangJieee#, portfolio>>]
+{empty}[http://github.com/WangJieee[github]] [<<wangjie#, portfolio>>]
 
 Role: Developer +
 Responsibilities: UI
 
 '''
 
-=== Ryan Teo Meng Shin
+=== Teo Meng Shin, Ryan
 image::acecentury.jpg[width="150", align="left"]
 {empty}[http://github.com/AceCentury[github]] [<<ryanteo#, portfolio>>]
 

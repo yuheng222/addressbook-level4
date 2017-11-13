@@ -2,7 +2,7 @@
 .background {
     -fx-background-color: derive(#f5f5f5, 20%);
     background-image: url(../images/bg2.png); /* Used in the default.html file */
-    background-size: 825px 600px;
+    background-size: 900px 700px;
 }
 
 .container {
