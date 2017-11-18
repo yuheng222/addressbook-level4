@@ -10,7 +10,7 @@ This application has a GUI but most user interactions happen using a CLI (Comman
 
 The objective of this portfolio is to document notable contributions I have made to the application.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/infinity-ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/infinity-ace.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/Infinity-Ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/Infinity-Ace.md[Test code]]
 
 === Enhancement Added: New fields NOK Name & NOK Phone
 

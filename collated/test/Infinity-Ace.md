@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NOK_PHONE_BOB;
 ```
 ###### /java/seedu/address/logic/commands/EditPersonDescriptorTest.java
 ``` java
-// different NOK name -> returns false
+        // different NOK name -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withNokName(VALID_NOK_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -79,7 +79,7 @@ import seedu.address.testutil.PersonBuilder;
 ```
 ###### /java/seedu/address/logic/parser/AddCommandParserTest.java
 ``` java
- // multiple NOK names - last NOK name accepted
+        // multiple NOK names - last NOK name accepted
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_AMY + NOK_NAME_DESC_BOB
                         + NOK_PHONE_DESC_BOB + TAG_DESC_FRIEND,
@@ -99,8 +99,9 @@ import seedu.address.testutil.PersonBuilder;
         assertParseSuccess(parser, AddCommand.COMMAND_WORD + NAME_DESC_BOB + PHONE_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + AVATAR_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
-    }
-
+```
+###### /java/seedu/address/logic/parser/AddCommandParserTest.java
+``` java
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
@@ -436,6 +437,7 @@ public class AddCommandSystemTest extends AddressBookSystemTest {
         /* Case: invalid tag -> rejected */
         command = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + NOK_NAME_DESC_AMY + NOK_PHONE_DESC_AMY + INVALID_TAG_DESC;
+    }
 ```
 ###### /java/systemtests/EditCommandSystemTest.java
 ``` java
@@ -636,6 +638,7 @@ public class EditCommandSystemTest extends AddressBookSystemTest {
         /* Case: edit a person with new values same as another person's values but with different tags -> rejected */
         command = EditCommand.COMMAND_WORD + " " + index.getOneBased() + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + NOK_NAME_DESC_BOB + NOK_PHONE_DESC_BOB + TAG_DESC_HUSBAND;
+    }
 ```
 ###### /java/seedu/address/storage/StorageManagerTest.java
 ``` java
