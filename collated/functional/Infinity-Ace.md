@@ -432,41 +432,41 @@ import seedu.address.model.person.NokPhone;
 ###### /java/seedu/address/logic/parser/ParserUtil.java
 ``` java
   public static Optional<Address> parseAddress(Optional<String> address) throws IllegalValueException {
-        return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
-    }
+      return address.isPresent() ? Optional.of(new Address(address.get())) : Optional.empty();
+  }
 
-    /**
-     * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
-        return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
-    }
+  /**
+   * Parses a {@code Optional<String> email} into an {@code Optional<Email>} if {@code email} is present.
+   * See header comment of this class regarding the use of {@code Optional} parameters.
+   */
+  public static Optional<Email> parseEmail(Optional<String> email) throws IllegalValueException {
+      return email.isPresent() ? Optional.of(new Email(email.get())) : Optional.empty();
+  }
 
-    /**
-     * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Avatar parseAvatar(String avatar) throws IllegalValueException, IOException {
-        requireNonNull(avatar);
-        return new Avatar(avatar);
-    }
+  /**
+   * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
+   * See header comment of this class regarding the use of {@code Optional} parameters.
+   */
+  public static Avatar parseAvatar(String avatar) throws IllegalValueException, IOException {
+      requireNonNull(avatar);
+      return new Avatar(avatar);
+  }
 
-    /**
-     * Parses a {@code Optional<String> nokName} into an {@code Optional<NokName>} if {@code nokName} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Optional<NokName> parseNokName(Optional<String> nokName) throws IllegalValueException {
-        return nokName.isPresent() ? Optional.of(new NokName(nokName.get())) : Optional.empty();
-    }
+  /**
+   * Parses a {@code Optional<String> nokName} into an {@code Optional<NokName>} if {@code nokName} is present.
+   * See header comment of this class regarding the use of {@code Optional} parameters.
+   */
+  public static Optional<NokName> parseNokName(Optional<String> nokName) throws IllegalValueException {
+      return nokName.isPresent() ? Optional.of(new NokName(nokName.get())) : Optional.empty();
+  }
 
-    /**
-     * Parses a {@code Optional<String> nokPhone} into an {@code Optional<NokPhone>} if {@code nokPhone} is present.
-     * See header comment of this class regarding the use of {@code Optional} parameters.
-     */
-    public static Optional<NokPhone> parseNokPhone(Optional<String> nokPhone) throws IllegalValueException {
-        return nokPhone.isPresent() ? Optional.of(new NokPhone(nokPhone.get())) : Optional.empty();
-    }
+  /**
+   * Parses a {@code Optional<String> nokPhone} into an {@code Optional<NokPhone>} if {@code nokPhone} is present.
+   * See header comment of this class regarding the use of {@code Optional} parameters.
+   */
+   public static Optional<NokPhone> parseNokPhone(Optional<String> nokPhone) throws IllegalValueException {
+       return nokPhone.isPresent() ? Optional.of(new NokPhone(nokPhone.get())) : Optional.empty();
+   }
 ```
 ###### /java/seedu/address/model/person/Address.java
 ``` java
@@ -483,7 +483,7 @@ public class Address {
     public static final String MESSAGE_ADDRESS_CONSTRAINTS =
             "Person addresses can take any values, and it should not be blank";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -573,7 +573,7 @@ public class NokName {
     public static final String MESSAGE_NOK_NAME_CONSTRAINTS =
             "NOK names should only contain alphanumeric characters and spaces, and it should not be blank";
 
-    /*
+    /**
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
@@ -605,7 +605,6 @@ public class NokName {
         return test.matches(NOK_NAME_VALIDATION_REGEX) || test.equals(NOK_NAME_UNDEFINED_DEFAULT);
     }
 
-
     @Override
     public String toString() {
         return value;
@@ -636,7 +635,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Guarantees: immutable; is valid as declared in {@link #isValidNokPhone(String)}
  */
 public class NokPhone {
-
 
     public static final String MESSAGE_NOK_PHONE_CONSTRAINTS =
             "NOK Phone numbers can only contain numbers, and should be at least 3 digits long";
@@ -689,7 +687,7 @@ public class NokPhone {
 ```
 ###### /java/seedu/address/model/person/Person.java
 ``` java
- private ObjectProperty<NokName> nokName;
+    private ObjectProperty<NokName> nokName;
     private ObjectProperty<NokPhone> nokPhone;
 
     private ObjectProperty<UniqueTagList> tags;
@@ -832,7 +830,6 @@ public class NokPhone {
                 setTags(tagList);
                 return true;
             }
-            ;
         }
         return false;
     }
@@ -848,6 +845,7 @@ public class NokPhone {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, nokName, nokPhone, tags);
+    }
 ```
 ###### /java/seedu/address/model/person/ReadOnlyPerson.java
 ``` java
@@ -906,23 +904,23 @@ public class SampleDataUtil {
         try {
             return new Person[] {
                 new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"), new NokName("Peter Yeoh"),
-                    new NokPhone("91516545"), getTagSet("friends")),
+                           new Address("Blk 30 Geylang Street 29, #06-40"), new NokName("Peter Yeoh"),
+                           new NokPhone("91516545"), getTagSet("friends")),
                 new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new NokName("Denise Yu"),
-                    new NokPhone("94894182"), getTagSet("colleagues", "friends")),
+                           new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new NokName("Denise Yu"),
+                           new NokPhone("94894182"), getTagSet("colleagues", "friends")),
                 new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new NokName("Charlie Oliveiro"),
-                    new NokPhone("81454165"), getTagSet("neighbours")),
+                           new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new NokName("Charlie Oliveiro"),
+                           new NokPhone("81454165"), getTagSet("neighbours")),
                 new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new NokName("Elliot Li"),
-                    new NokPhone("94156418"), getTagSet("family")),
+                           new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new NokName("Elliot Li"),
+                           new NokPhone("94156418"), getTagSet("family")),
                 new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"), new NokName("Juliet Ibrahim"),
-                    new NokPhone("91854185"), getTagSet("classmates")),
+                           new Address("Blk 47 Tampines Street 20, #17-35"), new NokName("Juliet Ibrahim"),
+                           new NokPhone("91854185"), getTagSet("classmates")),
                 new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"), new NokName("Sakthiar Balakrishnan"),
-                    new NokPhone("85648965"), getTagSet("colleagues"))
+                           new Address("Blk 45 Aljunied Street 85, #11-31"), new NokName("Sakthiar Balakrishnan"),
+                           new NokPhone("85648965"), getTagSet("colleagues"))
 ```
 ###### /java/seedu/address/storage/XmlAdaptedPerson.java
 ``` java
@@ -959,7 +957,6 @@ public class XmlAdaptedPerson {
      * This is the no-arg constructor that is required by JAXB.
      */
     public XmlAdaptedPerson() {}
-
 
     /**
      * Converts a given Person into this class for JAXB use.
@@ -1007,9 +1004,8 @@ public class XmlAdaptedPerson {
 ```
 ###### /java/seedu/address/ui/PersonCard.java
 ``` java
- String test = nokName.toString();                                           // Problem
-        nokName.textProperty().bind(Bindings.convert(person.nokNameProperty()));
-        nokPhone.textProperty().bind(Bindings.convert(person.nokPhoneProperty()));
+    nokName.textProperty().bind(Bindings.convert(person.nokNameProperty()));
+    nokPhone.textProperty().bind(Bindings.convert(person.nokPhoneProperty()));
 ```
 ###### /java/seedu/address/logic/commands/CommandTestUtil.java
 ``` java
@@ -1460,7 +1456,7 @@ import seedu.address.logic.commands.BackupCommand;
 ###### /java/seedu/address/logic/parser/AddressBookParser.java
 ``` java
 //@@author Infinity-Ace
-        case BackupCommand.COMMAND_WORD:
-            return new BackupCommand();
-        //@@author
+case BackupCommand.COMMAND_WORD:
+    return new BackupCommand();
+//@@author
 ```

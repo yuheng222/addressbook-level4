@@ -10,7 +10,7 @@ This application has a GUI but most user interactions happen using a CLI (Comman
 
 The objective of this portfolio is to document notable contributions I have made to the application.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/main/infinity-ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/infinity-ace.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/infinity-ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/infinity-ace.md[Test code]]
 
 === Enhancement Added: New fields NOK Name & NOK Phone
 
@@ -18,6 +18,8 @@ The objective of this portfolio is to document notable contributions I have made
 
 ---
 #Start of Extract [from: User Guide]#
+
+Included Next-of-Kin Name & Next-of-Kin phone fields within the details of the person’s record to be added, edited and displayed in the UI.
 
 include::../UserGuide.adoc[tag=add]
 
@@ -35,6 +37,8 @@ Next-of-Kin details are useful for administration in places like schools or tuit
 
 ---
 #Start of Extract [from: User Guide]#
+
+Made the Email, Address, Next-of-Kin Name & Next-of-Kin Phone fields optional in the add function.
 
 include::../UserGuide.adoc[tag=add]
 
