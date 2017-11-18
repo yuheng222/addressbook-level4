@@ -8,7 +8,7 @@ AB&B is a desktop Address Book application created by Team T10-B3 in AY2017/8 Se
 
 This application has a GUI but most user interactions happen using a CLI (Command Line Interface), making it ideal for users who can type fast. The current features are selectively implemented to cater to administrative users.
 
-*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/infinity-ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/infinity-ace.md[Test code]]
+*Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/Infinity-Ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/Infinity-Ace.md[Test code]]
 
 === Enhancement Added: New fields NOK Name & NOK Phone
 
