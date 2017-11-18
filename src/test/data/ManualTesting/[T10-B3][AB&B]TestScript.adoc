@@ -27,23 +27,28 @@ This app will not work with earlier versions of Java 8.
 === Loading sample data
 . Create a new folder, named `data`, at the root folder of AB&B.
 . Copy `SampleData.xml` into the `data` folder and *rename* it to `addressbook.xml`.
-.  Double-click the file to start the app. The GUI should appear in a few seconds.
+
+=== Starting the app
+Double-click the file, AB&B.jar to start the app. The GUI should appear in a few seconds.
 
 == Testing
 
 === Addition
 Adds the person in AB&B as the last index according to the currently displayed person list.
 
+*Important*: To use the test commands for avatar fields as given below, you have to first download the relevant images (damithc.png, lejolly.png) from the Manual Testing link:{repoURL}/tree/master/src/test/data/ManualTesting[folder] and place them in the same folder as the AB&B.jar file.
+You may also use other image files in your local hard disk and provide the file path as the input for the avatar field (e.g. D:/exampleimage.png). Do note that only valid image file formats are supported (e.g. .jpg, .png).
+
 ===== Test commands
 These tests cover the importance of each contact field. The next few examples refer to image 1 as the avatar image added, image 2 as an extra avatar image and image 3 as the default avatar image.
 
 **Image 1**
 
-image::{repoURL}/blob/master/docs/images/damithc.jpg[width="105"]
+image::{repoURL}/tree/master/docs/images/damithc.jpg[width="105"]
 
 **Image 2**
 
-image::{repoURL}/blob/master/docs/images/lejolly.jpg[width="105"]
+image::{repoURL}/tree/master/docs/images/lejolly.jpg[width="105"]
 
 **Image 3**
 
@@ -63,16 +68,14 @@ image::{repoURL}/blob/master/src/main/resources/images/default.png[width="105"]
 . Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe`, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 3 should also appear in the newly added PersonCard. This shows that a default avatar image will be used if not specified.
 . `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokp/23456789 t/friend`
 . Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, no Next-of-Kin name, Next-of-Kin phone `23456789` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that the Next-of-Kin name field is optional.
-. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe t/friend`
 . Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe` and with the tag `friends`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that the Next-of-Kin phone field is optional.
-. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
-. Verify that the person with the name `John Doe` has been added, that has phone number `12345678`, email `johndoe@example.com`, address `Blk J, John Street, #10-2103`, Next-of-Kin name `Peter Doe` and Next-of-Kin phone `23456789`. An avatar with image 1 should also appear in the newly added PersonCard. This shows that it is not compulsory to add tags to a contact.
 
 These tests cover what happens if you try to add multiple fields of the same type.
 
 . `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with the name `John Doe` instead of `John Died` has been added together with all the other non-duplicate fields. This shows that only the last name is accepted.
-. `add n/John Doe p/87654321 p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
+. `add n/Johnny Dover p/87654321 p/12345678 e/johnny@example.com a/Blk J, Johnny Street, #10-2103 r/damithc.png nokn/Peter Dover nokp/23456789 t/friend`
 . Verify that the person with the phone `12345678` instead of `87654321` has been added together with all the other non-duplicate fields. This shows that only the last phone is accepted.
 . `add n/John Doe p/12345678 e/johnsucks@example.com e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with the email `johndoe@example.com` instead of `johnsucks@example.com` has been added together with all the other non-duplicate fields. This shows that only the last email is accepted.
@@ -80,11 +83,11 @@ These tests cover what happens if you try to add multiple fields of the same typ
 . Verify that the person with the address `Blk J, John Street, #10-2103` instead of `Blk K, Joker Street, #11-2101` has been added together with all the other non-duplicate fields. This shows that only the last address is accepted.
 . `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/lejolly.png r/damithc.png nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with avatar image 1 shown above instead of avatar image 2 shown above has been added together with all the other non-duplicate fields. This shows that only the last avatar is accepted.
-. `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Mary Doe nokn/Peter Doe nokp/23456789 t/friend`
+. `add n/Joanna Doe p/12345678 e/joanna@example.com a/Blk J, Joanna Street, #10-2103 r/damithc.png nokn/Mary Doe nokn/Peter Doe nokp/23456789 t/friend`
 . Verify that the person with the Next-of-Kin name `Peter Doe` instead of `Mary Doe` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin name is accepted.
-. `add n/John Died n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/98765432 nokp/23456789 t/friend`
+. `add n/Johnathan Du p/12345678 e/john@example.com a/Blk J, Johnathan Street, #10-2103 r/damithc.png nokn/Peter Du nokp/98765432 nokp/23456789 t/friend`
 . Verify that the person with the Next-of-Kin phone `23456789` instead of `98765432` has been added together with all the other non-duplicate fields. This shows that only the last Next-of-Kin phone is accepted.
-. `add n/John Doe p/12345678 e/johndoe@example.com a/Blk J, John Street, #10-2103 r/damithc.png nokn/Peter Doe nokp/23456789 t/professor t/friend`
+. `add n/Jerome Doe p/12345678 e/jerome@example.com a/Blk J, Jerome Street, #10-2103 r/damithc.png nokn/Nancy Doe nokp/23456789 t/professor t/friend`
 . Verify that the person with both tags `professor` and `friend` have been added together with all the other non-duplicate fields. This shows that all tags are accepted.
 
 These tests cover what happens if you try to add invalid fields.

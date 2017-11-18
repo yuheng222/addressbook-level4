@@ -8,6 +8,8 @@ AB&B is a desktop Address Book application created by Team T10-B3 in AY2017/8 Se
 
 This application has a GUI but most user interactions happen using a CLI (Command Line Interface), making it ideal for users who can type fast. The current features are selectively implemented to cater to administrative users.
 
+The objective of this portfolio is to document notable contributions I have made to the application.
+
 *Code contributed*: [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/functional/Infinity-Ace.md[Functional code]] [https://github.com/CS2103AUG2017-T10-B3/main/blob/master/collated/test/Infinity-Ace.md[Test code]]
 
 === Enhancement Added: New fields NOK Name & NOK Phone
@@ -27,18 +29,7 @@ include::../UserGuide.adoc[tag=add]
 
 ==== Justification
 
-For administration such as schools or tuition centres.
-
-==== Implementation
-
----
-#Start of Extract [from: Developer Guide]#
-
-include::../DeveloperGuide.adoc
-
-#End of Extract#
-
----
+Next-of-Kin details are useful for administration in places like schools or tuition centres.
 
 === Enhancement Added: Optional Fields
 
@@ -57,17 +48,7 @@ include::../UserGuide.adoc[tag=add]
 
 ==== Justification
 
-Sometimes it's inappropriate to ask people such as colleagues for their personal details such as Address, Email & NOK details
-
-
-==== Implementation
-
----
-#Start of Extract [from: Developer Guide]#
-
-include::../DeveloperGuide.adoc
-
-#End of Extract#
+Sometimes it's inappropriate to ask people such as colleagues for their personal details such as Address, Email & Next-of-Kin details. Thus such details can be left blank.
 
 === Enhancement Added: Address Book Backup
 
@@ -84,8 +65,7 @@ include::../UserGuide.adoc[tag=backup]
 
 ==== Justification
 
-In the case where any mistake was made and the app was accidentally closed (thus preventing the undo command from working on the next start), the previous backup can be retrieved.
-
+Allows the user to make a backup before making any major changes to the address book's data.
 
 ==== Implementation
 
@@ -102,7 +82,7 @@ It does not make sense to have NOK Name without NOK Phone and vice versa.
 
 === Other contributions
 
-* Helped to check and merge some pull requests (Pull requests https://github.com/CS2103AUG2017-T10-B3/main/pull/98[#98], https://github.com/CS2103AUG2017-T10-B3/main/pull/97[#97] & https://github.com/CS2103AUG2017-T10-B3/main/pull/89[#89])
+* Helped to check and merge some pull requests (Pull requests https://github.com/CS2103AUG2017-T10-B3/main/pull/122[#122], https://github.com/CS2103AUG2017-T10-B3/main/pull/120[#120], https://github.com/CS2103AUG2017-T10-B3/main/pull/98[#98], https://github.com/CS2103AUG2017-T10-B3/main/pull/97[#97] & https://github.com/CS2103AUG2017-T10-B3/main/pull/89[#89])
 
 == Project: Robocodez
 
