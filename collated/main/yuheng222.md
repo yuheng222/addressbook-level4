@@ -279,7 +279,7 @@ public class Avatar {
 
 .background {
     -fx-background-color: derive(#f5f5f5, 20%);
-    background-color: #fafafa; /* Used in the default.html file (google window) */
+    background-color: #fafafa;
 }
 
 .label {
