@@ -1,5 +1,5 @@
 # yuheng222
-###### \java\seedu\address\logic\commands\SelectThemeCommand.java
+###### /java/seedu/address/logic/commands/SelectThemeCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -41,7 +41,7 @@ public class SelectThemeCommand extends Command {
     }
 }
 ```
-###### \java\seedu\address\logic\commands\SortCommand.java
+###### /java/seedu/address/logic/commands/SortCommand.java
 ``` java
 
 package seedu.address.logic.commands;
@@ -66,7 +66,7 @@ public class SortCommand extends UndoableCommand {
     }
 }
 ```
-###### \java\seedu\address\logic\parser\ArgumentMultimap.java
+###### /java/seedu/address/logic/parser/ArgumentMultimap.java
 ``` java
     /**
      * Returns the last value of {@code prefix}.
@@ -80,7 +80,7 @@ public class SortCommand extends UndoableCommand {
         }
     }
 ```
-###### \java\seedu\address\logic\parser\EditCommandParser.java
+###### /java/seedu/address/logic/parser/EditCommandParser.java
 ``` java
     /**
      * Parses {@code String avatar} into a {@code String<Avatar>} if {@code avatar} is non-empty.
@@ -96,7 +96,7 @@ public class SortCommand extends UndoableCommand {
         return Optional.of(ParserUtil.parseAvatar(avatar));
     }
 ```
-###### \java\seedu\address\logic\parser\ParserUtil.java
+###### /java/seedu/address/logic/parser/ParserUtil.java
 ``` java
     /**
      * Parses a {@code Optional<String> avatar} into an {@code Optional<Avatar>} if {@code avatar} is present.
@@ -107,7 +107,7 @@ public class SortCommand extends UndoableCommand {
         return new Avatar(avatar);
     }
 ```
-###### \java\seedu\address\model\AddressBook.java
+###### /java/seedu/address/model/AddressBook.java
 ``` java
     /** Sorts the persons in this {@code AddressBook} lexicographically */
 
@@ -115,12 +115,12 @@ public class SortCommand extends UndoableCommand {
         persons.sort();
     }
 ```
-###### \java\seedu\address\model\Model.java
+###### /java/seedu/address/model/Model.java
 ``` java
     /** Sorts the persons in the AddressBook lexicographically */
     void sort();
 ```
-###### \java\seedu\address\model\ModelManager.java
+###### /java/seedu/address/model/ModelManager.java
 ``` java
     @Override
     public synchronized void sort() {
@@ -129,7 +129,7 @@ public class SortCommand extends UndoableCommand {
         indicateAddressBookChanged();
     }
 ```
-###### \java\seedu\address\model\person\Avatar.java
+###### /java/seedu/address/model/person/Avatar.java
 ``` java
 
 package seedu.address.model.person;
@@ -197,7 +197,7 @@ public class Avatar {
     }
 }
 ```
-###### \java\seedu\address\model\person\Person.java
+###### /java/seedu/address/model/person/Person.java
 ``` java
     public void setAvatar(Avatar avatar) {
         this.avatar.set(avatar);
@@ -213,10 +213,10 @@ public class Avatar {
         return avatar.get();
     }
 ```
-###### \java\seedu\address\ui\PersonCard.java
+###### /java/seedu/address/ui/PersonCard.java
 ``` java
     /**
-     *  Sets the chosen Avatar for the specified person.
+     * Sets the chosen Avatar for the specified person.
      */
     private void setAvatar(ReadOnlyPerson person) {
 
@@ -225,7 +225,7 @@ public class Avatar {
         avatarDisplay.setImage(image);
     }
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .list-cell {
@@ -256,7 +256,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .pane-with-border {
@@ -266,7 +266,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\CoffeeTheme.css
+###### /resources/view/CoffeeTheme.css
 ``` css
 
 .grid-pane .anchor-pane {
@@ -274,7 +274,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .background {
@@ -304,7 +304,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .split-pane:horizontal .split-pane-divider {
@@ -355,7 +355,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 .anchor-pane {
@@ -410,7 +410,7 @@ public class Avatar {
 }
 
 ```
-###### \resources\view\SummerTheme.css
+###### /resources/view/SummerTheme.css
 ``` css
 
 #resultDisplay .content {

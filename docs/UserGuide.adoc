@@ -1,4 +1,4 @@
-= AddressBook Level 4 - User Guide
+= Address Book and Booklets (AB&B) - User Guide
 :toc:
 :toc-title:
 :toc-placement: preamble
@@ -10,7 +10,7 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level4
+:repoURL: https://github.com/CS2103AUG2017-T10-B3/main
 
 By: `Team T10-B3`      Since: `Oct 2017`      Licence: `MIT`
 
@@ -22,7 +22,7 @@ By: `Team T10-B3`      Since: `Oct 2017`      Licence: `MIT`
 Having any Java 8 version is not enough. +
 This app will not work with earlier versions of Java 8.
 +
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
+.  Download the latest `AB&B.jar` link:{repoURL}/releases[here].
 .  Copy the file to the folder you want to use as the home folder for your Address Book.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
@@ -53,11 +53,15 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 === Viewing help : `help`
 
 Format: `help`
+[NOTE]
+Mac users may encounter problems in reading the headings in the help window because the system does not recognise the font. Please use this User Guide instead for help.
 
+
+// tag::add[]
 === Adding a person: `add`
 
 Adds a person to the address book +
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/FILE_PATH] nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 * A person can either have an avatar or not. If a file path for an avatar is not specified, a default placeholder avatar will be added for the person.
 * A person can have any number of tags (including 0)
@@ -66,6 +70,7 @@ Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 r/C:/images/john.jpg nokn/Peter Doe nokp/87654321`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 nokn/Harley Crowe nokp/23546789 t/criminal`
+// end::add[]
 
 === Listing all persons : `list`
 
@@ -75,7 +80,7 @@ Format: `list`
 === Editing a person : `edit`
 
 Edits an existing person in the address book. +
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/FILE_PATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...`
 
 ****
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
@@ -92,6 +97,7 @@ Edits the phone number and email address of the 1st person to be `91234567` and 
 * `edit 2 n/Betsy Crower t/` +
 Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+// tag::addtagremovetag[]
 === Adding tags to a person : `addtag`
 
 Adds one or more tags to an existing person in the address book. +
@@ -101,6 +107,7 @@ Format: `addtag INDEX [TAG] [MORE_TAGS]`
 * Adds tags to the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
 * At least one tag must be provided.
 * You cannot add duplicate tags to the same person.
+* The tag name should be in one word without a space in between. e.g 'best friend' should be entered as `bestFriend`
 * The tag names are case sensitive. e.g `FRiends` is a different tag from `friends`
 ****
 
@@ -118,6 +125,7 @@ Format: `removetag INDEX [TAG] [MORE_TAGS]`
 * Removes tags from the person at the specified `INDEX`. The index refers to the index number shown in the last person listing. The index *must be a positive integer* 1, 2, 3, ...
 * At least one tag must be provided.
 * You cannot remove a tag that is not found in the person.
+* The tag name should be in one word without a space in between. e.g 'best friend' should be entered as `bestFriend`
 * The tag names are case sensitive. e.g `FRiends` is a different tag from `friends`
 ****
 
@@ -126,6 +134,7 @@ Examples:
 * `removetag 1 neighbours friends` +
 Removes the two tags `neighbours` and `friends` from the 1st person, provided that the person had both tags before.
 
+// end::addtagremovetag[]
 === Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords. +
@@ -146,6 +155,7 @@ Returns `john` and `John Doe`
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
 
+// tag::filter[]
 === Locating persons by tag: `filter`
 
 Filters persons who have the any of the given tags. +
@@ -163,6 +173,7 @@ Examples:
 
 * `filter families` +
 Returns all the persons who have the tag `families`
+// end::filter[]
 
 === Deleting a person : `delete`
 
@@ -184,6 +195,7 @@ Deletes the 2nd person in the address book.
 `delete 1` +
 Deletes the 1st person in the results of the `find` command.
 
+// tag::deletebyname[]
 === Deleting a person by name : `deletebyname`
 
 Deletes the specified person from the address book. Case insensitive.
@@ -207,6 +219,8 @@ person list to provide suggestions on possible persons to delete.
 If there is more than 1 person with the exact same name, it will update the displayed
 person list to show all the persons with the same name. You will then be prompted to use
 the `delete` command.
+
+// end::deletebyname[]
 
 === Selecting a person : `select`
 
@@ -313,6 +327,17 @@ The `redo` command fails as there are no `undo` commands executed previously.
 `redo` (reapplies the `clear` command) +
 // end::undoredo[]
 
+// tag::backup[]
+=== Backing up the data : `backup`
+Backs up your data into the same location as the current data.
+Format: 'backup'
+
+****
+* Your backup file’s name will be appended with “-backup” compared with the original file.
+* Both the original and backup files are located in the data folder inside AB&B’s installation folder. E.g. C:\AB&B\data, assuming AB&B is installed in the location C:\AB&B.
+****
+// end::backup[]
+
 === Clearing all entries : `clear`
 
 Clears all entries from the address book. +
@@ -323,12 +348,14 @@ Format: `clear`
 Exits the program. +
 Format: `exit`
 
-
+// tag::export[]
 === Exporting the data : `export`
 Saves the current data in the address book into a CSV (Comma-Separated Values) file.
-The file will be saved in the same location where you stored the application.
+The file will be saved in the same location where you stored the application. The file
+will be named `AddressBookData.csv`.
 
 Format: `export`
+// end::export[]
 
 === Saving the data
 
@@ -344,19 +371,22 @@ There is no need to save manually.
 *Q*: How do I transfer my data to another application? +
 *A*: You may use the `export` command to generate a CSV file. It is a common file format which is recognized by most applications.
 
+*Q*: How do I backup my data locally on my computer? +
+*A*: You may use the `backup` command to generate a backup file which is the same file format as the original data file.
+
 == Command Summary
 
 **Note:** All command words are case-insensitive.
 e.g. `ADD`, `aDd`, `aDD`, `Add` all work the same as `add`.
 
-* *Add* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS nokn/NOK_NAME nokp/NOK_PHONE [t/TAG]...` +
+* *Add* `add n/NAME p/PHONE_NUMBER [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
 e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 nokn/Peter Ho nokp/33335555 t/friend t/colleague`
 * *Clear* : `clear`
 * *Delete* : `delete INDEX` +
 e.g. `delete 3`
 * *Delete By Name* : `deletebyname NAME` +
 e.g. `deletebyname John Doe`
-* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
+* *Edit* : `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/AVATAR_FILEPATH] [nokn/NOK_NAME] [nokp/NOK_PHONE] [t/TAG]...` +
 e.g. `edit 2 n/James Lee e/jameslee@example.com`
 * *Add Tag* : `addtag INDEX [TAG] [MORE_TAGS]` +
 e.g. `addtag 2 friends classmates`
@@ -377,6 +407,7 @@ e.g.`theme 2`
 * *Undo* : `undo`
 * *Redo* : `redo`
 * *Export* : `export`
+* *Backup* : `backup`
 
 == Themes List
 

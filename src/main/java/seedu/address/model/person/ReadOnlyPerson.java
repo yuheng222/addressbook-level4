@@ -45,9 +45,10 @@ public interface ReadOnlyPerson {
                 && other.getNokName().equals(this.getNokName())
                 && other.getNokPhone().equals(this.getNokPhone()));
     }
-    //@@author Ryan Teo
+
+    //@@author AceCentury
     /**
-     * Returns a List containing all the property names of a Person.
+     * Returns a List of Strings containing all the property names of a Person.
      */
     default List<String> getPropertyNamesAsList() {
         List<String> propertyNames = new ArrayList<String>();
